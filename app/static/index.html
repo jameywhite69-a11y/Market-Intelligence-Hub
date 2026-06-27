@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Market Intelligence Hub v23.2</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+<div class="platform">
+  <aside class="sidebar">
+    <div class="brand">Market Intelligence Hub <span>v23.2</span></div>
+    <div class="engine-badge">Professional Multi-Workspace Platform<br><b>Trading · Scanner · Builder · Portfolio · AI Lab</b></div>
+
+    <div class="workspace-nav">
+      <button class="workspace-btn active" data-workspace="trading" onclick="switchWorkspace('trading')">Trading</button>
+      <button class="workspace-btn" data-workspace="scanner" onclick="switchWorkspace('scanner')">Scanner</button>
+      <button class="workspace-btn" data-workspace="builder" onclick="switchWorkspace('builder')">Strategy Builder</button>
+      <button class="workspace-btn" data-workspace="portfolio" onclick="switchWorkspace('portfolio')">Portfolio</button>
+      <button class="workspace-btn" data-workspace="marketdata" onclick="switchWorkspace('marketdata')">Market Data</button><button class="workspace-btn" data-workspace="backtest" onclick="switchWorkspace('backtest')">Backtest</button><button class="workspace-btn" data-workspace="ailab" onclick="switchWorkspace('ailab')">AI Lab</button>
+    </div>
+
+    <div class="section-title">Manual Watchlists</div>
+    <div id="watchlistTabs"></div>
+    <div class="symbol-add"><input id="addSymbolInput" placeholder="Add symbol"><button onclick="addSymbol()">Add</button></div>
+    <div id="manualSymbols"></div>
+
+    <div class="section-title">Smart Watchlist</div>
+    <div id="smartList"></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="label">Active Symbol</div>
+        <div id="activeSymbol" class="active-symbol">NVDA</div>
+        <input id="symbolSearch" class="symbol-search" placeholder="Search symbol" onkeydown="symbolSearchKey(event)">
+      </div>
+
+      <div>
+        <div class="label">Strategy</div>
+        <select id="strategySelect" onchange="setStrategy(this.value)">
+          <option>EMA Pullback</option>
+          <option>Momentum Breakout</option>
+          <option>VWAP Reversal</option>
+          <option>Mean Reversion</option>
+        </select>
+      </div>
+
+      <div>
+        <div class="label">Chart Layout</div>
+        <select id="layoutSelect" onchange="setChartLayout(this.value)">
+          <option>4 Chart</option>
+          <option>2 Chart</option>
+          <option>1 Chart Focus</option>
+        </select>
+      </div>
+
+      <div class="quote-card"><span id="quoteLast">$--</span><span id="quoteChange">--</span></div>
+      <button onclick="saveNow()">Save Workspace</button>
+      <button onclick="resetLayout()">Reset Layout</button>
+    </header>
+
+    <section id="workspace-trading" class="workspace active">
+      <div class="trading-grid">
+        <section class="chart-grid" id="chartGrid">
+          <div class="chart-card" data-chart="0"></div>
+          <div class="chart-card" data-chart="1"></div>
+          <div class="chart-card" data-chart="2"></div>
+          <div class="chart-card" data-chart="3"></div>
+        </section>
+
+        <aside class="right-rail" id="rightRail">
+          <div class="dock-controls">
+            <button onclick="setDockMode('normal')">Normal</button>
+            <button onclick="setDockMode('wide')">Wide Rail</button>
+            <button onclick="setDockMode('hidden')">Charts Only</button>
+          </div>
+          <div class="panel">
+            <h3>Order Ticket</h3>
+            <div class="ticket-grid">
+              <label>Account $<input id="accountSize" value="300000" type="number"></label>
+              <label>Risk %<input id="riskPct" value="1" type="number" step="0.1"></label>
+              <label>Qty<input id="qty" value="100" type="number"></label>
+              <label>Stop<input id="stop" value="" type="number" step="0.01"></label>
+              <label>Target<input id="target" value="" type="number" step="0.01"></label>
+            </div>
+            <div class="btn-row">
+              <button class="buy" onclick="ticketAction('BUY MARKET')">Buy</button>
+              <button class="sell" onclick="ticketAction('SELL MARKET')">Sell</button>
+              <button onclick="ticketAction('FLATTEN')">Flatten</button>
+            </div>
+            <div id="ticketStatus" class="status">Ready.</div>
+          </div>
+
+          <div class="panel">
+            <h3>Checklist</h3>
+            <div id="checklist"></div>
+          </div>
+
+          <div class="panel">
+            <h3>AI Coach</h3>
+            <div id="coach"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="workspace-scanner" class="workspace">
+      <div class="workspace-header">
+        <h2>Institutional Scanner</h2>
+        <div><button onclick="runInstitutionalScanner()">Scan Active Rule Graph</button><button onclick="runTemplateScanner()">Scan Strategy Templates</button></div>
+      </div>
+      <div id="institutionalScannerBox" class="large-panel">Run the scanner to rank the active watchlist by strategy readiness.</div>
+      <div id="liveAnalyzerBox" class="large-panel">Run live analyzer from the Strategy Builder workspace.</div>
+    </section>
+
+    <section id="workspace-builder" class="workspace">
+      <div class="workspace-header">
+        <h2>Visual Strategy Builder</h2>
+        <div><button onclick="generateStrategy()">Generate Code</button><button onclick="copyActiveCode()">Copy Active Code</button></div>
+      </div>
+
+      <div class="builder-panel">
+        <div class="builder-grid">
+          <label>Name<input id="sbName" value="EMA RVOL Pullback"></label>
+          <label>Direction<select id="sbDirection"><option>Long Only</option><option>Long / Short</option></select></label>
+          <label>Timeframe<select id="sbTimeframe"><option selected>15m</option><option>1h</option></select></label>
+          <label>Trend<select id="sbTrend"><option>EMA29 > EMA54</option><option>Price > VWAP</option></select></label>
+          <label>Momentum<select id="sbMomentum"><option>ADX > 16</option><option>RSI > 55</option></select></label>
+          <label>Volume<select id="sbVolume"><option>RVOL > 1.5</option><option>RVOL > 2.0</option></select></label>
+          <label>Entry<select id="sbEntry"><option>Pullback reclaim</option><option>Breakout above base</option></select></label>
+          <label>Exit<select id="sbExit"><option>Close below EMA54</option><option>ATR stop</option></select></label>
+          <label>Risk<select id="sbRisk"><option>1% account risk</option><option>Fixed $500 risk</option></select></label>
+        </div>
+        <div class="code-tabs">
+          <button class="code-tab active" onclick="setCodeTab('pine')">Pine Script</button>
+          <button class="code-tab" onclick="setCodeTab('easylanguage')">EasyLanguage</button>
+          <button class="code-tab" onclick="setCodeTab('python')">Python</button>
+        </div>
+        <textarea id="generatedCode" class="code-output">Click Generate Code to create strategy code.</textarea>
+      </div>
+
+      <div class="builder-panel">
+        <div class="workspace-header small">
+          <h3>Rule Graph Engine</h3>
+          <div>Reusable rules · AND/OR logic · Templates · Code generation</div>
+        </div>
+        <div id="ruleGraphBox"></div>
+      </div>
+    </section>
+
+    <section id="workspace-portfolio" class="workspace">
+      <div class="workspace-header">
+        <h2>Portfolio & Trade Planner</h2>
+        <div>
+          Account <input id="plannerAccount" value="300000" class="mini-input">
+          Risk % <input id="plannerRiskPct" value="1" class="mini-input">
+          <button onclick="buildSelectedTradePlan()">Plan Selected</button>
+          <button onclick="buildTradeQueue()">Build Trade Queue</button>
+        </div>
+      </div>
+      <div id="tradePlannerBox" class="large-panel">Build a trade plan or queue from the active rule graph.</div>
+      <div class="portfolio-grid">
+        <div class="large-panel"><h3>Staged Trades</h3><div id="stagedTradesBox"></div></div>
+        <div class="large-panel"><h3>Portfolio Exposure</h3><div id="portfolioExposureBox"></div></div>
+        <div class="large-panel"><h3>Journal</h3><div id="journalBox"></div></div>
+      </div>
+    </section>
+
+    <section id="workspace-marketdata" class="workspace">
+      <div class="workspace-header">
+        <h2>Market Data Layer</h2>
+        <div>Provider abstraction · CSV import · API adapter slots</div>
+      </div>
+      <div class="market-data-grid">
+        <div class="large-panel"><h3>Providers</h3><div id="marketDataBox">Loading providers...</div></div>
+        <div class="large-panel">
+          <h3>CSV Historical Imports</h3>
+          <div class="csv-tools">
+            <input type="file" id="csvUploadInput" accept=".csv">
+            <button onclick="uploadCsvFile()">Upload CSV</button>
+            <button onclick="createSampleCsv()">Create Sample for Active Symbol</button>
+            <button onclick="loadMarketDataDiagnostics()">Diagnostics</button>
+          </div>
+          <div id="csvImportBox">Loading CSV imports...</div>
+          <div id="csvDiagnosticsBox"></div>
+        </div>
+        <div class="large-panel"><h3>Integration Notes</h3><div class="future-list">Demo mode remains the safe fallback. CSV mode reads local OHLCV files. Alpaca, Polygon, and Coinbase adapters are structured slots ready for credential-based implementation.</div></div>
+      </div>
+    </section>
+
+    <section id="workspace-backtest" class="workspace">
+      <div class="workspace-header">
+        <h2>Backtesting Lab</h2>
+        <div>
+          Capital <input id="btCapital" value="10000" class="mini-input">
+          TF <select id="btTimeframe"><option>5m</option><option selected>15m</option><option>1h</option><option>4h</option></select>
+          Bars <input id="btBars" value="240" class="mini-input">
+          <button onclick="runBacktest()">Run Backtest</button>
+        </div>
+      </div>
+      <div id="backtestBox" class="large-panel">Run a backtest using the active rule graph and selected symbol.</div>
+    </section>
+
+    <section id="workspace-ailab" class="workspace">
+      <div class="workspace-header"><h2>AI Lab</h2><div>Strategy evaluation · optimization · future Monte Carlo / walk-forward testing</div></div>
+      <div class="ai-grid">
+        <div class="large-panel"><h3>AI Coach</h3><div id="aiLabCoach">Select a symbol or run analyzer to populate AI Lab.</div></div>
+        <div class="large-panel"><h3>Broker Connections</h3><div id="brokerBox"></div></div>
+        <div class="large-panel"><h3>Platform Status</h3><div id="platformStatusBox">Loading platform status...</div></div><div class="large-panel"><h3>System Health</h3><div id="healthBox">Loading health...</div></div><div class="large-panel"><h3>Audit Log</h3><div id="auditBox">Loading audit log...</div></div><div class="large-panel"><h3>Future Modules</h3><div class="future-list">Backtesting · Optimization · Walk-forward · Monte Carlo · Broker API · Level II</div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="/static/js/app.js"></script>
+<script src="/static/js/rule_builder.js"></script>
+<script src="/static/js/scanner.js"></script>
+<script src="/static/js/trade_planner.js"></script>
+<script src="/static/js/workspaces.js"></script><script src="/static/js/platform.js"></script><script src="/static/js/backtest.js"></script><script src="/static/js/market_data.js"></script>
+</body>
+</html>

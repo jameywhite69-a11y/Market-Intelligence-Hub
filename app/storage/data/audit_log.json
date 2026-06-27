@@ -1,0 +1,50 @@
+[
+  {
+    "timestamp": "2026-06-27T15:05:49.850398",
+    "action": "workspace.save",
+    "payload": {
+      "keys": [
+        "selected_symbol",
+        "selected_strategy",
+        "active_watchlist",
+        "layout",
+        "chart_engine",
+        "broker_mode",
+        "current_workspace",
+        "dock_mode",
+        "watchlists",
+        "chart_settings",
+        "alerts",
+        "positions",
+        "orders",
+        "journal",
+        "staged_trades",
+        "risk"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:05:22.229973",
+    "action": "workspace.save",
+    "payload": {
+      "keys": [
+        "selected_symbol",
+        "selected_strategy",
+        "active_watchlist",
+        "layout",
+        "chart_engine",
+        "broker_mode",
+        "current_workspace",
+        "dock_mode",
+        "watchlists",
+        "chart_settings",
+        "alerts",
+        "positions",
+        "orders",
+        "journal",
+        "staged_trades",
+        "risk"
+      ]
+    }
+  }
+]

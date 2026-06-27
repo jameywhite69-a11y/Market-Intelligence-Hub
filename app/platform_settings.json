@@ -1,0 +1,13 @@
+{
+  "version": "22.0",
+  "mode": "paper",
+  "default_workspace": "trading",
+  "chart_engine": "lightweight-charts",
+  "market_data_provider": "demo",
+  "broker_provider": "paper",
+  "risk": {
+    "account_size": 300000,
+    "risk_pct": 1.0,
+    "max_open_risk_pct": 3.0
+  }
+}

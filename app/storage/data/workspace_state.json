@@ -1,0 +1,84 @@
+{
+  "selected_symbol": "NVDA",
+  "selected_strategy": "EMA Pullback",
+  "active_watchlist": "Tech",
+  "layout": "4 Chart",
+  "chart_engine": "Lightweight Charts",
+  "broker_mode": "Paper",
+  "current_workspace": "trading",
+  "dock_mode": "normal",
+  "watchlists": {
+    "Tech": [
+      "NVDA",
+      "AMD",
+      "AAPL",
+      "MSFT",
+      "META",
+      "GOOGL",
+      "PLTR"
+    ],
+    "Crypto": [
+      "BTCUSD",
+      "ETHUSD",
+      "SOLUSD",
+      "LINKUSD",
+      "AVAXUSD",
+      "AAVEUSD"
+    ],
+    "Futures": [
+      "ES1!",
+      "NQ1!",
+      "YM1!",
+      "RTY1!"
+    ]
+  },
+  "chart_settings": [
+    {
+      "tf": "1m",
+      "type": "candles",
+      "ema20": true,
+      "ema50": true,
+      "ema200": false,
+      "vwap": true,
+      "volume": true
+    },
+    {
+      "tf": "5m",
+      "type": "candles",
+      "ema20": true,
+      "ema50": true,
+      "ema200": false,
+      "vwap": true,
+      "volume": true
+    },
+    {
+      "tf": "15m",
+      "type": "candles",
+      "ema20": true,
+      "ema50": true,
+      "ema200": true,
+      "vwap": false,
+      "volume": true
+    },
+    {
+      "tf": "1h",
+      "type": "candles",
+      "ema20": true,
+      "ema50": true,
+      "ema200": true,
+      "vwap": false,
+      "volume": true
+    }
+  ],
+  "alerts": [],
+  "positions": [],
+  "orders": [],
+  "journal": [],
+  "staged_trades": [],
+  "risk": {
+    "account": 300000,
+    "risk_pct": 1,
+    "daily_loss_limit": 3000,
+    "max_open_risk": 9000
+  }
+}
