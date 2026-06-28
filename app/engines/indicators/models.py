@@ -1,17 +1,11 @@
+from __future__ import annotations
+
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
 
-IndicatorCategory = Literal[
-    "trend",
-    "momentum",
-    "volatility",
-    "volume",
-    "market_structure",
-    "custom",
-]
-
+IndicatorCategory = Literal["trend", "momentum", "volatility", "volume", "market_structure", "custom"]
 ParameterType = Literal["int", "float", "str", "bool"]
 
 

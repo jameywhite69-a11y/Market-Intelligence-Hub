@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from time import time
 from threading import RLock
+from time import time
 from typing import Any
 
 
@@ -21,12 +21,11 @@ class IndicatorCacheKey:
         indicator: str,
         parameters: dict[str, Any] | None = None,
     ) -> "IndicatorCacheKey":
-        normalized_parameters = tuple(sorted((parameters or {}).items()))
         return cls(
-            symbol=symbol.strip().upper(),
-            timeframe=timeframe.strip(),
-            indicator=indicator.strip().upper(),
-            parameters=normalized_parameters,
+            symbol.strip().upper(),
+            timeframe.strip(),
+            indicator.strip().upper(),
+            tuple(sorted((parameters or {}).items())),
         )
 
 
@@ -37,14 +36,10 @@ class IndicatorCacheEntry:
     ttl_seconds: int | None = None
 
     def expired(self) -> bool:
-        if self.ttl_seconds is None:
-            return False
-        return (time() - self.created_at) > self.ttl_seconds
+        return self.ttl_seconds is not None and (time() - self.created_at) > self.ttl_seconds
 
 
 class IndicatorCache:
-    """Thread-safe in-memory cache for indicator results."""
-
     def __init__(self) -> None:
         self._items: dict[IndicatorCacheKey, IndicatorCacheEntry] = {}
         self._lock = RLock()
@@ -54,11 +49,7 @@ class IndicatorCache:
     def get(self, key: IndicatorCacheKey) -> Any | None:
         with self._lock:
             entry = self._items.get(key)
-            if entry is None:
-                self.misses += 1
-                return None
-
-            if entry.expired():
+            if entry is None or entry.expired():
                 self._items.pop(key, None)
                 self.misses += 1
                 return None
@@ -73,15 +64,7 @@ class IndicatorCache:
         ttl_seconds: int | None = None,
     ) -> None:
         with self._lock:
-            self._items[key] = IndicatorCacheEntry(
-                value=value,
-                created_at=time(),
-                ttl_seconds=ttl_seconds,
-            )
-
-    def invalidate(self, key: IndicatorCacheKey) -> None:
-        with self._lock:
-            self._items.pop(key, None)
+            self._items[key] = IndicatorCacheEntry(value, time(), ttl_seconds)
 
     def clear(self) -> None:
         with self._lock:

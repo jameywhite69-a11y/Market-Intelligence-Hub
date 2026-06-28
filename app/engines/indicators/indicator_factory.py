@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+from app.engines.indicators.exceptions import (
+    IndicatorAlreadyRegisteredError,
+    IndicatorNotRegisteredError,
+)
 from app.engines.indicators.indicator_base import BaseIndicator
 
 
@@ -9,11 +13,11 @@ class IndicatorFactory:
     def __init__(self) -> None:
         self._implementations: dict[str, type[BaseIndicator]] = {}
 
-    def register(self, key: str, implementation: type[BaseIndicator]) -> None:
+    def register(self, key: str, implementation: type[BaseIndicator], *, replace: bool = False) -> None:
         normalized_key = self._normalize_key(key)
 
-        if normalized_key in self._implementations:
-            raise ValueError(f"Indicator already registered: {normalized_key}")
+        if normalized_key in self._implementations and not replace:
+            raise IndicatorAlreadyRegisteredError(f"Indicator already registered: {normalized_key}")
 
         self._implementations[normalized_key] = implementation
 
@@ -21,7 +25,7 @@ class IndicatorFactory:
         normalized_key = self._normalize_key(key)
 
         if normalized_key not in self._implementations:
-            raise KeyError(f"Indicator is not registered: {normalized_key}")
+            raise IndicatorNotRegisteredError(f"Indicator is not registered: {normalized_key}")
 
         return self._implementations[normalized_key]()
 
