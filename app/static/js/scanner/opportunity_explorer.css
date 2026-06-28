@@ -1,0 +1,141 @@
+/* Version 26.4 — Sprint 2 Opportunity Explorer */
+
+.explorer-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.explorer-score-row {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.explorer-score {
+    font-size: 44px;
+    font-weight: 900;
+}
+
+.risk-pill {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.risk-low {
+    background: #064e3b;
+    color: #a7f3d0;
+}
+
+.risk-medium {
+    background: #713f12;
+    color: #facc15;
+}
+
+.risk-high {
+    background: #5f1616;
+    color: #ffb4b4;
+}
+
+.explorer-meter {
+    margin: 12px 0;
+}
+
+.meter-label {
+    display: flex;
+    justify-content: space-between;
+    color: #aaa;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.meter-track {
+    height: 8px;
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    background: #61dafb;
+}
+
+.risk-low .meter-fill { background: #22c55e; }
+.risk-medium .meter-fill { background: #facc15; }
+.risk-high .meter-fill { background: #ef4444; }
+
+.composition-list,
+.trade-plan {
+    border: 1px solid #343944;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 12px 0 18px;
+}
+
+.composition-row,
+.trade-plan div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    border-bottom: 1px solid #343944;
+    padding: 10px;
+}
+
+.trade-plan div {
+    grid-template-columns: 100px 1fr;
+}
+
+.composition-row:last-child,
+.trade-plan div:last-child {
+    border-bottom: none;
+}
+
+.indicator-interpretation {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 18px;
+}
+
+.indicator-card {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.indicator-card div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.indicator-card span,
+.indicator-card small {
+    color: #aaa;
+}
+
+.indicator-card strong {
+    display: block;
+    margin: 8px 0;
+    color: #61dafb;
+}
+
+.mtf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.mtf-table td {
+    border-bottom: 1px solid #343944;
+    padding: 9px;
+}
