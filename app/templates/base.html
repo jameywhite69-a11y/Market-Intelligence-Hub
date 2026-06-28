@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Market Intelligence Hub</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+    <div class="workspace-shell">
+        {% include "components/navbar.html" %}
+
+        <div class="workspace-main">
+            {% include "components/sidebar.html" %}
+
+            <main class="workspace-content">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+
+        {% include "components/statusbar.html" %}
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -43,14 +43,16 @@ app.include_router(indicator_router)
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):
     return templates.TemplateResponse(
-        "dashboard.html",
-        {"request": request},
-    )
+    request,
+    "dashboard.html",
+    {}
+)
 
 
 @app.get("/scanner", response_class=HTMLResponse)
 def scanner_page(request: Request):
     return templates.TemplateResponse(
-        "scanner.html",
-        {"request": request},
-    )
+    request,
+    "scanner.html",
+    {}
+)

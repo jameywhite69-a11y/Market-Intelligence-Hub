@@ -2,12 +2,63 @@
 
 {% block content %}
 <section class="dashboard-hero">
-    <h1>Scanner</h1>
+    <h1>Live Scanner</h1>
     <p>Run ranked scans across symbols, timeframes, and indicator pipelines.</p>
 </section>
 
-<div class="workspace-card">
-    <h2>Scanner Workspace</h2>
-    <p>Live scanner controls and ranked results will appear here.</p>
-</div>
+<section class="scanner-layout">
+    <div class="scanner-panel">
+        <h2>Scan Controls</h2>
+
+        <label for="watchlistSelect">Watchlist</label>
+        <select id="watchlistSelect">
+            <option value="tech">Tech</option>
+            <option value="crypto">Crypto</option>
+        </select>
+
+        <label for="symbolsInput">Symbols</label>
+        <input id="symbolsInput" value="AAPL,MSFT,NVDA">
+
+        <label for="timeframesInput">Timeframes</label>
+        <input id="timeframesInput" value="15m,1h">
+
+        <label for="indicatorsInput">Indicators</label>
+        <input id="indicatorsInput" value="SMA,EMA,VWMA">
+
+        <button id="runScanButton">Run Scan</button>
+
+        <div id="scanStatus" class="scanner-status">Status: Ready</div>
+    </div>
+
+    <div class="scanner-results">
+        <div class="results-header">
+            <h2>Ranked Results</h2>
+            <span id="resultCount">0 results</span>
+        </div>
+
+        <table class="scanner-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Symbol</th>
+                    <th>Timeframe</th>
+                    <th>Score</th>
+                    <th>Grade</th>
+                    <th>Confidence</th>
+                    <th>Warnings</th>
+                </tr>
+            </thead>
+            <tbody id="scannerResultsBody">
+                <tr>
+                    <td colspan="7" class="empty-row">Run a scan to see results.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/scanner_api_client.js"></script>
+<script src="/static/js/scanner_dashboard.js"></script>
 {% endblock %}
