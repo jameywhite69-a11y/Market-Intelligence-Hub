@@ -1,0 +1,36 @@
+/* Version 26.5 — Institutional Technical Engine */
+
+.technical-card {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 14px 0;
+}
+
+.technical-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.technical-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 9px;
+}
+
+.technical-grid b {
+    display: block;
+    color: #aaa;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.technical-grid span {
+    color: #61dafb;
+    font-weight: 800;
+}
