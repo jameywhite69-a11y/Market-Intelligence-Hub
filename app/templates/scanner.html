@@ -2,8 +2,8 @@
 
 {% block content %}
 <section class="dashboard-hero">
-    <h1>Advanced Watchlist Scanner</h1>
-    <p>Create, manage, import, export, and scan named watchlists.</p>
+    <h1>Live Auto-Refresh Scanner</h1>
+    <p>Continuously monitor ranked opportunities with configurable background scanning.</p>
 </section>
 
 <section class="scanner-pro-layout">
@@ -31,6 +31,26 @@
         <textarea id="importSymbolsInput" placeholder="Paste CSV or one symbol per line"></textarea>
 
         <button id="exportWatchlistButton" class="secondary-button">Export Watchlist</button>
+
+        <hr>
+
+        <h2>Live Scan Controls</h2>
+
+        <label for="refreshIntervalSelect">Refresh Interval</label>
+        <select id="refreshIntervalSelect">
+            <option value="15">15 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="60">1 minute</option>
+            <option value="300">5 minutes</option>
+        </select>
+
+        <div class="live-control-row">
+            <button id="liveModeButton">Start Live</button>
+            <button id="pauseLiveButton" class="secondary-button" disabled>Pause</button>
+        </div>
+
+        <div id="countdownLabel" class="scanner-status">Live scanning paused</div>
+        <div class="scanner-status">Last Scan: <span id="lastScanLabel">Never</span></div>
 
         <hr>
 
@@ -86,6 +106,7 @@
             <thead>
                 <tr>
                     <th data-sort="rank">Rank</th>
+                    <th>Move</th>
                     <th data-sort="symbol">Symbol</th>
                     <th data-sort="timeframe">Timeframe</th>
                     <th data-sort="score">Score</th>
@@ -97,7 +118,7 @@
             </thead>
             <tbody id="scannerResultsBody">
                 <tr>
-                    <td colspan="8" class="empty-row">Run a scan to see results.</td>
+                    <td colspan="9" class="empty-row">Run a scan to see results.</td>
                 </tr>
             </tbody>
         </table>

@@ -4,6 +4,7 @@ const watchlistClient = new window.WatchlistApiClient();
 const scannerState = {
     currentJobId: null,
     results: [],
+    previousResults: [],
     filteredResults: [],
     diagnostics: null,
     isRunning: false,
@@ -12,6 +13,12 @@ const scannerState = {
     selectedKey: null,
     watchlists: [],
     activeWatchlist: null,
+    liveMode: false,
+    refreshIntervalSeconds: 30,
+    countdownSeconds: 30,
+    refreshTimerId: null,
+    countdownTimerId: null,
+    scanHistory: [],
 };
 
 const runButton = document.getElementById("runScanButton");
@@ -37,6 +44,12 @@ const addSymbolButton = document.getElementById("addSymbolButton");
 const watchlistSymbols = document.getElementById("watchlistSymbols");
 const exportWatchlistButton = document.getElementById("exportWatchlistButton");
 const importSymbolsInput = document.getElementById("importSymbolsInput");
+
+const liveModeButton = document.getElementById("liveModeButton");
+const pauseLiveButton = document.getElementById("pauseLiveButton");
+const refreshIntervalSelect = document.getElementById("refreshIntervalSelect");
+const countdownLabel = document.getElementById("countdownLabel");
+const lastScanLabel = document.getElementById("lastScanLabel");
 
 function parseCsv(value) {
     return value.split(",").map((item) => item.trim()).filter(Boolean);
@@ -130,7 +143,6 @@ async function createWatchlist() {
 
 async function deleteActiveWatchlist() {
     const watchlist = activeWatchlist();
-
     if (!watchlist) return;
 
     await watchlistClient.remove(watchlist.name);
@@ -155,7 +167,6 @@ async function addSymbolToActiveWatchlist() {
 
 function exportActiveWatchlist() {
     const watchlist = activeWatchlist();
-
     if (!watchlist) {
         setStatus("No watchlist selected.", "error");
         return;
@@ -175,7 +186,6 @@ function exportActiveWatchlist() {
 
 async function importSymbolsToActiveWatchlist() {
     const watchlist = activeWatchlist();
-
     if (!watchlist) {
         setStatus("No watchlist selected.", "error");
         return;
@@ -240,6 +250,24 @@ function scoreClass(score) {
     return "score-low";
 }
 
+function rankChangeOf(result) {
+    const previous = scannerState.previousResults.find((item) => resultKey(item) === resultKey(result));
+    if (!previous || previous.rank === null || result.rank === null) return "new";
+    if (result.rank < previous.rank) return "up";
+    if (result.rank > previous.rank) return "down";
+    return "flat";
+}
+
+function rankChangeLabel(change) {
+    const labels = {
+        new: "NEW",
+        up: "▲",
+        down: "▼",
+        flat: "—",
+    };
+    return labels[change] || "—";
+}
+
 function applyFiltersAndSort() {
     const minScore = Number(minScoreInput?.value || 0);
     const gradeFilter = gradeFilterSelect?.value || "all";
@@ -255,7 +283,6 @@ function applyFiltersAndSort() {
     });
 
     rows.sort((a, b) => compareResults(a, b, scannerState.sortField));
-
     if (scannerState.sortDirection === "desc") rows.reverse();
 
     scannerState.filteredResults = rows;
@@ -284,7 +311,7 @@ function renderResults(results) {
     resultCount.textContent = `${results.length} result${results.length === 1 ? "" : "s"}`;
 
     if (!results.length) {
-        resultsBody.innerHTML = `<tr><td colspan="8" class="empty-row">No matching results.</td></tr>`;
+        resultsBody.innerHTML = `<tr><td colspan="9" class="empty-row">No matching results.</td></tr>`;
         return;
     }
 
@@ -295,9 +322,12 @@ function renderResults(results) {
         const score = Number(result.score ?? 0);
         const key = resultKey(result);
         const selected = key === scannerState.selectedKey ? "selected-row" : "";
+        const change = rankChangeOf(result);
+        const changeClass = `rank-${change}`;
 
-        return `<tr class="${selected}" data-key="${key}">
+        return `<tr class="${selected} ${change === "new" ? "new-opportunity-row" : ""}" data-key="${key}">
             <td>${result.rank ?? ""}</td>
+            <td class="${changeClass}">${rankChangeLabel(change)}</td>
             <td class="symbol-cell">${result.symbol}</td>
             <td>${result.timeframe}</td>
             <td class="${scoreClass(score)}">${score.toFixed(1)}</td>
@@ -316,7 +346,6 @@ function renderResults(results) {
 function selectResult(key) {
     scannerState.selectedKey = key;
     const result = scannerState.results.find((item) => resultKey(item) === key);
-
     if (!result) return;
 
     renderOpportunityPanel(result);
@@ -356,21 +385,33 @@ function renderDiagnostics(diagnostics) {
             <div><b>Timeframes</b><span>${diagnostics.timeframes?.join(", ") ?? "-"}</span></div>
             <div><b>Indicators</b><span>${diagnostics.indicators?.join(", ") ?? "-"}</span></div>
             <div><b>Results</b><span>${diagnostics.result_count ?? 0}</span></div>
+            <div><b>Last Scan</b><span>${lastScanLabel?.textContent || "-"}</span></div>
+            <div><b>Live Mode</b><span>${scannerState.liveMode ? "Running" : "Paused"}</span></div>
+        </div>
+        <h3>Scan History</h3>
+        <div class="scan-history">
+            ${scannerState.scanHistory.slice(-5).reverse().map((item) => `
+                <div class="scan-history-row">
+                    <span>${item.time}</span>
+                    <span>${item.count} results</span>
+                    <span>${item.ms} ms</span>
+                </div>
+            `).join("") || "<p>No scan history yet.</p>"}
         </div>
     `;
 }
 
 function renderError(error) {
-    resultsBody.innerHTML = `<tr><td colspan="8" class="empty-row error-text">${error.message}</td></tr>`;
+    resultsBody.innerHTML = `<tr><td colspan="9" class="empty-row error-text">${error.message}</td></tr>`;
     resultCount.textContent = "0 results";
     diagnosticsPanel.innerHTML = "<h3>Diagnostics</h3><p>No diagnostics available.</p>";
 }
 
-async function runScanner() {
+async function runScanner({ automatic = false } = {}) {
     if (scannerState.isRunning) return;
 
     setLoading(true);
-    setStatus("Creating scan job...", "loading");
+    setStatus(automatic ? "Auto-refresh scan running..." : "Creating scan job...", "loading");
 
     try {
         const request = buildScanRequest();
@@ -381,11 +422,24 @@ async function runScanner() {
 
         setStatus("Running indicators and ranking results...", "loading");
 
+        const started = performance.now();
         const completed = await scannerClient.runJob(job.job_id);
+        const elapsed = Math.round(performance.now() - started);
 
+        scannerState.previousResults = scannerState.results;
         scannerState.results = completed.results || [];
         scannerState.diagnostics = completed.diagnostics || null;
         scannerState.selectedKey = null;
+
+        scannerState.scanHistory.push({
+            time: new Date().toLocaleTimeString(),
+            count: scannerState.results.length,
+            ms: elapsed,
+        });
+
+        if (lastScanLabel) {
+            lastScanLabel.textContent = new Date().toLocaleTimeString();
+        }
 
         applyFiltersAndSort();
         renderDiagnostics(scannerState.diagnostics);
@@ -394,8 +448,10 @@ async function runScanner() {
         console.error(error);
         renderError(error);
         setStatus("Error running scan.", "error");
+        stopLiveMode();
     } finally {
         setLoading(false);
+        resetCountdown();
     }
 }
 
@@ -406,11 +462,12 @@ function exportCsv() {
         return;
     }
 
-    const headers = ["rank", "symbol", "timeframe", "score", "grade", "confidence", "status"];
+    const headers = ["rank", "change", "symbol", "timeframe", "score", "grade", "confidence", "status"];
     const csvRows = [
         headers.join(","),
         ...rows.map((result) => [
             result.rank ?? "",
+            rankChangeLabel(rankChangeOf(result)),
             result.symbol,
             result.timeframe,
             Number(result.score ?? 0).toFixed(1),
@@ -436,17 +493,62 @@ function bindSorting() {
     for (const header of document.querySelectorAll("[data-sort]")) {
         header.addEventListener("click", () => {
             const field = header.dataset.sort;
-
             if (scannerState.sortField === field) {
                 scannerState.sortDirection = scannerState.sortDirection === "asc" ? "desc" : "asc";
             } else {
                 scannerState.sortField = field;
                 scannerState.sortDirection = field === "score" ? "desc" : "asc";
             }
-
             applyFiltersAndSort();
         });
     }
+}
+
+function resetCountdown() {
+    scannerState.countdownSeconds = scannerState.refreshIntervalSeconds;
+    updateCountdownLabel();
+}
+
+function updateCountdownLabel() {
+    if (!countdownLabel) return;
+    countdownLabel.textContent = scannerState.liveMode
+        ? `Next scan in ${scannerState.countdownSeconds}s`
+        : "Live scanning paused";
+}
+
+function startLiveMode() {
+    scannerState.liveMode = true;
+    scannerState.refreshIntervalSeconds = Number(refreshIntervalSelect?.value || 30);
+    resetCountdown();
+
+    clearInterval(scannerState.refreshTimerId);
+    clearInterval(scannerState.countdownTimerId);
+
+    scannerState.countdownTimerId = setInterval(() => {
+        scannerState.countdownSeconds = Math.max(0, scannerState.countdownSeconds - 1);
+        updateCountdownLabel();
+    }, 1000);
+
+    scannerState.refreshTimerId = setInterval(() => {
+        runScanner({ automatic: true });
+    }, scannerState.refreshIntervalSeconds * 1000);
+
+    liveModeButton.disabled = true;
+    pauseLiveButton.disabled = false;
+    setStatus("Live scanning started.", "success");
+}
+
+function stopLiveMode() {
+    scannerState.liveMode = false;
+    clearInterval(scannerState.refreshTimerId);
+    clearInterval(scannerState.countdownTimerId);
+    scannerState.refreshTimerId = null;
+    scannerState.countdownTimerId = null;
+
+    if (liveModeButton) liveModeButton.disabled = false;
+    if (pauseLiveButton) pauseLiveButton.disabled = true;
+
+    updateCountdownLabel();
 }
 
 watchlistSelect?.addEventListener("change", renderActiveWatchlist);
@@ -461,9 +563,33 @@ for (const control of [minScoreInput, gradeFilterSelect, confidenceFilterSelect]
     control?.addEventListener("change", applyFiltersAndSort);
 }
 
-runButton?.addEventListener("click", runScanner);
+runButton?.addEventListener("click", () => runScanner({ automatic: false }));
 exportButton?.addEventListener("click", exportCsv);
+liveModeButton?.addEventListener("click", startLiveMode);
+pauseLiveButton?.addEventListener("click", stopLiveMode);
+refreshIntervalSelect?.addEventListener("change", () => {
+    scannerState.refreshIntervalSeconds = Number(refreshIntervalSelect.value || 30);
+    resetCountdown();
+    if (scannerState.liveMode) {
+        stopLiveMode();
+        startLiveMode();
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.ctrlKey && event.key.toLowerCase() === "e") {
+        event.preventDefault();
+        exportCsv();
+    }
+
+    if (event.key === "Escape") {
+        scannerState.selectedKey = null;
+        opportunityPanel.innerHTML = `<h2>Opportunity Inspector</h2><p class="muted">Select a result to inspect score, grade, confidence, and indicator output.</p>`;
+        renderResults(scannerState.filteredResults);
+    }
+});
 
 bindSorting();
 loadWatchlists();
+stopLiveMode();
 setStatus("Ready");

@@ -1,0 +1,55 @@
+/* Version 26.3 — Sprint 3 Live Auto-Refresh */
+
+.live-control-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.rank-new {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.rank-up {
+    color: #a7f3d0;
+    font-weight: 900;
+}
+
+.rank-down {
+    color: #ff8080;
+    font-weight: 900;
+}
+
+.rank-flat {
+    color: #aaa;
+}
+
+.new-opportunity-row {
+    animation: newOpportunityFlash 1.2s ease-in-out;
+}
+
+@keyframes newOpportunityFlash {
+    0% {
+        background: #0f3d52;
+    }
+
+    100% {
+        background: inherit;
+    }
+}
+
+.scan-history {
+    margin-top: 10px;
+    border-top: 1px solid #343944;
+}
+
+.scan-history-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid #343944;
+    padding: 8px 0;
+    color: #aaa;
+    font-size: 13px;
+}
