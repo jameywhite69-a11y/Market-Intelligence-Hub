@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
@@ -36,3 +38,18 @@ class IndicatorDefinition(BaseModel):
 
     def normalized_key(self) -> str:
         return self.key.strip().upper()
+
+
+class IndicatorResult(BaseModel):
+    indicator: str
+    symbol: str = ""
+    timeframe: str = ""
+
+    values: dict[str, Any] = Field(default_factory=dict)
+    signals: dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+    warnings: list[str] = Field(default_factory=list)
+
+    def normalized_indicator(self) -> str:
+        return self.indicator.strip().upper()
