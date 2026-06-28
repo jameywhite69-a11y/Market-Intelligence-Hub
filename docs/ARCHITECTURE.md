@@ -1,38 +1,107 @@
-# Market Intelligence Hub v22 Architecture
+# Market Intelligence Hub Architecture
 
-Version 22 introduces an enterprise-style structure.
+## Purpose
 
-## Core
+Market Intelligence Hub is a modular trading platform built around shared market data, indicator, scanner, strategy, AI, charting, and execution subsystems.
 
-- `app/core/event_bus.py`
-- `app/core/settings.py`
-- `app/core/plugin_manager.py`
-- `app/core/workspace_manager.py`
+## Architectural Principles
 
-## Engines
+- Single source of truth for indicators
+- Shared market data model
+- Event-driven communication
+- Dependency injection through service registry
+- Plugin-based extensibility
+- Tests before merge
+- Releasable main branch
 
-- `app/engines/data`
-- `app/engines/scanner`
-- `app/engines/strategy`
-- `app/engines/trading`
-- `app/engines/broker`
-- `app/engines/ai`
+## Core Layers
 
-## Adapters
+### Market Data Layer
 
-- `app/adapters/market_data`
-- `app/adapters/brokers`
+Responsible for transforming raw OHLCV bars into standardized domain models.
 
-## API
+Components:
 
-- Existing feature APIs remain intact.
-- New platform API:
-  - `/api/platform/status`
-  - `/api/platform/events`
-  - `/api/platform/plugins`
-  - `/api/platform/workspaces`
-  - `/api/platform/settings`
+- PriceSeries
+- SeriesBuilder
+- SeriesValidator
 
-## Goal
+### Indicator Framework
 
-Future features should plug into the engines/adapters/plugin structure instead of expanding one large file.
+Responsible for all indicator calculations.
+
+Components:
+
+- BaseIndicator
+- IndicatorDefinition
+- IndicatorResult
+- IndicatorRegistry
+- IndicatorFactory
+- IndicatorCache
+- IndicatorEngine
+- PluginLoader
+
+### Scanner Engine
+
+Responsible for scanning symbols, timeframes, and indicators to identify opportunities.
+
+Planned components:
+
+- ScannerManager
+- Watchlist
+- ScanJob
+- ScanResult
+- RankingEngine
+
+### Strategy Engine
+
+Responsible for turning indicator and scanner data into trade logic.
+
+Planned components:
+
+- StrategyDefinition
+- RuleEngine
+- SignalEngine
+- RiskManager
+
+### AI Lab
+
+Responsible for analysis, explanation, and optimization.
+
+Planned components:
+
+- MarketSummaryEngine
+- StrategyExplainer
+- SignalConfidenceEngine
+
+### Broker Execution
+
+Responsible for paper trading and live broker integrations.
+
+Planned components:
+
+- BrokerAdapter
+- OrderManager
+- PositionManager
+- RiskControls
+
+## Data Flow
+
+```text
+Raw Bars
+   ↓
+SeriesBuilder
+   ↓
+PriceSeries
+   ↓
+SeriesValidator
+   ↓
+IndicatorEngine
+   ↓
+IndicatorFactory
+   ↓
+Indicator Plugin
+   ↓
+IndicatorResult
+   ↓
+Scanner / Strategy / Charts / AI / Backtester
