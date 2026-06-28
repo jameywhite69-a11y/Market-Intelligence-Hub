@@ -1,0 +1,11 @@
+.chart-card-intel,.risk-reward-card,.support-resistance-card,.trend-gauge-card,.trade-checklist-card{background:#16181d;border:1px solid #343944;border-radius:10px;padding:14px;margin:14px 0}
+.chart-intel-header{display:flex;justify-content:space-between;color:#aaa;margin-bottom:10px}
+.mini-chart{position:relative;height:260px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0)),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.05) 32px);border:1px solid #343944;border-radius:8px;overflow:hidden}
+.chart-level{position:absolute;left:0;right:0;display:flex;justify-content:space-between;border-top:2px solid #888;padding:2px 8px;font-size:12px;transform:translateY(-50%)}
+.target-line{border-color:#22c55e;color:#a7f3d0}.entry-line{border-color:#61dafb;color:#61dafb}.current-line{border-color:#facc15;color:#facc15}.stop-line{border-color:#ef4444;color:#ffb4b4}.support-line{border-color:#94a3b8;color:#cbd5e1}
+.rr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.rr-grid div,.sr-row,.checklist-row{background:#20252d;border:1px solid #343944;border-radius:8px;padding:9px}
+.rr-grid b,.rr-grid span{display:block}.rr-grid b{color:#aaa;font-size:11px;text-transform:uppercase}.rr-grid span{font-weight:900;color:#61dafb;margin-top:4px}
+.sr-row{display:flex;justify-content:space-between;margin-top:6px}.sr-row.resistance b{color:#22c55e}.sr-row.current b{color:#facc15}.sr-row.support b{color:#ef4444}
+.trend-gauge-value{font-size:32px;font-weight:900;color:#61dafb}.trend-gauge-track{height:10px;background:#20252d;border-radius:999px;margin:10px 0;overflow:hidden}.trend-gauge-fill{height:100%;background:#61dafb}.trend-gauge-label{color:#aaa}
+.checklist-row{display:flex;gap:10px;align-items:center;margin-top:6px}.check-pass span{color:#22c55e}.check-warn span{color:#facc15}
