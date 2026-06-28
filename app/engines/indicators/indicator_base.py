@@ -4,18 +4,16 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 from app.engines.indicators.models import IndicatorDefinition
+from app.models.series import PriceSeries
 
 
 class BaseIndicator(ABC):
-    """Base class for all indicator implementations."""
-
     definition: IndicatorDefinition
 
     @abstractmethod
     def calculate(
         self,
-        bars: list[dict[str, Any]],
+        series: PriceSeries,
         parameters: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        """Calculate indicator values from OHLCV bars."""
         raise NotImplementedError
