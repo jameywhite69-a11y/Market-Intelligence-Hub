@@ -88,3 +88,94 @@ button{cursor:pointer}button:hover{border-color:var(--blue)}
 .pass-row b{color:#22c55e}
 .fail-row b{color:#ef4444}
 .diag-row small{color:#93a4bd}
+/* ===== Scanner ===== */
+
+.scanner-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+}
+
+.scanner-panel,
+.scanner-results {
+    background: #232831;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.scanner-panel h2,
+.scanner-results h2 {
+    margin-bottom: 18px;
+}
+
+.scanner-panel label {
+    display: block;
+    color: #aaa;
+    margin: 14px 0 6px;
+    font-size: 13px;
+}
+
+.scanner-panel input,
+.scanner-panel select {
+    width: 100%;
+    background: #16181d;
+    color: #e6e6e6;
+    border: 1px solid #343944;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.scanner-panel button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #61dafb;
+    color: #111;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.scanner-status {
+    margin-top: 16px;
+    color: #b8b8b8;
+    font-size: 13px;
+}
+
+.results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.scanner-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.scanner-table th,
+.scanner-table td {
+    padding: 12px;
+    border-bottom: 1px solid #343944;
+    text-align: left;
+}
+
+.scanner-table th {
+    color: #aaa;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.empty-row {
+    color: #888;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .scanner-layout {
+        grid-template-columns: 1fr;
+    }
+}
