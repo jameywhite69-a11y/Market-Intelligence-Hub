@@ -1,0 +1,156 @@
+/* Version 26.3 — Professional Results Grid */
+
+.scanner-pro-layout {
+    display: grid;
+    grid-template-columns: 320px minmax(520px, 1fr) 320px;
+    gap: 20px;
+    align-items: start;
+}
+
+.scanner-filter-panel,
+.scanner-results-panel,
+.opportunity-panel {
+    background: #232831;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.scanner-filter-panel label {
+    display: block;
+    color: #aaa;
+    margin: 14px 0 6px;
+    font-size: 13px;
+}
+
+.scanner-filter-panel input,
+.scanner-filter-panel select {
+    width: 100%;
+    background: #16181d;
+    color: #e6e6e6;
+    border: 1px solid #343944;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.secondary-button {
+    background: #343944 !important;
+    color: #e6e6e6 !important;
+}
+
+.filter-section {
+    margin-top: 24px;
+    border-top: 1px solid #343944;
+    padding-top: 18px;
+}
+
+.professional-grid th {
+    position: sticky;
+    top: 0;
+    background: #232831;
+    cursor: pointer;
+    user-select: none;
+}
+
+.professional-grid tbody tr:nth-child(even) {
+    background: #20252d;
+}
+
+.professional-grid tbody tr:hover {
+    background: #303744;
+}
+
+.selected-row {
+    outline: 2px solid #61dafb;
+    background: #143241 !important;
+}
+
+.symbol-cell {
+    font-weight: 800;
+    color: #61dafb;
+}
+
+.status-pill {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-ready {
+    background: #064e3b;
+    color: #a7f3d0;
+}
+
+.status-watch {
+    background: #713f12;
+    color: #facc15;
+}
+
+.status-avoid {
+    background: #5f1616;
+    color: #ffb4b4;
+}
+
+.grade-Aplus,
+.grade-A {
+    color: #a7f3d0;
+}
+
+.grade-B {
+    color: #facc15;
+}
+
+.grade-C,
+.grade-D {
+    color: #ffb4b4;
+}
+
+.inspector-subtitle {
+    color: #aaa;
+    margin-bottom: 16px;
+}
+
+.inspector-score {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.inspector-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.indicator-output {
+    list-style: none;
+    margin-top: 12px;
+}
+
+.indicator-output li {
+    border-bottom: 1px solid #343944;
+    padding: 10px 0;
+}
+
+.indicator-output b {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.indicator-output span {
+    color: #aaa;
+    font-size: 13px;
+}
+
+.muted {
+    color: #aaa;
+}
+
+@media (max-width: 1300px) {
+    .scanner-pro-layout {
+        grid-template-columns: 1fr;
+    }
+}

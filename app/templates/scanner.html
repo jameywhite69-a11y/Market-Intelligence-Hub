@@ -2,12 +2,12 @@
 
 {% block content %}
 <section class="dashboard-hero">
-    <h1>Live Scanner</h1>
-    <p>Run ranked scans across symbols, timeframes, and indicator pipelines.</p>
+    <h1>Professional Live Scanner</h1>
+    <p>Run scans, sort opportunities, filter results, inspect signals, and export ranked setups.</p>
 </section>
 
-<section class="scanner-layout">
-    <div class="scanner-panel">
+<section class="scanner-pro-layout">
+    <aside class="scanner-filter-panel">
         <h2>Scan Controls</h2>
 
         <label for="watchlistSelect">Watchlist</label>
@@ -26,35 +26,72 @@
         <input id="indicatorsInput" value="SMA,EMA,VWMA">
 
         <button id="runScanButton">Run Scan</button>
+        <button id="exportCsvButton" class="secondary-button">Export CSV</button>
 
         <div id="scanStatus" class="scanner-status">Status: Ready</div>
-    </div>
 
-    <div class="scanner-results">
+        <div class="filter-section">
+            <h3>Filters</h3>
+
+            <label for="minScoreInput">Minimum Score</label>
+            <input id="minScoreInput" type="number" min="0" max="100" value="0">
+
+            <label for="gradeFilterSelect">Grade</label>
+            <select id="gradeFilterSelect">
+                <option value="all">All Grades</option>
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+
+            <label for="confidenceFilterSelect">Confidence</label>
+            <select id="confidenceFilterSelect">
+                <option value="all">All Confidence</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+        </div>
+    </aside>
+
+    <main class="scanner-results-panel">
         <div class="results-header">
             <h2>Ranked Results</h2>
             <span id="resultCount">0 results</span>
         </div>
 
-        <table class="scanner-table">
+        <table class="scanner-table professional-grid">
             <thead>
                 <tr>
-                    <th>Rank</th>
-                    <th>Symbol</th>
-                    <th>Timeframe</th>
-                    <th>Score</th>
-                    <th>Grade</th>
-                    <th>Confidence</th>
+                    <th data-sort="rank">Rank</th>
+                    <th data-sort="symbol">Symbol</th>
+                    <th data-sort="timeframe">Timeframe</th>
+                    <th data-sort="score">Score</th>
+                    <th data-sort="grade">Grade</th>
+                    <th data-sort="confidence">Confidence</th>
+                    <th>Status</th>
                     <th>Warnings</th>
                 </tr>
             </thead>
             <tbody id="scannerResultsBody">
                 <tr>
-                    <td colspan="7" class="empty-row">Run a scan to see results.</td>
+                    <td colspan="8" class="empty-row">Run a scan to see results.</td>
                 </tr>
             </tbody>
         </table>
-    </div>
+
+        <section id="scannerDiagnostics" class="scanner-diagnostics">
+            <h3>Diagnostics</h3>
+            <p>No scan has run yet.</p>
+        </section>
+    </main>
+
+    <aside id="opportunityPanel" class="opportunity-panel">
+        <h2>Opportunity Inspector</h2>
+        <p class="muted">Select a result to inspect score, grade, confidence, and indicator output.</p>
+    </aside>
 </section>
 {% endblock %}
 
