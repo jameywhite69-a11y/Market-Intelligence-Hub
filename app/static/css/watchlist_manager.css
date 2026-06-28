@@ -1,0 +1,61 @@
+/* Version 26.3 — Sprint 2 Advanced Watchlist Manager */
+
+.watchlist-actions,
+.inline-control {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.inline-control {
+    grid-template-columns: 1fr auto;
+}
+
+.danger-button {
+    background: #5f1616 !important;
+    color: #ffb4b4 !important;
+}
+
+.watchlist-symbols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0;
+}
+
+.watchlist-symbol-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 999px;
+    padding: 6px 8px 6px 12px;
+}
+
+.watchlist-symbol-pill button {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: none;
+    background: #343944;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.scanner-filter-panel textarea {
+    width: 100%;
+    min-height: 80px;
+    background: #16181d;
+    color: #e6e6e6;
+    border: 1px solid #343944;
+    border-radius: 6px;
+    padding: 10px;
+    resize: vertical;
+}
+
+.scanner-filter-panel hr {
+    border: none;
+    border-top: 1px solid #343944;
+    margin: 22px 0;
+}

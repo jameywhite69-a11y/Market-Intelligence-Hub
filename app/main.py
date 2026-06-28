@@ -1,5 +1,4 @@
 from pathlib import Path
-
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -16,12 +15,12 @@ from app.api.scanner_api import router as scanner_api_router
 from app.api.state import router as state_router
 from app.api.strategy_builder import router as strategy_builder_router
 from app.api.trade_planner import router as trade_planner_router
-
+from app.api.watchlist_api import router as watchlist_router
+app = FastAPI(title="Market Intelligence Hub")
+app.include_router(watchlist_router)
 ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
 TEMPLATES = ROOT / "templates"
-
-app = FastAPI(title="Market Intelligence Hub")
 
 app.mount("/static", StaticFiles(directory=str(STATIC)), name="static")
 

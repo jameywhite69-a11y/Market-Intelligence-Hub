@@ -1,4 +1,5 @@
 const scannerClient = new window.ScannerApiClient();
+const watchlistClient = new window.WatchlistApiClient();
 
 const scannerState = {
     currentJobId: null,
@@ -9,11 +10,8 @@ const scannerState = {
     sortField: "rank",
     sortDirection: "asc",
     selectedKey: null,
-};
-
-const WATCHLISTS = {
-    tech: ["AAPL", "MSFT", "NVDA"],
-    crypto: ["BTC", "ETH", "SOL"],
+    watchlists: [],
+    activeWatchlist: null,
 };
 
 const runButton = document.getElementById("runScanButton");
@@ -31,6 +29,15 @@ const confidenceFilterSelect = document.getElementById("confidenceFilterSelect")
 const opportunityPanel = document.getElementById("opportunityPanel");
 const diagnosticsPanel = document.getElementById("scannerDiagnostics");
 
+const newWatchlistName = document.getElementById("newWatchlistName");
+const createWatchlistButton = document.getElementById("createWatchlistButton");
+const deleteWatchlistButton = document.getElementById("deleteWatchlistButton");
+const addSymbolInput = document.getElementById("addSymbolInput");
+const addSymbolButton = document.getElementById("addSymbolButton");
+const watchlistSymbols = document.getElementById("watchlistSymbols");
+const exportWatchlistButton = document.getElementById("exportWatchlistButton");
+const importSymbolsInput = document.getElementById("importSymbolsInput");
+
 function parseCsv(value) {
     return value.split(",").map((item) => item.trim()).filter(Boolean);
 }
@@ -46,8 +53,146 @@ function setLoading(isLoading) {
     runButton.textContent = isLoading ? "Scanning..." : "Run Scan";
 }
 
+function activeWatchlist() {
+    return scannerState.watchlists.find((watchlist) => watchlist.name === watchlistSelect.value) || null;
+}
+
+async function loadWatchlists() {
+    let payload = await watchlistClient.list();
+
+    if (!payload.watchlists.length) {
+        payload = await watchlistClient.seed();
+    }
+
+    scannerState.watchlists = payload.watchlists || [];
+    renderWatchlistSelector();
+    renderActiveWatchlist();
+}
+
+function renderWatchlistSelector() {
+    watchlistSelect.innerHTML = scannerState.watchlists
+        .map((watchlist) => `<option value="${watchlist.name}">${watchlist.name}</option>`)
+        .join("");
+
+    if (scannerState.watchlists.length && !watchlistSelect.value) {
+        watchlistSelect.value = scannerState.watchlists[0].name;
+    }
+}
+
+function renderActiveWatchlist() {
+    const watchlist = activeWatchlist();
+    scannerState.activeWatchlist = watchlist;
+
+    if (!watchlist) {
+        symbolsInput.value = "";
+        watchlistSymbols.innerHTML = `<div class="empty-row">No watchlist selected.</div>`;
+        return;
+    }
+
+    symbolsInput.value = (watchlist.symbols || []).join(",");
+
+    if (!watchlist.symbols?.length) {
+        watchlistSymbols.innerHTML = `<div class="empty-row">No symbols yet.</div>`;
+        return;
+    }
+
+    watchlistSymbols.innerHTML = watchlist.symbols
+        .map((symbol) => `
+            <div class="watchlist-symbol-pill">
+                <span>${symbol}</span>
+                <button data-remove-symbol="${symbol}">×</button>
+            </div>
+        `)
+        .join("");
+
+    for (const button of watchlistSymbols.querySelectorAll("[data-remove-symbol]")) {
+        button.addEventListener("click", async () => {
+            await watchlistClient.removeSymbol(watchlist.name, button.dataset.removeSymbol);
+            await loadWatchlists();
+        });
+    }
+}
+
+async function createWatchlist() {
+    const name = newWatchlistName.value.trim();
+    if (!name) {
+        setStatus("Enter a watchlist name.", "error");
+        return;
+    }
+
+    await watchlistClient.create({ name, symbols: [], description: "" });
+    newWatchlistName.value = "";
+    await loadWatchlists();
+    watchlistSelect.value = name;
+    renderActiveWatchlist();
+    setStatus(`Created watchlist ${name}.`, "success");
+}
+
+async function deleteActiveWatchlist() {
+    const watchlist = activeWatchlist();
+
+    if (!watchlist) return;
+
+    await watchlistClient.remove(watchlist.name);
+    await loadWatchlists();
+    setStatus(`Deleted watchlist ${watchlist.name}.`, "success");
+}
+
+async function addSymbolToActiveWatchlist() {
+    const watchlist = activeWatchlist();
+    const symbol = addSymbolInput.value.trim();
+
+    if (!watchlist || !symbol) {
+        setStatus("Select a watchlist and enter a symbol.", "error");
+        return;
+    }
+
+    await watchlistClient.addSymbol(watchlist.name, symbol);
+    addSymbolInput.value = "";
+    await loadWatchlists();
+    setStatus(`Added ${symbol.toUpperCase()} to ${watchlist.name}.`, "success");
+}
+
+function exportActiveWatchlist() {
+    const watchlist = activeWatchlist();
+
+    if (!watchlist) {
+        setStatus("No watchlist selected.", "error");
+        return;
+    }
+
+    const blob = new Blob([(watchlist.symbols || []).join("\n")], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+
+    anchor.href = url;
+    anchor.download = `${watchlist.name}_watchlist.txt`;
+    anchor.click();
+
+    URL.revokeObjectURL(url);
+    setStatus("Watchlist exported.", "success");
+}
+
+async function importSymbolsToActiveWatchlist() {
+    const watchlist = activeWatchlist();
+
+    if (!watchlist) {
+        setStatus("No watchlist selected.", "error");
+        return;
+    }
+
+    const symbols = parseCsv(importSymbolsInput.value.replaceAll("\n", ","));
+
+    for (const symbol of symbols) {
+        await watchlistClient.addSymbol(watchlist.name, symbol);
+    }
+
+    importSymbolsInput.value = "";
+    await loadWatchlists();
+    setStatus(`Imported ${symbols.length} symbols.`, "success");
+}
+
 function buildScanRequest() {
-    const watchlistSymbols = WATCHLISTS[watchlistSelect.value] || [];
     const manualSymbols = parseCsv(symbolsInput.value);
     const indicators = parseCsv(indicatorsInput.value).map((item) => item.toUpperCase());
 
@@ -57,7 +202,7 @@ function buildScanRequest() {
     }
 
     return {
-        symbols: manualSymbols.length > 0 ? manualSymbols : watchlistSymbols,
+        symbols: manualSymbols,
         timeframes: parseCsv(timeframesInput.value),
         indicators,
         parameters,
@@ -102,21 +247,16 @@ function applyFiltersAndSort() {
 
     let rows = scannerState.results.filter((result) => {
         const score = Number(result.score ?? 0);
-        const grade = gradeOf(result);
-        const confidence = confidenceOf(result);
-
         return (
             score >= minScore &&
-            (gradeFilter === "all" || grade === gradeFilter) &&
-            (confidenceFilter === "all" || confidence === confidenceFilter)
+            (gradeFilter === "all" || gradeOf(result) === gradeFilter) &&
+            (confidenceFilter === "all" || confidenceOf(result) === confidenceFilter)
         );
     });
 
     rows.sort((a, b) => compareResults(a, b, scannerState.sortField));
 
-    if (scannerState.sortDirection === "desc") {
-        rows.reverse();
-    }
+    if (scannerState.sortDirection === "desc") rows.reverse();
 
     scannerState.filteredResults = rows;
     renderResults(rows);
@@ -136,10 +276,7 @@ function compareResults(a, b, field) {
     const left = getter(a);
     const right = getter(b);
 
-    if (typeof left === "number" && typeof right === "number") {
-        return left - right;
-    }
-
+    if (typeof left === "number" && typeof right === "number") return left - right;
     return String(left).localeCompare(String(right));
 }
 
@@ -164,7 +301,7 @@ function renderResults(results) {
             <td class="symbol-cell">${result.symbol}</td>
             <td>${result.timeframe}</td>
             <td class="${scoreClass(score)}">${score.toFixed(1)}</td>
-            <td><span class="badge badge-grade grade-${grade.replace("+", "plus")}">${grade}</span></td>
+            <td><span class="badge badge-grade">${grade}</span></td>
             <td><span class="badge badge-confidence">${confidence}</span></td>
             <td><span class="status-pill status-${statusOf(result).toLowerCase()}">${statusOf(result)}</span></td>
             <td>${warningText}</td>
@@ -188,33 +325,18 @@ function selectResult(key) {
 
 function renderOpportunityPanel(result) {
     const score = Number(result.score ?? 0);
-
-    const indicatorList = Object.entries(result.indicator_results || {})
-        .map(([name, payload]) => {
-            const values = payload.values || {};
-            const valueText = Object.entries(values)
-                .map(([key, value]) => `${key}: ${Number(value).toFixed ? Number(value).toFixed(2) : value}`)
-                .join(", ");
-
-            return `<li><b>${name}</b><span>${valueText || "Result available"}</span></li>`;
-        })
-        .join("");
-
     opportunityPanel.innerHTML = `
         <h2>${result.symbol}</h2>
         <div class="inspector-subtitle">${result.timeframe}</div>
-
         <div class="inspector-score ${scoreClass(score)}">${score.toFixed(1)}</div>
-
         <div class="inspector-badges">
             <span class="badge badge-grade">${gradeOf(result)}</span>
             <span class="badge badge-confidence">${confidenceOf(result)}</span>
             <span class="status-pill status-${statusOf(result).toLowerCase()}">${statusOf(result)}</span>
         </div>
-
         <h3>Indicator Output</h3>
         <ul class="indicator-output">
-            ${indicatorList || "<li>No indicator output.</li>"}
+            ${Object.keys(result.indicator_results || {}).map((name) => `<li><b>${name}</b><span>Result available</span></li>`).join("")}
         </ul>
     `;
 }
@@ -327,9 +449,12 @@ function bindSorting() {
     }
 }
 
-watchlistSelect?.addEventListener("change", () => {
-    symbolsInput.value = (WATCHLISTS[watchlistSelect.value] || []).join(",");
-});
+watchlistSelect?.addEventListener("change", renderActiveWatchlist);
+createWatchlistButton?.addEventListener("click", createWatchlist);
+deleteWatchlistButton?.addEventListener("click", deleteActiveWatchlist);
+addSymbolButton?.addEventListener("click", addSymbolToActiveWatchlist);
+exportWatchlistButton?.addEventListener("click", exportActiveWatchlist);
+importSymbolsInput?.addEventListener("change", importSymbolsToActiveWatchlist);
 
 for (const control of [minScoreInput, gradeFilterSelect, confidenceFilterSelect]) {
     control?.addEventListener("input", applyFiltersAndSort);
@@ -339,22 +464,6 @@ for (const control of [minScoreInput, gradeFilterSelect, confidenceFilterSelect]
 runButton?.addEventListener("click", runScanner);
 exportButton?.addEventListener("click", exportCsv);
 
-document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key.toLowerCase() === "e") {
-        event.preventDefault();
-        exportCsv();
-    }
-
-    if (event.key === "Escape") {
-        scannerState.selectedKey = null;
-        opportunityPanel.innerHTML = `<h2>Opportunity Inspector</h2><p class="muted">Select a result to inspect score, grade, confidence, and indicator output.</p>`;
-        renderResults(scannerState.filteredResults);
-    }
-});
-
-if (watchlistSelect && symbolsInput) {
-    symbolsInput.value = (WATCHLISTS[watchlistSelect.value] || []).join(",");
-}
-
 bindSorting();
+loadWatchlists();
 setStatus("Ready");
