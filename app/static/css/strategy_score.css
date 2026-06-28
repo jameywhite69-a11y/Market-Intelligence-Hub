@@ -1,0 +1,84 @@
+/* Version 26.5 — Strategy Scoring Engine */
+
+.strategy-score-card {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 14px 0;
+}
+
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+}
+
+.score-header span {
+    color: #aaa;
+}
+
+.score-bubble {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #0f3142;
+    border: 1px solid #61dafb;
+    color: #61dafb;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.score-badges {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.score-components {
+    display: grid;
+    gap: 10px;
+}
+
+.score-component {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.component-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.component-track {
+    height: 8px;
+    background: #16181d;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.component-fill {
+    height: 100%;
+    background: #61dafb;
+}
+
+.component-note {
+    display: grid;
+    gap: 3px;
+    margin-top: 7px;
+}
+
+.component-note span {
+    color: #e6e6e6;
+    font-weight: 800;
+}
+
+.component-note small {
+    color: #aaa;
+}

@@ -3,10 +3,16 @@ const technicalClient = new window.TechnicalApiClient();
 async function enrichOpportunity(result) {
     try {
         const payload = await technicalClient.analyze(result.symbol, result.timeframe);
-        return payload.technical || null;
+        return {
+            technical: payload.technical || null,
+            strategyScore: payload.strategy_score || null,
+        };
     } catch (error) {
         console.warn("Technical intelligence unavailable", error);
-        return null;
+        return {
+            technical: null,
+            strategyScore: null,
+        };
     }
 }
 
