@@ -1,0 +1,144 @@
+/* ===== Global ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #16181d;
+    color: #e6e6e6;
+}
+
+/* ===== Layout ===== */
+
+.workspace-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.workspace-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.workspace-content {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* ===== Navbar ===== */
+
+.workspace-navbar {
+    height: 60px;
+    background: #20242c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid #30343d;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 700;
+    color: #61dafb;
+}
+
+.top-nav a {
+    color: #ddd;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.top-nav a:hover {
+    color: white;
+}
+
+/* ===== Sidebar ===== */
+
+.workspace-sidebar {
+    width: 240px;
+    background: #1d2128;
+    border-right: 1px solid #30343d;
+    padding: 20px;
+}
+
+.sidebar-section-title {
+    color: #999;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.workspace-sidebar a {
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.workspace-sidebar a:hover {
+    color: white;
+}
+
+/* ===== Dashboard ===== */
+
+.dashboard-hero {
+    margin-bottom: 32px;
+}
+
+.dashboard-hero h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.dashboard-hero p {
+    color: #b8b8b8;
+}
+
+.workspace-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.workspace-card {
+    background: #232831;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.workspace-card h2 {
+    margin-bottom: 12px;
+}
+
+.workspace-card p {
+    color: #b8b8b8;
+    margin-bottom: 18px;
+}
+
+.workspace-card a {
+    color: #61dafb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ===== Status Bar ===== */
+
+.workspace-statusbar {
+    height: 34px;
+    background: #20242c;
+    border-top: 1px solid #30343d;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 13px;
+    color: #aaa;
+}
