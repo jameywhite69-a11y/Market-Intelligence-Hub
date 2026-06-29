@@ -1,0 +1,43 @@
+.live-market-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.live-market-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.live-quote-list {
+    display: grid;
+    gap: 6px;
+}
+
+.live-quote-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 4px;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.live-quote-row b {
+    color: #61dafb;
+}
+
+.live-quote-row span {
+    font-weight: 900;
+}
+
+.live-quote-row small,
+.live-quote-row em {
+    color: #8f98a8;
+    grid-column: 1 / -1;
+}

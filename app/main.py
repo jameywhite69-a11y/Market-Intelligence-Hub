@@ -5,6 +5,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from app.api.live_market_data_api import get_quote, get_snapshot
+from app.api.live_market_data_api import router as live_market_data_router
 from app.api.backtest import router as backtest_router
 from app.api.indicators import router as indicator_router
 from app.api.market import router as market_router
@@ -42,6 +44,15 @@ templates = Jinja2Templates(directory=str(TEMPLATES))
 # Direct API route registration.
 # This is used because this environment has shown router inclusion quirks
 # where included router entries may appear as _IncludedRouter instead of APIRoute.
+app.add_api_route(
+    "/api/market-data/quote/{symbol}", 
+    get_quote, methods=["GET"]
+)
+
+app.add_api_route(
+    "/api/market-data/snapshot", 
+    get_snapshot, methods=["GET"]
+)
 app.add_api_route(
     "/api/scanner/jobs",
     create_scan_job,
@@ -112,7 +123,7 @@ app.include_router(backtest_router)
 app.include_router(market_data_router)
 app.include_router(indicator_router)
 app.include_router(execution_router)
-
+app.include_router(live_market_data_router)
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):
