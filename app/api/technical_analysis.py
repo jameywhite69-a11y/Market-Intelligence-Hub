@@ -2,6 +2,7 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException, Query
 from app.adapters.market_data.demo_provider import DemoMarketDataProvider
 from app.engines.market_intelligence.confidence_engine import confidence_engine
+from app.engines.market_intelligence.decision_engine import decision_engine
 from app.engines.market_intelligence.scoring_engine import strategy_scoring_engine
 from app.engines.market_intelligence.technical_engine import technical_engine
 from app.engines.market_intelligence.trade_planning_engine import trade_planning_engine
@@ -17,6 +18,7 @@ def analyze_symbol(symbol: str, timeframe: str = "15m", account_size: float = Qu
         score = strategy_scoring_engine.score(levels)
         plan = trade_planning_engine.plan(symbol=symbol.upper(), timeframe=timeframe, technical=levels, strategy_score=score, account_size=account_size, risk_percent=risk_percent)
         confidence = confidence_engine.evaluate(technical=levels, strategy_score=score, trade_plan=plan)
+        decision = decision_engine.decide(technical=levels, strategy_score=score, trade_plan=plan, confidence=confidence)
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
-    return {"symbol": symbol.upper(), "timeframe": timeframe, "technical": levels.model_dump(), "strategy_score": score.model_dump(), "trade_plan": plan.model_dump(), "confidence": confidence.model_dump()}
+    return {"symbol": symbol.upper(), "timeframe": timeframe, "technical": levels.model_dump(), "strategy_score": score.model_dump(), "trade_plan": plan.model_dump(), "confidence": confidence.model_dump(), "decision": decision.model_dump()}
