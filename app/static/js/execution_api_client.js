@@ -1,4 +1,15 @@
 class ExecutionApiClient {
+    async adapters() {
+        return await this._request("/api/execution/adapters");
+    }
+
+    async setAdapter(adapter) {
+        return await this._request("/api/execution/adapter", {
+            method: "POST",
+            body: JSON.stringify({adapter}),
+        });
+    }
+
     async snapshot() {
         return await this._request("/api/execution/snapshot");
     }
@@ -11,11 +22,9 @@ class ExecutionApiClient {
     }
 
     async submitOrder(order) {
-        const normalized = this.normalizeOrder(order);
-
         return await this._request("/api/execution/orders", {
             method: "POST",
-            body: JSON.stringify(normalized),
+            body: JSON.stringify(this.normalizeOrder(order)),
         });
     }
 

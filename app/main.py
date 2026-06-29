@@ -21,6 +21,13 @@ from app.api.technical_analysis import router as technical_router
 from app.api.trade_planner import router as trade_planner_router
 from app.api.watchlist_api import router as watchlist_router
 from app.api.execution_api import router as execution_router
+from app.api.execution_api import (
+    execution_snapshot,
+    list_execution_adapters,
+    reset_execution,
+    set_execution_adapter,
+    submit_execution_order,
+)
 
 ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
@@ -59,6 +66,37 @@ app.add_api_route(
     methods=["GET"],
 )
 
+# Direct execution API route registration.
+app.add_api_route(
+    "/api/execution/adapters",
+    list_execution_adapters,
+    methods=["GET"],
+)
+
+app.add_api_route(
+    "/api/execution/adapter",
+    set_execution_adapter,
+    methods=["POST"],
+)
+
+app.add_api_route(
+    "/api/execution/snapshot",
+    execution_snapshot,
+    methods=["GET"],
+)
+
+app.add_api_route(
+    "/api/execution/reset",
+    reset_execution,
+    methods=["POST"],
+)
+
+app.add_api_route(
+    "/api/execution/orders",
+    submit_execution_order,
+    methods=["POST"],
+)
+
 # Keep router includes for compatibility with existing application modules.
 app.include_router(scanner_api_router)
 app.include_router(watchlist_router)
@@ -75,6 +113,7 @@ app.include_router(market_data_router)
 app.include_router(indicator_router)
 app.include_router(execution_router)
 
+
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):
     return templates.TemplateResponse(
@@ -83,6 +122,7 @@ def dashboard(request: Request):
         {},
     )
 
+
 @app.get("/workstation", response_class=HTMLResponse)
 def workstation_page(request: Request):
     return templates.TemplateResponse(
@@ -90,6 +130,7 @@ def workstation_page(request: Request):
         "workstation.html",
         {},
     )
+
 
 @app.get("/scanner", response_class=HTMLResponse)
 def scanner_page(request: Request):

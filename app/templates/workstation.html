@@ -27,7 +27,7 @@
             <section class="desk-panel workstation-results-panel"><div class="desk-panel-header"><h2>Institutional Ranked Results</h2><span id="resultCount">0 results</span></div><div class="workstation-results-scroll"><table class="scanner-table professional-grid expanded-grid terminal-results-table"><thead><tr><th data-sort="rank">Rank</th><th data-sort="symbol">Symbol</th><th data-sort="timeframe">TF</th><th data-sort="score">Opportunity</th><th data-sort="grade">Decision</th><th data-sort="confidence">Confidence</th><th>Expected R</th><th>Allocation</th><th>Momentum</th><th>Status</th><th>Paper</th><th>Warnings</th></tr></thead><tbody id="scannerResultsBody"><tr><td colspan="12" class="empty-row"><div class="quiet-empty-state"><div class="quiet-empty-icon">◆</div><div><b>Ready</b><span>Run scan</span></div></div></td></tr></tbody></table></div></section>
             <section class="workstation-bottom-dock"><section id="opportunityHistory" class="desk-panel compact"></section><section id="scannerDiagnostics" class="desk-panel compact"></section><section id="coreDiagnosticsPanel" class="desk-panel compact"></section><section id="eventDiagnosticsPanel" class="desk-panel compact"></section></section>
         </main>
-        <aside class="workstation-right-dock"><section id="tradeContextPanel"></section><section id="institutionalOrderTicket"></section><section id="tradingTerminalPanel" class="trading-terminal-dock"></section><section id="paperTradingPanel" class="paper-trading-panel"></section><section class="desk-panel ai-panel"><div class="desk-panel-header"><h2>AI Decision Stack</h2><span>Selected Opportunity</span></div><section id="opportunityPanel" class="opportunity-panel workstation-ai-panel"></section></section></aside>
+        <aside class="workstation-right-dock"><section id="brokerAdapterPanel"></section><section id="tradeContextPanel"></section><section id="institutionalOrderTicket"></section><section id="tradingTerminalPanel" class="trading-terminal-dock"></section><section id="paperTradingPanel" class="paper-trading-panel"></section><section class="desk-panel ai-panel"><div class="desk-panel-header"><h2>AI Decision Stack</h2><span>Selected Opportunity</span></div><section id="opportunityPanel" class="opportunity-panel workstation-ai-panel"></section></section></aside>
     </section>
 </section>
 {% endblock %}
@@ -76,6 +76,7 @@
 <script src="/static/js/workstation/workstation_bootstrap.js"></script>
 <script src="/static/js/workstation/trading_terminal_panel.js"></script>
 <script src="/static/js/workstation/workstation_compatibility_layer.js"></script>
+<script src="/static/js/execution/broker_adapter_panel.js"></script>
 <script src="/static/js/core/scanner_pipeline.js"></script>
 <script src="/static/js/core/pipeline_subscribers.js"></script>
 <script src="/static/js/core/event_diagnostics.js"></script>
