@@ -1,0 +1,13 @@
+.confidence-card{background:#16181d;border:1px solid #343944;border-radius:10px;padding:14px;margin:14px 0}
+.confidence-header{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.confidence-header span{color:#aaa}
+.confidence-bubble{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;background:#0f3142;border:1px solid #61dafb;color:#61dafb;font-size:22px;font-weight:900}
+.confidence-label{margin:12px 0;color:#61dafb;font-weight:900}
+.confidence-factors{display:grid;gap:10px;margin-top:12px}
+.confidence-factor{background:#20252d;border:1px solid #343944;border-radius:8px;padding:10px}
+.factor-head{display:flex;justify-content:space-between;margin-bottom:7px}
+.factor-track{height:8px;background:#16181d;border-radius:999px;overflow:hidden}
+.factor-fill{height:100%;background:#61dafb}
+.factor-note{display:grid;gap:3px;margin-top:7px}
+.factor-note strong{color:#e6e6e6}
+.factor-note small{color:#aaa}
