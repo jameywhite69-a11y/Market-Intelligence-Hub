@@ -55,8 +55,16 @@ async function runScanner({ automatic = false } = {}) {
     scannerStatus.setStatus(
         automatic ? "Auto-refresh scan running..." : "Creating scan job...",
         "loading"
+        
     );
+scannerDom.resultsBody.innerHTML =
+    `<tr><td colspan="11" class="empty-row">
+        ${window.uiEmptyStates
+            ? window.uiEmptyStates.renderQuietEmptyState("Scanning", "Updating ranked opportunities")
+            : "Scanning..."}
+    </td></tr>`;
 
+scannerDom.resultCount.textContent = "Scanning...";
     try {
         const request = buildScanRequest();
         validateScanRequest(request);

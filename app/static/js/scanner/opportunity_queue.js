@@ -10,7 +10,9 @@ function renderOpportunityQueue(snapshot) {
     if (!queue) return;
 
     if (!snapshot || !snapshot.ranked_opportunities?.length) {
-        queue.innerHTML = `<div class="queue-empty">No ranked opportunities yet.</div>`;
+        queue.innerHTML = window.uiEmptyStates
+            ? window.uiEmptyStates.renderQuietEmptyState("Live Opportunities", "Awaiting first ranked scan")
+            : "";
         return;
     }
 

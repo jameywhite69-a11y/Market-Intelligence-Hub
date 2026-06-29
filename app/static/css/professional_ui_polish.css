@@ -1,0 +1,124 @@
+/* Version 28.0 — Professional UI Polish */
+
+.workspace-subtle {
+    color: #8f98a8;
+    font-size: 13px;
+}
+
+.quiet-empty-state {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    color: #8f98a8;
+}
+
+.quiet-empty-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    color: #61dafb;
+}
+
+.quiet-empty-state b,
+.quiet-empty-state span {
+    display: block;
+}
+
+.quiet-empty-state b {
+    color: #dce3ee;
+}
+
+.quiet-empty-state span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.decision-idle-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.decision-idle-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: #0f3142;
+    border: 1px solid #61dafb;
+    color: #61dafb;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.decision-idle-card h3 {
+    margin-bottom: 12px;
+}
+
+.idle-metric-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.idle-metric-row div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.idle-metric-row b {
+    display: block;
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.idle-metric-row span {
+    color: #e6e6e6;
+    font-weight: 900;
+}
+
+.scanner-diagnostics:empty {
+    display: none;
+}
+
+.workspace-intel-widget .quiet-empty-state,
+.opportunity-queue-panel .quiet-empty-state {
+    justify-content: flex-start;
+    min-height: 54px;
+}
+
+.professional-workspace-header {
+    margin-bottom: 10px;
+}
+
+.professional-workspace-header h1 {
+    letter-spacing: -0.02em;
+}
+
+.workspace-hotkeys span {
+    opacity: 0.75;
+}
+
+.scanner-status {
+    color: #8f98a8;
+}
+
+.empty-row {
+    color: #8f98a8;
+}
+
+.portfolio-summary-cards:empty {
+    display: none;
+}
