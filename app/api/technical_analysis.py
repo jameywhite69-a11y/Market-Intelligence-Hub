@@ -13,6 +13,9 @@ from app.engines.market_intelligence.decision_engine import decision_engine
 from app.engines.market_intelligence.scoring_engine import strategy_scoring_engine
 from app.engines.market_intelligence.technical_engine import technical_engine
 from app.engines.market_intelligence.trade_planning_engine import trade_planning_engine
+from app.engines.portfolio_intelligence.portfolio_intelligence_engine import (
+    portfolio_intelligence_engine,
+)
 
 router = APIRouter(prefix="/api/technical", tags=["technical"])
 
@@ -69,6 +72,15 @@ def analyze_symbol(
             confidence=confidence,
         )
 
+        portfolio_intelligence = portfolio_intelligence_engine.evaluate(
+            symbol=symbol.upper(),
+            timeframe=timeframe,
+            decision=decision,
+            trade_plan=plan,
+            confluence=confluence,
+            strategy_matrix=strategy_matrix,
+        )
+
         intelligence = opportunity_intelligence_engine.analyze(
             symbol=symbol.upper(),
             timeframe=timeframe,
@@ -91,5 +103,6 @@ def analyze_symbol(
         "confidence": confidence.model_dump(),
         "confluence": confluence.model_dump(),
         "decision": decision.model_dump(),
+        "portfolio_intelligence": portfolio_intelligence.model_dump(),
         "opportunity_intelligence": intelligence.model_dump(),
     }

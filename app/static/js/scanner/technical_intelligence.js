@@ -11,6 +11,7 @@ async function enrichOpportunity(result) {
             confidence: payload.confidence || null,
             confluence: payload.confluence || null,
             decision: payload.decision || null,
+            portfolioIntelligence: payload.portfolio_intelligence || null,
             opportunityIntelligence: payload.opportunity_intelligence || null,
         };
     } catch (error) {
@@ -23,6 +24,7 @@ async function enrichOpportunity(result) {
             confidence: null,
             confluence: null,
             decision: null,
+            portfolioIntelligence: null,
             opportunityIntelligence: null,
         };
     }

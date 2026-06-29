@@ -15,6 +15,13 @@ async function renderOpportunityPanel(result) {
             );
         }
 
+        if (window.portfolioIntelligencePanel) {
+            scannerDom.opportunityPanel.insertAdjacentHTML(
+                "beforeend",
+                window.portfolioIntelligencePanel.renderPortfolioIntelligencePanel(enrichment.portfolioIntelligence)
+            );
+        }
+
         if (window.strategyMatrixPanel) {
             scannerDom.opportunityPanel.insertAdjacentHTML(
                 "beforeend",
