@@ -1,0 +1,117 @@
+/* Version 27.1 — Sprint 1 Opportunity Ranking Engine */
+
+.portfolio-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.portfolio-card {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.portfolio-card b {
+    display: block;
+    color: #aaa;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.portfolio-card span {
+    display: block;
+    color: #61dafb;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 4px;
+}
+
+.portfolio-card small {
+    color: #ddd;
+}
+
+.opportunity-queue-panel {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.queue-header h3 {
+    margin: 0;
+}
+
+.queue-header span {
+    color: #aaa;
+}
+
+.queue-cards {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+}
+
+.queue-card {
+    min-width: 150px;
+    text-align: left;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 9px;
+    cursor: pointer;
+}
+
+.queue-card:hover {
+    border-color: #61dafb;
+}
+
+.queue-card b,
+.queue-card span,
+.queue-card small,
+.queue-card em {
+    display: block;
+}
+
+.queue-card b {
+    color: #e6e6e6;
+}
+
+.queue-card span {
+    color: #61dafb;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.queue-card small {
+    color: #aaa;
+}
+
+.queue-card em {
+    color: #a7f3d0;
+    font-style: normal;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.queue-empty {
+    color: #aaa;
+    padding: 8px;
+}
+
+@media(max-width: 1200px) {
+    .portfolio-summary-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}

@@ -2,9 +2,12 @@
 
 {% block content %}
 <section class="dashboard-hero">
-    <h1>Market Intelligence Scanner</h1>
-    <p>Run live scans, inspect trade plans, review strategy scores, and monitor technical intelligence.</p>
+    <h1>Opportunity Ranking Engine</h1>
+    <p>Rank live opportunities, monitor momentum, and review suggested capital allocation.</p>
 </section>
+
+<section id="portfolioSummaryCards" class="portfolio-summary-cards"></section>
+<section id="opportunityQueue" class="opportunity-queue-panel"></section>
 
 <section class="scanner-pro-layout">
     <aside class="scanner-filter-panel">
@@ -131,7 +134,7 @@
 
     <aside id="opportunityPanel" class="opportunity-panel">
         <h2>Opportunity Explorer</h2>
-        <p class="muted">Select a result to view trade plan, score, technical levels, and market context.</p>
+        <p class="muted">Select a result to view decision, confidence, trade plan, score, and technical context.</p>
     </aside>
 </section>
 {% endblock %}
@@ -148,10 +151,10 @@
 <script src="/static/js/scanner/scanner_status.js"></script>
 
 <script src="/static/js/scanner/watchlist_manager.js"></script>
+<script src="/static/js/scanner/decision_panel.js"></script>
+<script src="/static/js/scanner/confidence_panel.js"></script>
 <script src="/static/js/scanner/strategy_score_panel.js"></script>
 <script src="/static/js/scanner/trade_plan_panel.js"></script>
-<script src="/static/js/scanner/confidence_panel.js"></script>
-<script src="/static/js/scanner/decision_panel.js"></script>
 <script src="/static/js/scanner/technical_intelligence.js"></script>
 <script src="/static/js/scanner/opportunity_panel.js"></script>
 
@@ -160,5 +163,7 @@
 <script src="/static/js/scanner/scanner_diagnostics.js"></script>
 <script src="/static/js/scanner/scanner_export.js"></script>
 <script src="/static/js/scanner/scanner_live.js"></script>
+<script src="/static/js/scanner/opportunity_queue.js"></script>
+<script src="/static/js/scanner/portfolio_snapshot.js"></script>
 <script src="/static/js/scanner/scanner_orchestrator.js"></script>
 {% endblock %}

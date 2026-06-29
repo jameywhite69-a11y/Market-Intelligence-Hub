@@ -32,6 +32,18 @@ function renderError(error) {
     scannerDiagnostics.renderDiagnostics(null);
 }
 
+function renderPortfolioIntelligence() {
+    if (!window.portfolioSnapshot) return;
+
+    const snapshot = window.portfolioSnapshot.buildLocalPortfolioSnapshot(scannerState.filteredResults);
+
+    window.portfolioSnapshot.renderPortfolioCards(snapshot);
+
+    if (window.opportunityQueue) {
+        window.opportunityQueue.renderOpportunityQueue(snapshot);
+    }
+}
+
 async function runScanner({ automatic = false } = {}) {
     if (scannerState.isRunning) return;
 
@@ -74,6 +86,7 @@ async function runScanner({ automatic = false } = {}) {
         }
 
         scannerFilters.applyFiltersAndSort();
+        renderPortfolioIntelligence();
         scannerDiagnostics.renderDiagnostics(scannerState.diagnostics);
         scannerStatus.setStatus(`Completed job ${completed.job_id}`, "success");
     } catch (error) {
@@ -125,6 +138,7 @@ function bootstrapScanner() {
 window.scannerOrchestrator = {
     runScanner,
     bootstrapScanner,
+    renderPortfolioIntelligence,
 };
 
 document.addEventListener("DOMContentLoaded", bootstrapScanner);
