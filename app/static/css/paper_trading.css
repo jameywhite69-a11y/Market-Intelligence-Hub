@@ -1,0 +1,108 @@
+/* Version 30.0 — Paper Trading */
+
+.paper-trading-panel {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.paper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.paper-header h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.paper-header button {
+    padding: 5px 7px;
+    font-size: 11px;
+}
+
+.paper-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.paper-metrics div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.paper-metrics b,
+.paper-metrics span {
+    display: block;
+}
+
+.paper-metrics b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.paper-metrics span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.paper-section {
+    margin-top: 10px;
+}
+
+.paper-section h4 {
+    margin-bottom: 5px;
+    color: #dce3ee;
+}
+
+.paper-row {
+    display: grid;
+    grid-template-columns: 55px 1fr auto;
+    gap: 6px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 7px;
+    padding: 6px;
+    margin-bottom: 5px;
+}
+
+.paper-row b {
+    color: #61dafb;
+}
+
+.paper-row span,
+.paper-row em {
+    color: #ddd;
+    font-size: 11px;
+}
+
+.paper-row em {
+    font-style: normal;
+    text-align: right;
+}
+
+.paper-buy-button,
+.paper-sell-button {
+    padding: 3px 6px;
+    font-size: 10px;
+    border-radius: 5px;
+    margin-right: 3px;
+}
+
+.paper-buy-button {
+    background: #166534;
+    border-color: #22c55e;
+}
+
+.paper-sell-button {
+    background: #7f1d1d;
+    border-color: #ef4444;
+}

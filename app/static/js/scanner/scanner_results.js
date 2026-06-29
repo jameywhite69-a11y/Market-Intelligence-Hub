@@ -33,7 +33,7 @@ function renderResults(results) {
 
     if (!results.length) {
         scannerDom.resultsBody.innerHTML =
-            `<tr><td colspan="11" class="empty-row">No matching results.</td></tr>`;
+            `<tr><td colspan="12" class="empty-row">No matching results.</td></tr>`;
         return;
     }
 
@@ -58,13 +58,34 @@ function renderResults(results) {
                 <td>${allocation(result).toFixed(1)}%</td>
                 <td class="rank-${change}">${rankChangeLabel(change)}</td>
                 <td><span class="status-pill status-${status.toLowerCase()}">${status}</span></td>
+                <td>
+                    <button class="paper-buy-button" data-key="${key}">Buy</button>
+                    <button class="paper-sell-button" data-key="${key}">Sell</button>
+                </td>
                 <td>${result.warnings?.length ? result.warnings.join("; ") : ""}</td>
             </tr>
         `;
     }).join("");
 
     for (const row of scannerDom.resultsBody.querySelectorAll("tr[data-key]")) {
-        row.addEventListener("click", () => selectResult(row.dataset.key));
+        row.addEventListener("click", event => {
+            if (event.target.tagName.toLowerCase() === "button") return;
+            selectResult(row.dataset.key);
+        });
+    }
+
+    for (const button of scannerDom.resultsBody.querySelectorAll(".paper-buy-button")) {
+        button.addEventListener("click", () => {
+            const result = scannerState.results.find(item => scannerUtils.resultKey(item) === button.dataset.key);
+            if (result) window.paperTradingPanel?.submitPaperOrderFromResult(result, "buy");
+        });
+    }
+
+    for (const button of scannerDom.resultsBody.querySelectorAll(".paper-sell-button")) {
+        button.addEventListener("click", () => {
+            const result = scannerState.results.find(item => scannerUtils.resultKey(item) === button.dataset.key);
+            if (result) window.paperTradingPanel?.submitPaperOrderFromResult(result, "sell");
+        });
     }
 }
 

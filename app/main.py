@@ -20,6 +20,7 @@ from app.api.technical_analysis import analyze_symbol
 from app.api.technical_analysis import router as technical_router
 from app.api.trade_planner import router as trade_planner_router
 from app.api.watchlist_api import router as watchlist_router
+from app.api.execution_api import router as execution_router
 
 ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
@@ -72,7 +73,7 @@ app.include_router(platform_router)
 app.include_router(backtest_router)
 app.include_router(market_data_router)
 app.include_router(indicator_router)
-
+app.include_router(execution_router)
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):

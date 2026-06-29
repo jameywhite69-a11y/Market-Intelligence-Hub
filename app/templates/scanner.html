@@ -4,14 +4,14 @@
 <section class="terminal-header">
     <div>
         <h1>Market Intelligence Hub</h1>
-        <span>Institutional Intelligence Platform</span>
+        <span>Institutional Intelligence Platform + Paper Trading</span>
     </div>
     <div class="terminal-toolbar">
         <button id="terminalTopToggle">Top Dock</button>
         <button id="terminalBottomToggle">Bottom Dock</button>
         <button id="terminalDecisionToggle">Decision Panel</button>
         <span>F5 Scan</span>
-        <span>Ctrl+Shift+D</span>
+        <span>Paper Mode</span>
     </div>
 </section>
 
@@ -29,7 +29,6 @@
 <section class="terminal-workspace">
     <aside class="scanner-filter-panel terminal-sidebar">
         <h2>Watchlists</h2>
-
         <label for="watchlistSelect">Active Watchlist</label>
         <select id="watchlistSelect"></select>
 
@@ -47,33 +46,7 @@
 
         <div id="watchlistSymbols" class="watchlist-symbols"></div>
 
-        <label for="importSymbolsInput">Import Symbols</label>
-        <textarea id="importSymbolsInput" placeholder="Paste CSV or one symbol per line"></textarea>
-
-        <button id="exportWatchlistButton" class="secondary-button">Export Watchlist</button>
-
         <hr>
-
-        <h2>Live Scan</h2>
-
-        <label for="refreshIntervalSelect">Refresh Interval</label>
-        <select id="refreshIntervalSelect">
-            <option value="15">15 seconds</option>
-            <option value="30" selected>30 seconds</option>
-            <option value="60">1 minute</option>
-            <option value="300">5 minutes</option>
-        </select>
-
-        <div class="live-control-row">
-            <button id="liveModeButton">Start Live</button>
-            <button id="pauseLiveButton" class="secondary-button" disabled>Pause</button>
-        </div>
-
-        <div id="countdownLabel" class="scanner-status">Paused</div>
-        <div class="scanner-status">Last: <span id="lastScanLabel">—</span></div>
-
-        <hr>
-
         <h2>Scan</h2>
 
         <label for="symbolsInput">Symbols</label>
@@ -90,30 +63,9 @@
 
         <div id="scanStatus" class="scanner-status">Ready</div>
 
-        <div class="filter-section">
-            <h3>Filters</h3>
-
-            <label for="minScoreInput">Minimum Score</label>
-            <input id="minScoreInput" type="number" min="0" max="100" value="0">
-
-            <label for="gradeFilterSelect">Grade</label>
-            <select id="gradeFilterSelect">
-                <option value="all">All Grades</option>
-                <option value="A+">A+</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
-
-            <label for="confidenceFilterSelect">Confidence</label>
-            <select id="confidenceFilterSelect">
-                <option value="all">All Confidence</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-            </select>
-        </div>
+        <hr>
+        <h2>Paper Trading</h2>
+        <section id="paperTradingPanel" class="paper-trading-panel"></section>
     </aside>
 
     <main class="terminal-results-area">
@@ -136,12 +88,13 @@
                         <th>Allocation</th>
                         <th>Momentum</th>
                         <th>Status</th>
+                        <th>Paper</th>
                         <th>Warnings</th>
                     </tr>
                 </thead>
                 <tbody id="scannerResultsBody">
                     <tr>
-                        <td colspan="11" class="empty-row">
+                        <td colspan="12" class="empty-row">
                             <div class="quiet-empty-state">
                                 <div class="quiet-empty-icon">◆</div>
                                 <div><b>Ready</b><span>Run scan</span></div>
@@ -166,7 +119,7 @@
                 <div><b>Rating</b><span>Waiting</span></div>
                 <div><b>Lifecycle</b><span>—</span></div>
                 <div><b>Portfolio</b><span>—</span></div>
-                <div><b>Risk</b><span>—</span></div>
+                <div><b>Paper</b><span>Ready</span></div>
             </div>
         </div>
     </aside>
@@ -177,6 +130,7 @@
 <script src="/static/js/scanner_api_client.js"></script>
 <script src="/static/js/watchlist_api_client.js"></script>
 <script src="/static/js/technical_api_client.js"></script>
+<script src="/static/js/execution_api_client.js"></script>
 
 <script src="/static/js/scanner/scanner_state.js"></script>
 <script src="/static/js/scanner/scanner_events.js"></script>
@@ -209,5 +163,11 @@
 <script src="/static/js/scanner/workspace_intelligence.js"></script>
 <script src="/static/js/scanner/trading_desk_ux.js"></script>
 <script src="/static/js/scanner/terminal_layout.js"></script>
+<script src="/static/js/scanner/paper_trading_panel.js"></script>
 <script src="/static/js/scanner/scanner_orchestrator.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    window.paperTradingPanel?.renderPaperTradingPanel();
+});
+</script>
 {% endblock %}
