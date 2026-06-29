@@ -1,0 +1,181 @@
+/* Version 27.0 Sprint 2.1 — Decision Panel UX Compression */
+
+.opportunity-panel {
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.opportunity-panel h2 {
+    margin-bottom: 8px;
+}
+
+.decision-card.compact {
+    position: relative;
+    padding: 12px;
+}
+
+.decision-sticky-summary {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #10151f;
+    border-bottom: 1px solid #343944;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.decision-sticky-summary h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.decision-classification {
+    display: block;
+    color: #61dafb;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.decision-score {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    font-size: 18px;
+}
+
+.decision-chip-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+.decision-chip-row span {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+    color: #61dafb;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.decision-section,
+.inspector-collapse {
+    border: 1px solid #343944;
+    border-radius: 8px;
+    background: #16181d;
+    margin: 8px 0;
+    overflow: hidden;
+}
+
+.decision-section summary,
+.inspector-collapse summary {
+    cursor: pointer;
+    padding: 9px 10px;
+    background: #20252d;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    font-weight: 800;
+}
+
+.inspector-collapse summary b {
+    color: #61dafb;
+    font-size: 11px;
+}
+
+.decision-section[open] summary,
+.inspector-collapse[open] summary {
+    border-bottom: 1px solid #343944;
+}
+
+.decision-explanation {
+    margin: 8px;
+    font-size: 12px;
+}
+
+.decision-list {
+    margin: 8px 10px;
+    font-size: 12px;
+}
+
+.decision-factor-grid,
+.compact-list {
+    display: grid;
+    gap: 7px;
+    padding: 8px;
+}
+
+.decision-factor.compact,
+.confidence-factor.compact,
+.score-component.compact {
+    padding: 8px;
+    margin: 0;
+}
+
+.decision-factor.compact small,
+.confidence-factor.compact small,
+.score-component.compact small {
+    color: #aaa;
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+}
+
+.decision-factor.strong {
+    border-color: #22c55e;
+}
+
+.decision-factor.medium {
+    border-color: #facc15;
+}
+
+.decision-factor.weak {
+    border-color: #ef4444;
+}
+
+.compact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.compact-grid div {
+    padding: 7px;
+}
+
+.compact-grid b {
+    font-size: 10px;
+}
+
+.compact-grid span {
+    font-size: 12px;
+}
+
+.confidence-card.compact,
+.trade-plan-engine-card.compact,
+.strategy-score-card.compact,
+.technical-card.compact {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: #16181d;
+    padding: 8px;
+}
+
+.factor-track,
+.component-track {
+    height: 6px;
+}
+
+@media (max-width: 1500px) {
+    .opportunity-panel {
+        max-height: none;
+    }
+}
