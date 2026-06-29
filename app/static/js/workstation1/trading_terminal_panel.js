@@ -35,10 +35,22 @@ async function renderTradingTerminalPanel() {
                 <div class="terminal-position-list">
                     ${positions.length ? positions.map(position => `
                         <div class="terminal-position-row">
-                            <div><b>${position.symbol}</b><small>${String(position.side).toUpperCase()}</small></div>
-                            <div><span>${Number(position.quantity).toFixed(4)}</span><small>Qty</small></div>
-                            <div><span>$${Number(position.average_price).toFixed(2)}</span><small>Avg</small></div>
-                            <div><span>$${Number(position.market_price).toFixed(2)}</span><small>Mark</small></div>
+                            <div>
+                                <b>${position.symbol}</b>
+                                <small>${position.side.toUpperCase()}</small>
+                            </div>
+                            <div>
+                                <span>${Number(position.quantity).toFixed(4)}</span>
+                                <small>Qty</small>
+                            </div>
+                            <div>
+                                <span>$${Number(position.average_price).toFixed(2)}</span>
+                                <small>Avg</small>
+                            </div>
+                            <div>
+                                <span>$${Number(position.market_price).toFixed(2)}</span>
+                                <small>Mark</small>
+                            </div>
                             <div class="${Number(position.unrealized_pnl) >= 0 ? "positive-pnl" : "negative-pnl"}">
                                 <span>$${Number(position.unrealized_pnl).toFixed(2)}</span>
                                 <small>Open P&L</small>
@@ -59,7 +71,7 @@ async function renderTradingTerminalPanel() {
                     ${orders.slice(-10).reverse().map(order => `
                         <div class="terminal-order-row">
                             <b>${order.symbol}</b>
-                            <span>${String(order.side).toUpperCase()}</span>
+                            <span>${order.side.toUpperCase()}</span>
                             <span>${Number(order.quantity).toFixed(4)}</span>
                             <span>${order.status}</span>
                             <span>$${Number(order.fill_price || order.requested_price || 0).toFixed(2)}</span>
@@ -76,7 +88,6 @@ async function renderTradingTerminalPanel() {
                     side: "sell",
                     quantity: Number(button.dataset.qty),
                     order_type: "market",
-                    entry_price: 199,
                     timeframe: "15m",
                     source: "terminal-close",
                 });
@@ -87,11 +98,12 @@ async function renderTradingTerminalPanel() {
             });
         }
     } catch (error) {
-        panel.innerHTML = `<p class="muted">Trading terminal unavailable: ${error.message}</p>`;
+        panel.innerHTML = `<p class="muted">Trading terminal unavailable.</p>`;
     }
 }
 
 document.addEventListener("paper-trade-updated", renderTradingTerminalPanel);
+document.addEventListener("DOMContentLoaded", renderTradingTerminalPanel);
 
 window.tradingTerminalPanel = {
     renderTradingTerminalPanel,

@@ -1,0 +1,92 @@
+/* Version 34.0 — Institutional Trading Engine */
+
+.trade-context-card,
+.order-ticket-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.trade-context-header,
+.order-ticket-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.trade-context-header h3,
+.order-ticket-header h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.trade-context-header span,
+.order-ticket-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.trade-context-header strong {
+    color: #61dafb;
+    font-size: 24px;
+}
+
+.trade-context-grid,
+.ticket-risk-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.trade-context-grid div,
+.ticket-risk-summary div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.trade-context-grid b,
+.trade-context-grid span,
+.ticket-risk-summary b,
+.ticket-risk-summary span {
+    display: block;
+}
+
+.trade-context-grid b,
+.ticket-risk-summary b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.trade-context-grid span,
+.ticket-risk-summary span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.ticket-grid {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.ticket-grid label {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.ticket-submit {
+    width: 100%;
+    margin-top: 8px;
+    background: #166534;
+    border-color: #22c55e;
+}

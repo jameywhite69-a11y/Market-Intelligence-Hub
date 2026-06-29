@@ -1,3 +1,4 @@
+Set-Content app\static\js\workstation\workstation_bootstrap.js @'
 async function renderWorkstationExecutionRibbon() {
     const panel = document.getElementById("workstationExecutionRibbon");
     if (!panel || !window.ExecutionApiClient) return;
@@ -22,19 +23,11 @@ async function renderWorkstationExecutionRibbon() {
     }
 }
 
-function bootstrapWorkstation() {
-    window.paperTradingPanel?.renderPaperTradingPanel();
-    window.opportunityPanel?.clearOpportunityPanel();
+document.addEventListener("paper-trade-updated", () => {
     renderWorkstationExecutionRibbon();
-
-    document.addEventListener("paper-trade-updated", () => {
-        renderWorkstationExecutionRibbon();
-    });
-}
-
-document.addEventListener("DOMContentLoaded", bootstrapWorkstation);
+});
 
 window.workstationBootstrap = {
     renderWorkstationExecutionRibbon,
-    bootstrapWorkstation,
 };
+'@

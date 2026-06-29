@@ -77,14 +77,20 @@ function renderResults(results) {
     for (const button of scannerDom.resultsBody.querySelectorAll(".paper-buy-button")) {
         button.addEventListener("click", () => {
             const result = scannerState.results.find(item => scannerUtils.resultKey(item) === button.dataset.key);
-            if (result) window.paperTradingPanel?.submitPaperOrderFromResult(result, "buy");
+            if (result) {
+                window.TradeContext?.setSelectedOpportunity?.(result);
+                window.paperTradingPanel?.submitPaperOrderFromResult(result, "buy");
+            }
         });
     }
 
     for (const button of scannerDom.resultsBody.querySelectorAll(".paper-sell-button")) {
         button.addEventListener("click", () => {
             const result = scannerState.results.find(item => scannerUtils.resultKey(item) === button.dataset.key);
-            if (result) window.paperTradingPanel?.submitPaperOrderFromResult(result, "sell");
+            if (result) {
+                window.TradeContext?.setSelectedOpportunity?.(result);
+                window.paperTradingPanel?.submitPaperOrderFromResult(result, "sell");
+            }
         });
     }
 }
@@ -97,6 +103,8 @@ async function selectResult(key) {
     );
 
     if (!result) return;
+
+    window.TradeContext?.setSelectedOpportunity?.(result);
 
     if (window.opportunityPanel) {
         await window.opportunityPanel.renderOpportunityPanel(result);
