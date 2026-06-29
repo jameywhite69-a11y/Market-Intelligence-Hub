@@ -1,144 +1,34 @@
-/* ===== Global ===== */
+{% extends "base.html" %}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+{% block content %}
+<section class="dashboard-hero">
+    <h1>Market Intelligence Hub</h1>
+    <p>Institutional market intelligence, scanner analytics, and trading decision support.</p>
+</section>
 
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #16181d;
-    color: #e6e6e6;
-}
+<section class="workspace-grid">
+    <div class="workspace-card">
+        <h2>Professional Scanner</h2>
+        <p>Run institutional scans, rank opportunities, and review decision intelligence.</p>
+        <a href="/scanner">Open Scanner →</a>
+    </div>
 
-/* ===== Layout ===== */
+    <div class="workspace-card">
+        <h2>Opportunity Intelligence</h2>
+        <p>Review technicals, confluence, strategy matrix, portfolio fit, and lifecycle status.</p>
+        <a href="/scanner">Review Opportunities →</a>
+    </div>
 
-.workspace-shell {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
+    <div class="workspace-card">
+        <h2>Trading Terminal</h2>
+        <p>Launch the professional terminal with decision panels and live opportunity queues.</p>
+        <a href="/scanner">Launch Terminal →</a>
+    </div>
 
-.workspace-main {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-}
-
-.workspace-content {
-    flex: 1;
-    padding: 24px;
-    overflow-y: auto;
-}
-
-/* ===== Navbar ===== */
-
-.workspace-navbar {
-    height: 60px;
-    background: #20242c;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    border-bottom: 1px solid #30343d;
-}
-
-.brand {
-    font-size: 20px;
-    font-weight: 700;
-    color: #61dafb;
-}
-
-.top-nav a {
-    color: #ddd;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-.top-nav a:hover {
-    color: white;
-}
-
-/* ===== Sidebar ===== */
-
-.workspace-sidebar {
-    width: 240px;
-    background: #1d2128;
-    border-right: 1px solid #30343d;
-    padding: 20px;
-}
-
-.sidebar-section-title {
-    color: #999;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.workspace-sidebar a {
-    display: block;
-    color: #ddd;
-    text-decoration: none;
-    padding: 10px 0;
-}
-
-.workspace-sidebar a:hover {
-    color: white;
-}
-
-/* ===== Dashboard ===== */
-
-.dashboard-hero {
-    margin-bottom: 32px;
-}
-
-.dashboard-hero h1 {
-    font-size: 34px;
-    margin-bottom: 8px;
-}
-
-.dashboard-hero p {
-    color: #b8b8b8;
-}
-
-.workspace-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
-}
-
-.workspace-card {
-    background: #232831;
-    border: 1px solid #343944;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.workspace-card h2 {
-    margin-bottom: 12px;
-}
-
-.workspace-card p {
-    color: #b8b8b8;
-    margin-bottom: 18px;
-}
-
-.workspace-card a {
-    color: #61dafb;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-/* ===== Status Bar ===== */
-
-.workspace-statusbar {
-    height: 34px;
-    background: #20242c;
-    border-top: 1px solid #30343d;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 13px;
-    color: #aaa;
-}
+    <div class="workspace-card">
+        <h2>Portfolio Intelligence</h2>
+        <p>Review portfolio heat, risk budget, correlation risk, and position-size guidance.</p>
+        <a href="/scanner">Open Portfolio View →</a>
+    </div>
+</section>
+{% endblock %}

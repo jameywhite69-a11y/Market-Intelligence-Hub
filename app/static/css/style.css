@@ -1,0 +1,282 @@
+/* Market Intelligence Hub — Core Application Shell */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #16181d;
+    color: #e6e6e6;
+    overflow: hidden;
+}
+
+/* ===== Layout ===== */
+
+.workspace-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #16181d;
+}
+
+.workspace-main {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.workspace-content {
+    flex: 1;
+    padding: 18px;
+    overflow-y: auto;
+    background:
+        radial-gradient(circle at top left, rgba(97, 218, 251, 0.06), transparent 28%),
+        #16181d;
+}
+
+/* ===== Navbar ===== */
+
+.workspace-navbar {
+    height: 60px;
+    min-height: 60px;
+    background: #20242c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid #30343d;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 800;
+    color: #61dafb;
+    letter-spacing: -0.02em;
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.top-nav a:hover {
+    color: white;
+}
+
+/* ===== Sidebar ===== */
+
+.workspace-sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: #1d2128;
+    border-right: 1px solid #30343d;
+    padding: 18px;
+    overflow-y: auto;
+}
+
+.sidebar-section-title {
+    color: #999;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+}
+
+.workspace-sidebar a {
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    padding: 9px 0;
+    font-size: 13px;
+}
+
+.workspace-sidebar a:hover {
+    color: white;
+}
+
+/* ===== Dashboard ===== */
+
+.dashboard-hero {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 18px;
+}
+
+.dashboard-hero h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+}
+
+.dashboard-hero p {
+    color: #b8b8b8;
+    font-size: 15px;
+}
+
+.workspace-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.workspace-card {
+    background: #232831;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 150px;
+}
+
+.workspace-card h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.workspace-card p {
+    color: #b8b8b8;
+    margin-bottom: 16px;
+    line-height: 1.45;
+}
+
+.workspace-card a {
+    color: #61dafb;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.workspace-card a:hover {
+    color: #a7ecff;
+}
+
+/* ===== Forms / Buttons ===== */
+
+input,
+select,
+textarea {
+    width: 100%;
+    background: #11151c;
+    color: #e6e6e6;
+    border: 1px solid #343944;
+    border-radius: 7px;
+    padding: 8px;
+    font-family: inherit;
+}
+
+textarea {
+    min-height: 78px;
+    resize: vertical;
+}
+
+button {
+    background: #1f6feb;
+    color: white;
+    border: 1px solid #2f81f7;
+    border-radius: 7px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+}
+
+button:hover {
+    filter: brightness(1.08);
+}
+
+.secondary-button {
+    background: #303846;
+    border-color: #3f4856;
+}
+
+.danger-button {
+    background: #7f1d1d;
+    border-color: #991b1b;
+}
+
+/* ===== Common Cards ===== */
+
+.muted {
+    color: #9ca3af;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #343944;
+    margin: 16px 0;
+}
+
+/* ===== Status Bar ===== */
+
+.workspace-statusbar {
+    height: 34px;
+    min-height: 34px;
+    background: #20242c;
+    border-top: 1px solid #30343d;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 12px;
+    font-size: 12px;
+    color: #aaa;
+    padding: 0 12px;
+}
+
+/* ===== Tables ===== */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 6px 8px;
+}
+
+th {
+    color: #9ca3af;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+td {
+    font-size: 13px;
+}
+
+/* ===== Scrollbars ===== */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #11151c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #343944;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+}
