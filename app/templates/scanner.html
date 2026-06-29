@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="dashboard-hero">
-    <h1>Opportunity Ranking Engine</h1>
-    <p>Rank live opportunities, monitor momentum, and review suggested capital allocation.</p>
+<section class="professional-workspace-header">
+    <div>
+        <h1>Professional Trading Workspace</h1>
+        <p>Rank opportunities, manage watchlists, and inspect institutional trade decisions.</p>
+    </div>
+    <div class="workspace-hotkeys">
+        <span>F5 Run Scan</span>
+        <span>Ctrl+1 Watchlists</span>
+        <span>Ctrl+2 Results</span>
+        <span>Ctrl+3 Decision</span>
+    </div>
 </section>
 
 <section id="portfolioSummaryCards" class="portfolio-summary-cards"></section>
 <section id="opportunityQueue" class="opportunity-queue-panel"></section>
 
-<section class="scanner-pro-layout">
+<section class="scanner-pro-layout professional-workspace">
     <aside class="scanner-filter-panel">
         <h2>Watchlists</h2>
 
@@ -99,29 +107,33 @@
         </div>
     </aside>
 
+    <div id="leftPanelResizer" class="workspace-resizer"></div>
+
     <main class="scanner-results-panel">
         <div class="results-header">
-            <h2>Ranked Results</h2>
+            <h2>Institutional Ranked Results</h2>
             <span id="resultCount">0 results</span>
         </div>
 
-        <table class="scanner-table professional-grid">
+        <table class="scanner-table professional-grid expanded-grid">
             <thead>
                 <tr>
                     <th data-sort="rank">Rank</th>
-                    <th>Move</th>
                     <th data-sort="symbol">Symbol</th>
-                    <th data-sort="timeframe">Timeframe</th>
-                    <th data-sort="score">Score</th>
-                    <th data-sort="grade">Grade</th>
+                    <th data-sort="timeframe">TF</th>
+                    <th data-sort="score">Opportunity</th>
+                    <th data-sort="grade">Decision</th>
                     <th data-sort="confidence">Confidence</th>
+                    <th>Expected R</th>
+                    <th>Allocation</th>
+                    <th>Momentum</th>
                     <th>Status</th>
                     <th>Warnings</th>
                 </tr>
             </thead>
             <tbody id="scannerResultsBody">
                 <tr>
-                    <td colspan="9" class="empty-row">Run a scan to see results.</td>
+                    <td colspan="11" class="empty-row">Run a scan to see results.</td>
                 </tr>
             </tbody>
         </table>
@@ -132,8 +144,10 @@
         </section>
     </main>
 
+    <div id="rightPanelResizer" class="workspace-resizer"></div>
+
     <aside id="opportunityPanel" class="opportunity-panel">
-        <h2>Opportunity Explorer</h2>
+        <h2>Institutional Decision Engine</h2>
         <p class="muted">Select a result to view decision, confidence, trade plan, score, and technical context.</p>
     </aside>
 </section>
@@ -165,5 +179,6 @@
 <script src="/static/js/scanner/scanner_live.js"></script>
 <script src="/static/js/scanner/opportunity_queue.js"></script>
 <script src="/static/js/scanner/portfolio_snapshot.js"></script>
+<script src="/static/js/scanner/workspace_layout.js"></script>
 <script src="/static/js/scanner/scanner_orchestrator.js"></script>
 {% endblock %}

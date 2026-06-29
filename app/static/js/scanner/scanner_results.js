@@ -10,14 +10,21 @@ function rankChangeOf(result) {
 }
 
 function rankChangeLabel(change) {
-    const labels = {
-        new: "NEW",
-        up: "▲",
-        down: "▼",
-        flat: "—",
-    };
-
+    const labels = { new: "NEW", up: "▲", down: "▼", flat: "—" };
     return labels[change] || "—";
+}
+
+function institutionalScore(result) {
+    return Number(result.score ?? 0);
+}
+
+function expectedR(result) {
+    return Math.max(1, Number(result.score ?? 0) / 25);
+}
+
+function allocation(result) {
+    const total = scannerState.filteredResults.reduce((sum, row) => sum + institutionalScore(row), 0) || 1;
+    return (institutionalScore(result) / total) * 100;
 }
 
 function renderResults(results) {
@@ -26,14 +33,14 @@ function renderResults(results) {
 
     if (!results.length) {
         scannerDom.resultsBody.innerHTML =
-            `<tr><td colspan="9" class="empty-row">No matching results.</td></tr>`;
+            `<tr><td colspan="11" class="empty-row">No matching results.</td></tr>`;
         return;
     }
 
     scannerDom.resultsBody.innerHTML = results.map((result) => {
         const grade = scannerUtils.gradeOf(result);
         const confidence = scannerUtils.confidenceOf(result);
-        const warnings = result.warnings?.length ? result.warnings.join("; ") : "";
+        const status = scannerUtils.statusOf(result);
         const score = Number(result.score ?? 0);
         const key = scannerUtils.resultKey(result);
         const selected = key === scannerState.selectedKey ? "selected-row" : "";
@@ -42,18 +49,16 @@ function renderResults(results) {
         return `
             <tr class="${selected} ${change === "new" ? "new-opportunity-row" : ""}" data-key="${key}">
                 <td>${result.rank ?? ""}</td>
-                <td class="rank-${change}">${rankChangeLabel(change)}</td>
                 <td class="symbol-cell">${result.symbol}</td>
                 <td>${result.timeframe}</td>
-                <td class="${scannerUtils.scoreClass(score)}">${score.toFixed(1)}</td>
+                <td class="${scannerUtils.scoreClass(score)}">${institutionalScore(result).toFixed(1)}</td>
                 <td><span class="badge badge-grade">${grade}</span></td>
                 <td><span class="badge badge-confidence">${confidence}</span></td>
-                <td>
-                    <span class="status-pill status-${scannerUtils.statusOf(result).toLowerCase()}">
-                        ${scannerUtils.statusOf(result)}
-                    </span>
-                </td>
-                <td>${warnings}</td>
+                <td>${expectedR(result).toFixed(2)}R</td>
+                <td>${allocation(result).toFixed(1)}%</td>
+                <td class="rank-${change}">${rankChangeLabel(change)}</td>
+                <td><span class="status-pill status-${status.toLowerCase()}">${status}</span></td>
+                <td>${result.warnings?.length ? result.warnings.join("; ") : ""}</td>
             </tr>
         `;
     }).join("");

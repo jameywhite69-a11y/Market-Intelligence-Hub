@@ -27,7 +27,7 @@ function validateScanRequest(request) {
 
 function renderError(error) {
     scannerDom.resultsBody.innerHTML =
-        `<tr><td colspan="9" class="empty-row error-text">${error.message}</td></tr>`;
+        `<tr><td colspan="11" class="empty-row error-text">${error.message}</td></tr>`;
     scannerDom.resultCount.textContent = "0 results";
     scannerDiagnostics.renderDiagnostics(null);
 }
@@ -128,6 +128,10 @@ function bootstrapScanner() {
     watchlistManager.bindWatchlistEvents();
     scannerFilters.bindFilteringAndSorting();
     scannerLive.bindLiveControls();
+
+    if (window.workspaceLayout) {
+        window.workspaceLayout.bindWorkspaceLayout();
+    }
 
     watchlistManager.loadWatchlists();
     scannerLive.stopLiveMode();

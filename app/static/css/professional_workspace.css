@@ -1,0 +1,144 @@
+/* Version 27.2 — Professional Trading Workspace */
+
+:root {
+    --workspace-sidebar-width: 300px;
+    --workspace-inspector-width: 460px;
+}
+
+.professional-workspace-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.professional-workspace-header h1 {
+    margin: 0 0 4px 0;
+    font-size: 28px;
+}
+
+.professional-workspace-header p {
+    color: #aaa;
+}
+
+.workspace-hotkeys {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+.workspace-hotkeys span {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 999px;
+    padding: 6px 9px;
+    color: #aaa;
+    font-size: 11px;
+}
+
+.professional-workspace.scanner-pro-layout {
+    display: grid;
+    grid-template-columns:
+        var(--workspace-sidebar-width)
+        8px
+        minmax(620px, 1fr)
+        8px
+        var(--workspace-inspector-width);
+    gap: 0;
+    align-items: stretch;
+    min-height: calc(100vh - 250px);
+}
+
+.professional-workspace .scanner-filter-panel,
+.professional-workspace .scanner-results-panel,
+.professional-workspace .opportunity-panel {
+    max-height: calc(100vh - 235px);
+    overflow-y: auto;
+}
+
+.professional-workspace .scanner-filter-panel {
+    border-radius: 12px 0 0 12px;
+}
+
+.professional-workspace .scanner-results-panel {
+    border-radius: 0;
+    overflow-x: auto;
+}
+
+.professional-workspace .opportunity-panel {
+    border-radius: 0 12px 12px 0;
+}
+
+.workspace-resizer {
+    cursor: col-resize;
+    background: #11151c;
+    border-left: 1px solid #242a34;
+    border-right: 1px solid #242a34;
+}
+
+.workspace-resizer:hover,
+body.is-resizing .workspace-resizer {
+    background: #0f3142;
+}
+
+.expanded-grid {
+    min-width: 980px;
+}
+
+.expanded-grid th,
+.expanded-grid td {
+    white-space: nowrap;
+}
+
+.portfolio-summary-cards {
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
+}
+
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: #61dafb;
+}
+
+.opportunity-queue-panel {
+    padding: 12px;
+}
+
+.queue-cards {
+    gap: 10px;
+}
+
+.queue-card {
+    min-width: 170px;
+}
+
+.queue-card:first-child {
+    border-color: #61dafb;
+    box-shadow: 0 0 0 1px rgba(97, 218, 251, 0.22);
+}
+
+@media (max-width: 1400px) {
+    .professional-workspace.scanner-pro-layout {
+        grid-template-columns: 280px 1fr;
+    }
+
+    .workspace-resizer {
+        display: none;
+    }
+
+    .professional-workspace .opportunity-panel {
+        grid-column: 1 / -1;
+        max-height: none;
+        border-radius: 12px;
+        margin-top: 12px;
+    }
+}
