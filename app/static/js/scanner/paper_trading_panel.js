@@ -44,7 +44,8 @@ async function renderPaperTradingPanel() {
 
         document.getElementById("resetPaperTradingButton")?.addEventListener("click", async () => {
             await executionClient.reset();
-            renderPaperTradingPanel();
+            await renderPaperTradingPanel();
+            document.dispatchEvent(new CustomEvent("paper-trade-updated"));
         });
     } catch (error) {
         panel.innerHTML = `<p class="muted">Paper trading unavailable.</p>`;
@@ -65,6 +66,7 @@ async function submitPaperOrderFromResult(result, side = "buy") {
     });
 
     await renderPaperTradingPanel();
+    document.dispatchEvent(new CustomEvent("paper-trade-updated"));
 }
 
 window.paperTradingPanel = {

@@ -1,5 +1,8 @@
 async function renderOpportunityPanel(result) {
-    scannerDom.opportunityPanel.innerHTML = "";
+    const panel = scannerDom.opportunityPanel || document.getElementById("opportunityPanel");
+    if (!panel) return;
+
+    panel.innerHTML = "";
 
     if (window.opportunityExplorer) {
         window.opportunityExplorer.renderOpportunityExplorer(result);
@@ -9,69 +12,69 @@ async function renderOpportunityPanel(result) {
         const enrichment = await window.technicalIntelligence.enrichOpportunity(result);
 
         if (window.opportunityIntelligencePanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.opportunityIntelligencePanel.renderOpportunityIntelligencePanel(enrichment.opportunityIntelligence)
             );
         }
 
         if (window.lifecyclePanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.lifecyclePanel.renderLifecyclePanel(enrichment.opportunityLifecycle)
             );
         }
 
         if (window.portfolioIntelligencePanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.portfolioIntelligencePanel.renderPortfolioIntelligencePanel(enrichment.portfolioIntelligence)
             );
         }
 
         if (window.strategyMatrixPanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.strategyMatrixPanel.renderStrategyMatrixPanel(enrichment.strategyMatrix)
             );
         }
 
         if (window.confluencePanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.confluencePanel.renderConfluencePanel(enrichment.confluence)
             );
         }
 
         if (window.decisionPanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.decisionPanel.renderDecisionPanel(enrichment.decision)
             );
         }
 
         if (window.confidencePanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.confidencePanel.renderConfidencePanel(enrichment.confidence)
             );
         }
 
         if (window.tradePlanPanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.tradePlanPanel.renderTradePlanPanel(enrichment.tradePlan)
             );
         }
 
         if (window.strategyScorePanel) {
-            scannerDom.opportunityPanel.insertAdjacentHTML(
+            panel.insertAdjacentHTML(
                 "beforeend",
                 window.strategyScorePanel.renderStrategyScore(enrichment.strategyScore)
             );
         }
 
-        scannerDom.opportunityPanel.insertAdjacentHTML(
+        panel.insertAdjacentHTML(
             "beforeend",
             window.technicalIntelligence.renderTechnicalLevels(enrichment.technical)
         );
@@ -79,12 +82,15 @@ async function renderOpportunityPanel(result) {
 }
 
 function clearOpportunityPanel() {
+    const panel = scannerDom.opportunityPanel || document.getElementById("opportunityPanel");
+    if (!panel) return;
+
     if (window.uiEmptyStates) {
-        scannerDom.opportunityPanel.innerHTML = window.uiEmptyStates.renderDecisionIdleState();
+        panel.innerHTML = window.uiEmptyStates.renderDecisionIdleState();
         return;
     }
 
-    scannerDom.opportunityPanel.innerHTML = "";
+    panel.innerHTML = "";
 }
 
 window.opportunityPanel = {

@@ -83,6 +83,13 @@ def dashboard(request: Request):
         {},
     )
 
+@app.get("/workstation", response_class=HTMLResponse)
+def workstation_page(request: Request):
+    return templates.TemplateResponse(
+        request,
+        "workstation.html",
+        {},
+    )
 
 @app.get("/scanner", response_class=HTMLResponse)
 def scanner_page(request: Request):

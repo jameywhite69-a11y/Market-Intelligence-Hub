@@ -1,0 +1,73 @@
+/* Version 30.1 — Trading Desk Layout Recovery */
+
+.trading-desk-recovered {
+    display: grid !important;
+    grid-template-columns: 300px minmax(720px, 1fr) 430px !important;
+    gap: 8px !important;
+    align-items: stretch;
+    min-height: calc(100vh - 260px);
+}
+
+.trading-left-panel,
+.trading-center-panel,
+.trading-right-panel {
+    min-height: 0;
+    max-height: calc(100vh - 265px);
+    overflow: auto;
+}
+
+.trading-right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+}
+
+.decision-side-paper {
+    flex: 0 0 auto;
+}
+
+.decision-side-intelligence {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+.trading-center-panel .terminal-results-scroll {
+    min-height: 340px;
+}
+
+.paper-buy-button,
+.paper-sell-button {
+    display: inline-block !important;
+    visibility: visible !important;
+}
+
+.decision-panel-hidden .trading-desk-recovered {
+    grid-template-columns: 300px minmax(720px, 1fr) !important;
+}
+
+.decision-panel-hidden .trading-right-panel {
+    display: none !important;
+}
+
+@media (max-width: 1500px) {
+    .trading-desk-recovered {
+        grid-template-columns: 260px minmax(620px, 1fr) !important;
+    }
+
+    .trading-right-panel {
+        grid-column: 1 / -1;
+        max-height: 620px;
+    }
+
+    .decision-panel-hidden .trading-desk-recovered {
+        grid-template-columns: 260px minmax(620px, 1fr) !important;
+    }
+}

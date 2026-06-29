@@ -1,0 +1,220 @@
+/* Version 31.0 — Professional Trading Workstation */
+
+.workspace-content {
+    padding: 10px;
+    overflow: hidden;
+}
+
+.workstation-shell {
+    height: calc(100vh - 34px);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+}
+
+.workstation-ribbon {
+    height: 70px;
+    min-height: 70px;
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.workstation-ribbon h1 {
+    margin: 0;
+    font-size: 23px;
+}
+
+.workstation-ribbon span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.workstation-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(110px, 1fr));
+    gap: 8px;
+    min-width: 520px;
+}
+
+.workstation-metrics div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 9px;
+    padding: 8px;
+}
+
+.workstation-metrics b,
+.workstation-metrics span {
+    display: block;
+}
+
+.workstation-metrics b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.workstation-metrics span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.workstation-main-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 300px minmax(720px, 1fr) 430px;
+    gap: 8px;
+}
+
+.workstation-left-dock,
+.workstation-center-dock,
+.workstation-right-dock {
+    min-height: 0;
+    overflow: auto;
+}
+
+.workstation-center-dock {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.workstation-right-dock {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.desk-panel {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.desk-panel.compact {
+    margin-bottom: 0;
+}
+
+.desk-panel h2 {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+.desk-panel label {
+    display: block;
+    margin: 9px 0 4px;
+    color: #8f98a8;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.desk-button-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.desk-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.desk-panel-header h2 {
+    margin: 0;
+}
+
+.desk-panel-header span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.workstation-mini-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-height: 250px;
+    overflow: auto;
+}
+
+#opportunityHeatmap,
+#opportunityQueue {
+    grid-column: 1 / -1;
+}
+
+.workstation-results-panel {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+.workstation-results-scroll {
+    flex: 1;
+    min-height: 340px;
+    overflow: auto;
+}
+
+.workstation-results-scroll table {
+    min-width: 1080px;
+}
+
+.workstation-bottom-dock {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-height: 270px;
+    overflow: auto;
+}
+
+.workstation-ai-panel {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+.ai-panel {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    margin-bottom: 0;
+}
+
+.paper-trading-panel {
+    flex: 0 0 auto;
+}
+
+.paper-buy-button,
+.paper-sell-button {
+    display: inline-block !important;
+    visibility: visible !important;
+}
+
+@media (max-width: 1500px) {
+    .workstation-main-grid {
+        grid-template-columns: 260px minmax(620px, 1fr);
+    }
+
+    .workstation-right-dock {
+        grid-column: 1 / -1;
+        max-height: 680px;
+    }
+
+    .workstation-metrics {
+        min-width: 420px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

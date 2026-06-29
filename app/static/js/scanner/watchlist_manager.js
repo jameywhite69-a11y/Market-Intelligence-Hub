@@ -1,169 +1,150 @@
 const watchlistClient = new window.WatchlistApiClient();
 
-function activeWatchlist() {
-    return scannerState.watchlists.find(
-        watchlist => watchlist.name === scannerDom.watchlistSelect.value
-    ) || null;
-}
-
 async function loadWatchlists() {
-    let payload = await watchlistClient.list();
+    try {
+        const payload = await watchlistClient.list();
+        scannerState.watchlists = payload.watchlists || [];
+        renderWatchlistSelect();
+        renderWatchlistSymbols();
+        hydrateSymbolsFromActiveWatchlist();
 
-    if (!payload.watchlists.length) {
-        payload = await watchlistClient.seed();
-    }
-
-    scannerState.watchlists = payload.watchlists || [];
-    renderWatchlistSelector();
-    renderActiveWatchlist();
-}
-
-function renderWatchlistSelector() {
-    scannerDom.watchlistSelect.innerHTML = scannerState.watchlists
-        .map(watchlist => `<option value="${watchlist.name}">${watchlist.name}</option>`)
-        .join("");
-
-    if (scannerState.watchlists.length && !scannerDom.watchlistSelect.value) {
-        scannerDom.watchlistSelect.value = scannerState.watchlists[0].name;
+        if (window.workspaceIntelligence) {
+            window.workspaceIntelligence.renderMultiWatchlistDashboard();
+        }
+    } catch (error) {
+        console.warn("Watchlist manager unavailable", error);
     }
 }
 
-function renderActiveWatchlist() {
+async function seedWatchlists() {
+    try {
+        await watchlistClient.seed();
+        await loadWatchlists();
+    } catch (error) {
+        console.warn("Watchlist seed unavailable", error);
+    }
+}
+
+function activeWatchlist() {
+    const selectedName = scannerDom.watchlistSelect?.value;
+    return scannerState.watchlists.find(item => item.name === selectedName) || scannerState.watchlists[0] || null;
+}
+
+function renderWatchlistSelect() {
+    const select = scannerDom.watchlistSelect || document.getElementById("watchlistSelect");
+    if (!select) return;
+
+    select.innerHTML = scannerState.watchlists.map(watchlist => `
+        <option value="${watchlist.name}">${watchlist.name}</option>
+    `).join("");
+}
+
+function renderWatchlistSymbols() {
+    const container = scannerDom.watchlistSymbols || document.getElementById("watchlistSymbols");
+    if (!container) return;
+
     const watchlist = activeWatchlist();
-    scannerState.activeWatchlist = watchlist;
+    const symbols = watchlist?.symbols || [];
 
-    if (!watchlist) {
-        scannerDom.symbolsInput.value = "";
-        scannerDom.watchlistSymbols.innerHTML =
-            `<div class="empty-row">No watchlist selected.</div>`;
-        return;
-    }
+    container.innerHTML = symbols.map(symbol => `
+        <span class="symbol-chip">
+            ${symbol}
+            <button data-remove-symbol="${symbol}">×</button>
+        </span>
+    `).join("");
 
-    scannerDom.symbolsInput.value = (watchlist.symbols || []).join(",");
-
-    if (!watchlist.symbols?.length) {
-        scannerDom.watchlistSymbols.innerHTML =
-            `<div class="empty-row">No symbols yet.</div>`;
-        return;
-    }
-
-    scannerDom.watchlistSymbols.innerHTML = watchlist.symbols
-        .map(symbol => `
-            <div class="watchlist-symbol-pill">
-                <span>${symbol}</span>
-                <button data-remove-symbol="${symbol}">×</button>
-            </div>
-        `).join("");
-
-    for (const button of scannerDom.watchlistSymbols.querySelectorAll("[data-remove-symbol]")) {
+    for (const button of container.querySelectorAll("[data-remove-symbol]")) {
         button.addEventListener("click", async () => {
-            await watchlistClient.removeSymbol(watchlist.name, button.dataset.removeSymbol);
-            await loadWatchlists();
+            await removeSymbol(button.dataset.removeSymbol);
         });
     }
 }
 
-async function createWatchlist() {
-    const name = scannerDom.newWatchlistName.value.trim();
-
-    if (!name) {
-        scannerStatus.setStatus("Enter a watchlist name.", "error");
-        return;
+function hydrateSymbolsFromActiveWatchlist() {
+    const input = scannerDom.symbolsInput || document.getElementById("symbolsInput");
+    const watchlist = activeWatchlist();
+    if (input && watchlist?.symbols?.length) {
+        input.value = watchlist.symbols.join(",");
     }
-
-    await watchlistClient.create({ name, symbols: [], description: "" });
-
-    scannerDom.newWatchlistName.value = "";
-    await loadWatchlists();
-    scannerDom.watchlistSelect.value = name;
-    renderActiveWatchlist();
-
-    scannerStatus.setStatus(`Created watchlist ${name}.`, "success");
 }
 
-async function deleteActiveWatchlist() {
-    const watchlist = activeWatchlist();
+async function createWatchlist() {
+    const input = scannerDom.newWatchlistName || document.getElementById("newWatchlistName");
+    const name = input?.value?.trim();
+    if (!name) return;
 
+    await watchlistClient.create(name);
+    input.value = "";
+    await loadWatchlists();
+}
+
+async function deleteWatchlist() {
+    const watchlist = activeWatchlist();
     if (!watchlist) return;
 
-    await watchlistClient.remove(watchlist.name);
+    await watchlistClient.delete(watchlist.name);
     await loadWatchlists();
-
-    scannerStatus.setStatus(`Deleted watchlist ${watchlist.name}.`, "success");
 }
 
-async function addSymbolToActiveWatchlist() {
+async function addSymbol() {
+    const input = scannerDom.addSymbolInput || document.getElementById("addSymbolInput");
     const watchlist = activeWatchlist();
-    const symbol = scannerDom.addSymbolInput.value.trim();
+    const symbol = input?.value?.trim()?.toUpperCase();
 
-    if (!watchlist || !symbol) {
-        scannerStatus.setStatus("Select a watchlist and enter a symbol.", "error");
-        return;
-    }
+    if (!watchlist || !symbol) return;
 
     await watchlistClient.addSymbol(watchlist.name, symbol);
-    scannerDom.addSymbolInput.value = "";
+    input.value = "";
     await loadWatchlists();
-
-    scannerStatus.setStatus(`Added ${symbol.toUpperCase()} to ${watchlist.name}.`, "success");
 }
 
-function exportActiveWatchlist() {
+async function removeSymbol(symbol) {
     const watchlist = activeWatchlist();
+    if (!watchlist || !symbol) return;
 
-    if (!watchlist) {
-        scannerStatus.setStatus("No watchlist selected.", "error");
-        return;
-    }
+    await watchlistClient.removeSymbol(watchlist.name, symbol);
+    await loadWatchlists();
+}
 
-    const blob = new Blob([(watchlist.symbols || []).join("\n")], {
-        type: "text/plain;charset=utf-8",
+function exportWatchlist() {
+    const watchlist = activeWatchlist();
+    if (!watchlist) return;
+
+    const blob = new Blob([watchlist.symbols.join("\\n")], {type: "text/plain"});
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${watchlist.name}_watchlist.txt`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+
+function bindWatchlistManager() {
+    scannerDom.watchlistSelect?.addEventListener("change", () => {
+        renderWatchlistSymbols();
+        hydrateSymbolsFromActiveWatchlist();
     });
 
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-
-    anchor.href = url;
-    anchor.download = `${watchlist.name}_watchlist.txt`;
-    anchor.click();
-
-    URL.revokeObjectURL(url);
-    scannerStatus.setStatus("Watchlist exported.", "success");
-}
-
-async function importSymbolsToActiveWatchlist() {
-    const watchlist = activeWatchlist();
-
-    if (!watchlist) {
-        scannerStatus.setStatus("No watchlist selected.", "error");
-        return;
-    }
-
-    const symbols = scannerUtils.parseCsv(
-        scannerDom.importSymbolsInput.value.replaceAll("\n", ",")
-    );
-
-    for (const symbol of symbols) {
-        await watchlistClient.addSymbol(watchlist.name, symbol);
-    }
-
-    scannerDom.importSymbolsInput.value = "";
-    await loadWatchlists();
-
-    scannerStatus.setStatus(`Imported ${symbols.length} symbols.`, "success");
-}
-
-function bindWatchlistEvents() {
-    scannerDom.watchlistSelect?.addEventListener("change", renderActiveWatchlist);
     scannerDom.createWatchlistButton?.addEventListener("click", createWatchlist);
-    scannerDom.deleteWatchlistButton?.addEventListener("click", deleteActiveWatchlist);
-    scannerDom.addSymbolButton?.addEventListener("click", addSymbolToActiveWatchlist);
-    scannerDom.exportWatchlistButton?.addEventListener("click", exportActiveWatchlist);
-    scannerDom.importSymbolsInput?.addEventListener("change", importSymbolsToActiveWatchlist);
+    scannerDom.deleteWatchlistButton?.addEventListener("click", deleteWatchlist);
+    scannerDom.addSymbolButton?.addEventListener("click", addSymbol);
+    scannerDom.exportWatchlistButton?.addEventListener("click", exportWatchlist);
+}
+
+async function bootstrapWatchlists() {
+    bindWatchlistManager();
+    await seedWatchlists();
 }
 
 window.watchlistManager = {
-    bindWatchlistEvents,
+    bootstrapWatchlists,
     loadWatchlists,
-    renderActiveWatchlist,
+    seedWatchlists,
+    activeWatchlist,
+    renderWatchlistSelect,
+    renderWatchlistSymbols,
 };
+
+// Compatibility aliases for older scanner_orchestrator.js calls
+window.watchlistManager.bindWatchlistView = window.watchlistManager.bootstrapWatchlists;
+window.watchlistManager.renderWatchlistView = window.watchlistManager.renderWatchlistSymbols;
+window.watchlistManager.refreshWatchlists = window.watchlistManager.loadWatchlists;

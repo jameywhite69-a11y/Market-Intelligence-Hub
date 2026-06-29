@@ -1,0 +1,11 @@
+# Add this route to app/main.py after the existing /scanner route:
+#
+# @app.get("/workstation", response_class=HTMLResponse)
+# def workstation_page(request: Request):
+#     return templates.TemplateResponse(
+#         request,
+#         "workstation.html",
+#         {},
+#     )
+#
+# Optional: change /scanner to render workstation.html once validated.

@@ -5,12 +5,12 @@
     <title>Market Intelligence Hub</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
-
     <link rel="stylesheet" href="/static/css/opportunity_explorer.css">
     <link rel="stylesheet" href="/static/css/live_scanner_hardening.css">
     <link rel="stylesheet" href="/static/css/professional_results_grid.css">
     <link rel="stylesheet" href="/static/css/watchlist_manager.css">
     <link rel="stylesheet" href="/static/css/live_auto_refresh.css">
+    <link rel="stylesheet" href="/static/css/live_scanner.css">
     <link rel="stylesheet" href="/static/css/chart_intelligence.css">
     <link rel="stylesheet" href="/static/css/technical_intelligence.css">
     <link rel="stylesheet" href="/static/css/trade_planning.css">
@@ -28,22 +28,20 @@
     <link rel="stylesheet" href="/static/css/strategy_matrix.css">
     <link rel="stylesheet" href="/static/css/portfolio_intelligence.css">
     <link rel="stylesheet" href="/static/css/lifecycle_engine.css">
-<link rel="stylesheet" href="/static/css/paper_trading.css">
-
+    <link rel="stylesheet" href="/static/css/paper_trading.css">
+    <link rel="stylesheet" href="/static/css/workstation.css">
+    <link rel="stylesheet" href="/static/css/trading_terminal.css">
 </head>
 
 <body>
     <div class="workspace-shell">
         {% include "components/navbar.html" %}
-
         <div class="workspace-main">
             {% include "components/sidebar.html" %}
-
             <main class="workspace-content">
                 {% block content %}{% endblock %}
             </main>
         </div>
-
         {% include "components/statusbar.html" %}
     </div>
 
