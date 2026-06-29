@@ -1,0 +1,127 @@
+/* Version 29.1 — Multi-Timeframe Confluence Engine */
+
+.confluence-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.confluence-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.confluence-header h3 {
+    margin: 0;
+}
+
+.confluence-header span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.confluence-score {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #0f3142;
+    border: 1px solid #61dafb;
+    color: #61dafb;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.confluence-narrative {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 9px;
+    color: #dce3ee;
+    line-height: 1.45;
+    font-size: 12px;
+}
+
+.confluence-adjustment {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    margin: 9px 0;
+}
+
+.confluence-adjustment div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.confluence-adjustment b {
+    display: block;
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.confluence-adjustment span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.confluence-timeframes {
+    display: grid;
+    gap: 7px;
+}
+
+.confluence-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 54px 76px;
+    gap: 7px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.confluence-row b {
+    color: #e6e6e6;
+}
+
+.confluence-row span {
+    text-transform: capitalize;
+}
+
+.confluence-row em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.confluence-row small {
+    color: #aaa;
+    text-align: right;
+}
+
+.confluence-row.aligned {
+    border-color: #22c55e;
+}
+
+.confluence-row.supportive {
+    border-color: #84cc16;
+}
+
+.confluence-row.mixed {
+    border-color: #facc15;
+}
+
+.confluence-row.conflict {
+    border-color: #ef4444;
+}

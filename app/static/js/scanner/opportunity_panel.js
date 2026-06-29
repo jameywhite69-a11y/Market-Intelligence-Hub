@@ -15,6 +15,13 @@ async function renderOpportunityPanel(result) {
             );
         }
 
+        if (window.confluencePanel) {
+            scannerDom.opportunityPanel.insertAdjacentHTML(
+                "beforeend",
+                window.confluencePanel.renderConfluencePanel(enrichment.confluence)
+            );
+        }
+
         if (window.decisionPanel) {
             scannerDom.opportunityPanel.insertAdjacentHTML(
                 "beforeend",

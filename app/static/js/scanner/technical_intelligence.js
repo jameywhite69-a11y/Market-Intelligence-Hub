@@ -8,6 +8,7 @@ async function enrichOpportunity(result) {
             strategyScore: payload.strategy_score || null,
             tradePlan: payload.trade_plan || null,
             confidence: payload.confidence || null,
+            confluence: payload.confluence || null,
             decision: payload.decision || null,
             opportunityIntelligence: payload.opportunity_intelligence || null,
         };
@@ -18,6 +19,7 @@ async function enrichOpportunity(result) {
             strategyScore: null,
             tradePlan: null,
             confidence: null,
+            confluence: null,
             decision: null,
             opportunityIntelligence: null,
         };

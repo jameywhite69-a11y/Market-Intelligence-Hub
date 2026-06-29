@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException, Query
 
 from app.adapters.market_data.demo_provider import DemoMarketDataProvider
+from app.engines.institutional_intelligence.confluence_engine import confluence_engine
 from app.engines.institutional_intelligence.opportunity_intelligence_engine import (
     opportunity_intelligence_engine,
 )
@@ -41,6 +42,19 @@ def analyze_symbol(
             strategy_score=score,
             trade_plan=plan,
         )
+
+        confluence_levels = {}
+        for tf in ["5m", "15m", "1h", "4h", "1d"]:
+            tf_series = provider.get_series(symbol=symbol.upper(), timeframe=tf)
+            confluence_levels[tf] = technical_engine.analyze(tf_series)
+
+        confluence = confluence_engine.evaluate(
+            symbol=symbol.upper(),
+            primary_timeframe=timeframe,
+            timeframe_levels=confluence_levels,
+            base_confidence=confidence,
+        )
+
         decision = decision_engine.decide(
             technical=levels,
             strategy_score=score,
@@ -66,6 +80,7 @@ def analyze_symbol(
         "strategy_score": score.model_dump(),
         "trade_plan": plan.model_dump(),
         "confidence": confidence.model_dump(),
+        "confluence": confluence.model_dump(),
         "decision": decision.model_dump(),
         "opportunity_intelligence": intelligence.model_dump(),
     }
