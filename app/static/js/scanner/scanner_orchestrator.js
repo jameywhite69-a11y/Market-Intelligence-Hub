@@ -1,8 +1,8 @@
 const scannerClient = new window.ScannerApiClient();
 
 function buildScanRequest() {
-    const symbols = scannerUtils.parseCsv(scannerDom.symbolsInput.value);
-    const indicators = scannerUtils.parseCsv(scannerDom.indicatorsInput.value)
+    const symbols = scannerUtils.parseCsv(DOMRegistry.value("symbolsInput", ""));
+    const indicators = scannerUtils.parseCsv(DOMRegistry.value("indicatorsInput", ""))
         .map(indicator => indicator.toUpperCase());
 
     const parameters = {};
@@ -13,7 +13,7 @@ function buildScanRequest() {
 
     return {
         symbols,
-        timeframes: scannerUtils.parseCsv(scannerDom.timeframesInput.value),
+        timeframes: scannerUtils.parseCsv(DOMRegistry.value("timeframesInput", "")),
         indicators,
         parameters,
     };
@@ -26,40 +26,23 @@ function validateScanRequest(request) {
 }
 
 function renderError(error) {
-    scannerDom.resultsBody.innerHTML =
-        `<tr><td colspan="12" class="empty-row error-text">${error.message}</td></tr>`;
-    scannerDom.resultCount.textContent = "0 results";
-
-    if (window.scannerDiagnostics) {
-        scannerDiagnostics.renderDiagnostics(null);
-    }
+    const message = error?.message || "Unknown scanner error.";
+    DOMRegistry.setHtml("scannerResultsBody", `<tr><td colspan="12" class="empty-row error-text">${message}</td></tr>`);
+    DOMRegistry.setText("resultCount", "0 results");
+    window.scannerDiagnostics?.renderDiagnostics?.(null);
 }
 
 function renderPortfolioIntelligence() {
     if (!window.portfolioSnapshot) return;
 
-    const snapshot = window.portfolioSnapshot.buildLocalPortfolioSnapshot(
-        scannerState.filteredResults || []
-    );
-
+    const snapshot = window.portfolioSnapshot.buildLocalPortfolioSnapshot(scannerState.filteredResults || []);
     window.portfolioSnapshot.renderPortfolioCards(snapshot);
-
-    if (window.opportunityQueue) {
-        window.opportunityQueue.renderOpportunityQueue(snapshot);
-    }
-
-    if (window.workspaceIntelligence) {
-        window.workspaceIntelligence.renderWorkspaceIntelligence(
-            scannerState.filteredResults || []
-        );
-    }
+    window.opportunityQueue?.renderOpportunityQueue?.(snapshot);
+    window.workspaceIntelligence?.renderWorkspaceIntelligence?.(scannerState.filteredResults || []);
 }
 
 function setScannerLoading(isLoading) {
-    if (scannerDom.runButton) {
-        scannerDom.runButton.disabled = isLoading;
-        scannerDom.runButton.textContent = isLoading ? "Scanning..." : "Run Scan";
-    }
+    scannerStatus.setLoading?.(isLoading);
 }
 
 async function runScanner({ automatic = false } = {}) {
@@ -67,19 +50,18 @@ async function runScanner({ automatic = false } = {}) {
 
     scannerState.isRunning = true;
     setScannerLoading(true);
+    scannerStatus.setStatus(automatic ? "Auto-refresh scan running..." : "Creating scan job...");
 
-    scannerStatus.setStatus(
-        automatic ? "Auto-refresh scan running..." : "Creating scan job..."
+    DOMRegistry.setHtml(
+        "scannerResultsBody",
+        `<tr><td colspan="12" class="empty-row">${
+            window.uiEmptyStates
+                ? window.uiEmptyStates.renderQuietEmptyState("Scanning", "Updating ranked opportunities")
+                : "Scanning..."
+        }</td></tr>`
     );
 
-    scannerDom.resultsBody.innerHTML =
-        `<tr><td colspan="12" class="empty-row">
-            ${window.uiEmptyStates
-                ? window.uiEmptyStates.renderQuietEmptyState("Scanning", "Updating ranked opportunities")
-                : "Scanning..."}
-        </td></tr>`;
-
-    scannerDom.resultCount.textContent = "Scanning...";
+    DOMRegistry.setText("resultCount", "Scanning...");
 
     try {
         const request = buildScanRequest();
@@ -105,43 +87,32 @@ async function runScanner({ automatic = false } = {}) {
             ms: elapsed,
         });
 
-        if (scannerDom.lastScanLabel) {
-            scannerDom.lastScanLabel.textContent = new Date().toLocaleTimeString();
-        }
+        DOMRegistry.setText("lastScanLabel", new Date().toLocaleTimeString());
 
-        if (window.opportunityPanel) {
-            window.opportunityPanel.clearOpportunityPanel();
-        }
-
+        window.opportunityPanel?.clearOpportunityPanel?.();
         scannerFilters.applyFiltersAndSort();
         renderPortfolioIntelligence();
-
-        if (window.scannerDiagnostics) {
-            scannerDiagnostics.renderDiagnostics(scannerState.diagnostics);
-        }
+        window.scannerDiagnostics?.renderDiagnostics?.(scannerState.diagnostics);
 
         scannerStatus.setStatus(`Completed job ${completed.job_id}`);
     } catch (error) {
         console.error(error);
         renderError(error);
         scannerStatus.setStatus("Error running scan.");
-
-        if (window.scannerLive) {
-            scannerLive.stopLiveMode();
-        }
+        window.scannerLive?.stopLiveMode?.();
     } finally {
         scannerState.isRunning = false;
         setScannerLoading(false);
-
-        if (window.scannerLive) {
-            scannerLive.resetCountdown();
-        }
+        window.scannerLive?.resetCountdown?.();
     }
 }
 
 function bindCoreEvents() {
-    scannerDom.runButton?.addEventListener("click", () => runScanner({ automatic: false }));
-    scannerDom.exportButton?.addEventListener("click", scannerExport.exportCsv);
+    if (window.scannerOrchestratorEventsBound) return;
+    window.scannerOrchestratorEventsBound = true;
+
+    DOMRegistry.get("runScanButton")?.addEventListener("click", () => runScanner({ automatic: false }));
+    DOMRegistry.get("exportCsvButton")?.addEventListener("click", scannerExport.exportCsv);
 
     document.addEventListener("keydown", event => {
         if (event.ctrlKey && event.key.toLowerCase() === "e") {
@@ -161,11 +132,7 @@ function bindCoreEvents() {
 
         if (event.key === "Escape") {
             scannerState.selectedKey = null;
-
-            if (window.opportunityPanel) {
-                window.opportunityPanel.clearOpportunityPanel();
-            }
-
+            window.opportunityPanel?.clearOpportunityPanel?.();
             scannerResults.renderResults(scannerState.filteredResults || []);
         }
     });
@@ -175,14 +142,8 @@ function stepSelection(direction) {
     const rows = scannerState.filteredResults || [];
     if (!rows.length) return;
 
-    const currentIndex = rows.findIndex(
-        row => scannerUtils.resultKey(row) === scannerState.selectedKey
-    );
-
-    const nextIndex = currentIndex < 0
-        ? 0
-        : Math.max(0, Math.min(rows.length - 1, currentIndex + direction));
-
+    const currentIndex = rows.findIndex(row => scannerUtils.resultKey(row) === scannerState.selectedKey);
+    const nextIndex = currentIndex < 0 ? 0 : Math.max(0, Math.min(rows.length - 1, currentIndex + direction));
     const next = rows[nextIndex];
 
     if (next) {
@@ -192,43 +153,12 @@ function stepSelection(direction) {
 
 async function bootstrapScanner() {
     bindCoreEvents();
-
-    if (window.watchlistManager?.bootstrapWatchlists) {
-        await window.watchlistManager.bootstrapWatchlists();
-    } else if (window.watchlistManager?.loadWatchlists) {
-        await window.watchlistManager.loadWatchlists();
-    }
-
-    if (window.scannerFilters) {
-        scannerFilters.bindFilteringAndSorting();
-    }
-
-    if (window.scannerLive) {
-        scannerLive.bindLiveControls();
-        scannerLive.stopLiveMode();
-    }
-
-    if (window.workspaceLayout) {
-        window.workspaceLayout.bindWorkspaceLayout();
-    }
-
-    if (window.workspaceIntelligence) {
-        window.workspaceIntelligence.renderWorkspaceIntelligence(
-            scannerState.filteredResults || []
-        );
-    }
-
-    if (window.paperTradingPanel) {
-        window.paperTradingPanel.renderPaperTradingPanel();
-    }
-
     scannerStatus.setStatus("Ready");
 }
 
 window.scannerOrchestrator = {
     runScanner,
     bootstrapScanner,
+    bindCoreEvents,
     renderPortfolioIntelligence,
 };
-
-document.addEventListener("DOMContentLoaded", bootstrapScanner);

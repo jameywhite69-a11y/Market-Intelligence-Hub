@@ -94,15 +94,14 @@
         </aside>
 
         <main class="workstation-center-dock">
-            <section class="workstation-top-strip">
-                <section id="portfolioSummaryCards" class="terminal-summary-cards"></section>
-            </section>
+            <section id="portfolioSummaryCards" class="terminal-summary-cards"></section>
             <section class="workstation-mini-panels">
                 <section id="workspaceProfiles" class="desk-panel compact"></section>
                 <section id="multiWatchlistDashboard" class="desk-panel compact"></section>
                 <section id="opportunityHeatmap" class="desk-panel compact"></section>
                 <section id="opportunityQueue" class="desk-panel compact"></section>
             </section>
+
             <section class="desk-panel workstation-results-panel">
                 <div class="desk-panel-header">
                     <h2>Institutional Ranked Results</h2>
@@ -139,9 +138,11 @@
                     </table>
                 </div>
             </section>
+
             <section class="workstation-bottom-dock">
                 <section id="opportunityHistory" class="desk-panel compact"></section>
                 <section id="scannerDiagnostics" class="desk-panel compact"></section>
+                <section id="coreDiagnosticsPanel" class="desk-panel compact"></section>
             </section>
         </main>
 
@@ -153,18 +154,7 @@
                     <h2>AI Decision Stack</h2>
                     <span>Selected Opportunity</span>
                 </div>
-                <section id="opportunityPanel" class="opportunity-panel workstation-ai-panel">
-                    <div class="decision-idle-card">
-                        <div class="decision-idle-mark">MIH</div>
-                        <h3>Opportunity Intelligence</h3>
-                        <div class="idle-metric-row">
-                            <div><b>Rating</b><span>Waiting</span></div>
-                            <div><b>Lifecycle</b><span>—</span></div>
-                            <div><b>Portfolio</b><span>—</span></div>
-                            <div><b>Paper</b><span>Ready</span></div>
-                        </div>
-                    </div>
-                </section>
+                <section id="opportunityPanel" class="opportunity-panel workstation-ai-panel"></section>
             </section>
         </aside>
     </section>
@@ -172,13 +162,13 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="/static/js/core/dom_registry.js"></script>
 <script src="/static/js/scanner_api_client.js"></script>
 <script src="/static/js/watchlist_api_client.js"></script>
 <script src="/static/js/technical_api_client.js"></script>
 <script src="/static/js/execution_api_client.js"></script>
 <script src="/static/js/scanner/scanner_state.js"></script>
 <script src="/static/js/scanner/scanner_events.js"></script>
-<script src="/static/js/scanner/scanner_dom.js"></script>
 <script src="/static/js/scanner/scanner_utils.js"></script>
 <script src="/static/js/scanner/scanner_status.js"></script>
 <script src="/static/js/scanner/ui_empty_states.js"></script>
@@ -204,8 +194,9 @@
 <script src="/static/js/scanner/workspace_layout.js"></script>
 <script src="/static/js/scanner/workspace_intelligence.js"></script>
 <script src="/static/js/scanner/paper_trading_panel.js"></script>
-<script src="/static/js/workstation/trading_terminal_panel.js"></script>
 <script src="/static/js/workstation/workstation_bootstrap.js"></script>
+<script src="/static/js/workstation/trading_terminal_panel.js"></script>
 <script src="/static/js/workstation/workstation_compatibility_layer.js"></script>
 <script src="/static/js/scanner/scanner_orchestrator.js"></script>
+<script src="/static/js/core/core_bootstrap.js"></script>
 {% endblock %}

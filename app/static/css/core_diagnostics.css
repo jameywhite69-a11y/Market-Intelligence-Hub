@@ -1,0 +1,43 @@
+.core-diagnostics-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.core-diagnostics-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.core-diagnostics-header h3 {
+    margin: 0;
+}
+
+.core-diagnostics-list {
+    display: grid;
+    gap: 5px;
+}
+
+.core-diagnostics-row {
+    display: flex;
+    justify-content: space-between;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 12px;
+}
+
+.core-diagnostics-row.ok b {
+    color: #22c55e;
+}
+
+.core-diagnostics-row.bad b {
+    color: #ef4444;
+}
+
+.core-diagnostics-row.warn b {
+    color: #f59e0b;
+}

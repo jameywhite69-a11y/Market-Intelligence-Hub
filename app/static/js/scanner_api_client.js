@@ -1,48 +1,57 @@
 class ScannerApiClient {
-    constructor(baseUrl = "/api/scanner") {
+    constructor(baseUrl = "") {
         this.baseUrl = baseUrl;
     }
 
-    async createJob(scanRequest) {
-        return this.request(`${this.baseUrl}/jobs`, {
-            method: "POST",
-            body: JSON.stringify(scanRequest),
-        });
+    async createJob(request) {
+        return await this._post("/api/scanner/jobs", request);
     }
 
     async runJob(jobId) {
-        return this.request(`${this.baseUrl}/jobs/${jobId}/run`, {
-            method: "POST",
-        });
+        return await this._post(`/api/scanner/jobs/${jobId}/run`, {});
     }
 
     async getJob(jobId) {
-        return this.request(`${this.baseUrl}/jobs/${jobId}`);
+        return await this._get(`/api/scanner/jobs/${jobId}`);
     }
 
-    async request(url, options = {}) {
-        const response = await fetch(url, {
-            headers: {
-                "Content-Type": "application/json",
-                ...(options.headers || {}),
-            },
-            ...options,
+    async _get(path) {
+        const response = await fetch(`${this.baseUrl}${path}`, {
+            method: "GET",
+            headers: {"Accept": "application/json"},
         });
 
-        let payload = null;
+        return await this._handleResponse(response, path);
+    }
 
-        try {
-            payload = await response.json();
-        } catch {
-            payload = null;
-        }
+    async _post(path, body) {
+        const response = await fetch(`${this.baseUrl}${path}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(body || {}),
+        });
 
+        return await this._handleResponse(response, path);
+    }
+
+    async _handleResponse(response, path) {
         if (!response.ok) {
-            const message = payload?.detail || `Request failed with status ${response.status}`;
-            throw new Error(message);
+            let message = `${response.status} ${response.statusText}`;
+
+            try {
+                const payload = await response.json();
+                message = payload.detail || message;
+            } catch {
+                // Keep original HTTP message.
+            }
+
+            throw new Error(`Scanner API failed at ${path}: ${message}`);
         }
 
-        return payload;
+        return await response.json();
     }
 }
 

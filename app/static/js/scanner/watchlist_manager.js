@@ -9,7 +9,7 @@ async function loadWatchlists() {
         hydrateSymbolsFromActiveWatchlist();
 
         if (window.workspaceIntelligence) {
-            window.workspaceIntelligence.renderMultiWatchlistDashboard();
+            window.workspaceIntelligence.renderMultiWatchlistDashboard?.();
         }
     } catch (error) {
         console.warn("Watchlist manager unavailable", error);
@@ -26,12 +26,12 @@ async function seedWatchlists() {
 }
 
 function activeWatchlist() {
-    const selectedName = scannerDom.watchlistSelect?.value;
+    const selectedName = DOMRegistry.value("watchlistSelect", "");
     return scannerState.watchlists.find(item => item.name === selectedName) || scannerState.watchlists[0] || null;
 }
 
 function renderWatchlistSelect() {
-    const select = scannerDom.watchlistSelect || document.getElementById("watchlistSelect");
+    const select = DOMRegistry.get("watchlistSelect");
     if (!select) return;
 
     select.innerHTML = scannerState.watchlists.map(watchlist => `
@@ -40,7 +40,7 @@ function renderWatchlistSelect() {
 }
 
 function renderWatchlistSymbols() {
-    const container = scannerDom.watchlistSymbols || document.getElementById("watchlistSymbols");
+    const container = DOMRegistry.get("watchlistSymbols");
     if (!container) return;
 
     const watchlist = activeWatchlist();
@@ -61,7 +61,7 @@ function renderWatchlistSymbols() {
 }
 
 function hydrateSymbolsFromActiveWatchlist() {
-    const input = scannerDom.symbolsInput || document.getElementById("symbolsInput");
+    const input = DOMRegistry.get("symbolsInput");
     const watchlist = activeWatchlist();
     if (input && watchlist?.symbols?.length) {
         input.value = watchlist.symbols.join(",");
@@ -69,7 +69,7 @@ function hydrateSymbolsFromActiveWatchlist() {
 }
 
 async function createWatchlist() {
-    const input = scannerDom.newWatchlistName || document.getElementById("newWatchlistName");
+    const input = DOMRegistry.get("newWatchlistName");
     const name = input?.value?.trim();
     if (!name) return;
 
@@ -87,7 +87,7 @@ async function deleteWatchlist() {
 }
 
 async function addSymbol() {
-    const input = scannerDom.addSymbolInput || document.getElementById("addSymbolInput");
+    const input = DOMRegistry.get("addSymbolInput");
     const watchlist = activeWatchlist();
     const symbol = input?.value?.trim()?.toUpperCase();
 
@@ -118,20 +118,23 @@ function exportWatchlist() {
     URL.revokeObjectURL(link.href);
 }
 
-function bindWatchlistManager() {
-    scannerDom.watchlistSelect?.addEventListener("change", () => {
+function bindWatchlistEvents() {
+    if (window.watchlistEventsBound) return;
+    window.watchlistEventsBound = true;
+
+    DOMRegistry.get("watchlistSelect")?.addEventListener("change", () => {
         renderWatchlistSymbols();
         hydrateSymbolsFromActiveWatchlist();
     });
 
-    scannerDom.createWatchlistButton?.addEventListener("click", createWatchlist);
-    scannerDom.deleteWatchlistButton?.addEventListener("click", deleteWatchlist);
-    scannerDom.addSymbolButton?.addEventListener("click", addSymbol);
-    scannerDom.exportWatchlistButton?.addEventListener("click", exportWatchlist);
+    DOMRegistry.get("createWatchlistButton")?.addEventListener("click", createWatchlist);
+    DOMRegistry.get("deleteWatchlistButton")?.addEventListener("click", deleteWatchlist);
+    DOMRegistry.get("addSymbolButton")?.addEventListener("click", addSymbol);
+    DOMRegistry.get("exportWatchlistButton")?.addEventListener("click", exportWatchlist);
 }
 
 async function bootstrapWatchlists() {
-    bindWatchlistManager();
+    bindWatchlistEvents();
     await seedWatchlists();
 }
 
@@ -142,9 +145,8 @@ window.watchlistManager = {
     activeWatchlist,
     renderWatchlistSelect,
     renderWatchlistSymbols,
+    bindWatchlistEvents,
+    bindWatchlistView: bootstrapWatchlists,
+    renderWatchlistView: renderWatchlistSymbols,
+    refreshWatchlists: loadWatchlists,
 };
-
-// Compatibility aliases for older scanner_orchestrator.js calls
-window.watchlistManager.bindWatchlistView = window.watchlistManager.bootstrapWatchlists;
-window.watchlistManager.renderWatchlistView = window.watchlistManager.renderWatchlistSymbols;
-window.watchlistManager.refreshWatchlists = window.watchlistManager.loadWatchlists;

@@ -95,6 +95,6 @@ def workstation_page(request: Request):
 def scanner_page(request: Request):
     return templates.TemplateResponse(
         request,
-        "scanner.html",
+        "workstation.html",
         {},
     )
