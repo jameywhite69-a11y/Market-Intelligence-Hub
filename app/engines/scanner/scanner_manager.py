@@ -5,6 +5,7 @@ from uuid import uuid4
 from app.adapters.market_data.market_data_provider import MarketDataProvider
 from app.adapters.market_data.provider_registry import market_data_provider_registry
 from app.engines.scanner.indicator_pipeline import IndicatorPipeline
+from app.engines.scanner.ranking.ranking_engine import RankingEngine
 from app.engines.scanner.scan_job import ScanJob
 from app.engines.scanner.scan_request import ScanRequest
 from app.engines.scanner.scan_result import ScanResult
@@ -17,10 +18,14 @@ class ScannerManager:
         self,
         indicator_pipeline: IndicatorPipeline | None = None,
         market_data_provider: MarketDataProvider | None = None,
+        ranking_engine: RankingEngine | None = None,
     ) -> None:
         self._jobs: dict[str, ScanJob] = {}
         self.indicator_pipeline = indicator_pipeline or IndicatorPipeline()
-        self.market_data_provider = market_data_provider or market_data_provider_registry.get("demo")
+        self.market_data_provider = (
+            market_data_provider or market_data_provider_registry.get("demo")
+        )
+        self.ranking_engine = ranking_engine or RankingEngine()
 
     def create_job(self, request: ScanRequest) -> ScanJob:
         job = ScanJob(
@@ -64,7 +69,7 @@ class ScannerManager:
                     )
                 )
 
-        job.results = results
+        job.results = self.ranking_engine.rank(results)
         job.mark_complete()
         return job
 

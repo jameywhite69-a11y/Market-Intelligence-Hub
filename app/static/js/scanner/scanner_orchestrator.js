@@ -1,32 +1,130 @@
 const scannerClient = new window.ScannerApiClient();
-const watchlistClient = new window.WatchlistApiClient();
 
-function activeWatchlist(){return scannerState.watchlists.find(w=>w.name===scannerDom.watchlistSelect.value)||null}
-async function loadWatchlists(){let p=await watchlistClient.list(); if(!p.watchlists.length){p=await watchlistClient.seed()} scannerState.watchlists=p.watchlists||[]; renderWatchlistSelector(); renderActiveWatchlist()}
-function renderWatchlistSelector(){scannerDom.watchlistSelect.innerHTML=scannerState.watchlists.map(w=>`<option value="${w.name}">${w.name}</option>`).join(''); if(scannerState.watchlists.length&&!scannerDom.watchlistSelect.value){scannerDom.watchlistSelect.value=scannerState.watchlists[0].name}}
-function renderActiveWatchlist(){const w=activeWatchlist(); scannerState.activeWatchlist=w; if(!w){scannerDom.symbolsInput.value='';scannerDom.watchlistSymbols.innerHTML='<div class="empty-row">No watchlist selected.</div>';return} scannerDom.symbolsInput.value=(w.symbols||[]).join(','); scannerDom.watchlistSymbols.innerHTML=(w.symbols||[]).length?(w.symbols||[]).map(s=>`<div class="watchlist-symbol-pill"><span>${s}</span><button data-remove-symbol="${s}">×</button></div>`).join(''):'<div class="empty-row">No symbols yet.</div>'; for(const b of scannerDom.watchlistSymbols.querySelectorAll('[data-remove-symbol]')){b.addEventListener('click',async()=>{await watchlistClient.removeSymbol(w.name,b.dataset.removeSymbol); await loadWatchlists()})}}
-async function createWatchlist(){const name=scannerDom.newWatchlistName.value.trim(); if(!name){scannerStatus.setStatus('Enter a watchlist name.','error');return} await watchlistClient.create({name,symbols:[],description:''}); scannerDom.newWatchlistName.value=''; await loadWatchlists(); scannerDom.watchlistSelect.value=name; renderActiveWatchlist(); scannerStatus.setStatus(`Created watchlist ${name}.`,'success')}
-async function deleteActiveWatchlist(){const w=activeWatchlist(); if(!w)return; await watchlistClient.remove(w.name); await loadWatchlists(); scannerStatus.setStatus(`Deleted watchlist ${w.name}.`,'success')}
-async function addSymbolToActiveWatchlist(){const w=activeWatchlist(), s=scannerDom.addSymbolInput.value.trim(); if(!w||!s){scannerStatus.setStatus('Select a watchlist and enter a symbol.','error');return} await watchlistClient.addSymbol(w.name,s); scannerDom.addSymbolInput.value=''; await loadWatchlists(); scannerStatus.setStatus(`Added ${s.toUpperCase()} to ${w.name}.`,'success')}
-function exportActiveWatchlist(){const w=activeWatchlist(); if(!w){scannerStatus.setStatus('No watchlist selected.','error');return} const blob=new Blob([(w.symbols||[]).join('\n')],{type:'text/plain;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`${w.name}_watchlist.txt`; a.click(); URL.revokeObjectURL(url); scannerStatus.setStatus('Watchlist exported.','success')}
-async function importSymbolsToActiveWatchlist(){const w=activeWatchlist(); if(!w){scannerStatus.setStatus('No watchlist selected.','error');return} const syms=scannerUtils.parseCsv(scannerDom.importSymbolsInput.value.replaceAll('\n',',')); for(const s of syms){await watchlistClient.addSymbol(w.name,s)} scannerDom.importSymbolsInput.value=''; await loadWatchlists(); scannerStatus.setStatus(`Imported ${syms.length} symbols.`,'success')}
+function buildScanRequest() {
+    const symbols = scannerUtils.parseCsv(scannerDom.symbolsInput.value);
+    const indicators = scannerUtils.parseCsv(scannerDom.indicatorsInput.value)
+        .map(indicator => indicator.toUpperCase());
 
-function buildScanRequest(){const symbols=scannerUtils.parseCsv(scannerDom.symbolsInput.value); const indicators=scannerUtils.parseCsv(scannerDom.indicatorsInput.value).map(x=>x.toUpperCase()); const parameters={}; for(const i of indicators){parameters[i]={length:20}} return {symbols,timeframes:scannerUtils.parseCsv(scannerDom.timeframesInput.value),indicators,parameters}}
-function validateScanRequest(r){if(!r.symbols.length)throw new Error('Enter at least one symbol.'); if(!r.timeframes.length)throw new Error('Enter at least one timeframe.'); if(!r.indicators.length)throw new Error('Enter at least one indicator.')}
-function rankChangeOf(r){const p=scannerState.previousResults.find(x=>scannerUtils.resultKey(x)===scannerUtils.resultKey(r)); if(!p||p.rank===null||r.rank===null)return'new'; if(r.rank<p.rank)return'up'; if(r.rank>p.rank)return'down'; return'flat'}
-function rankChangeLabel(c){return({new:'NEW',up:'▲',down:'▼',flat:'—'}[c]||'—')}
-function compareResults(a,b,field){const g={rank:r=>Number(r.rank??0),symbol:r=>r.symbol||'',timeframe:r=>r.timeframe||'',score:r=>Number(r.score??0),grade:r=>scannerUtils.gradeOf(r),confidence:r=>scannerUtils.confidenceOf(r)}[field]||((r)=>Number(r.rank??0)); const l=g(a), r=g(b); return typeof l==='number'&&typeof r==='number'?l-r:String(l).localeCompare(String(r))}
-function applyFiltersAndSort(){const min=Number(scannerDom.minScoreInput?.value||0), grade=scannerDom.gradeFilterSelect?.value||'all', conf=scannerDom.confidenceFilterSelect?.value||'all'; let rows=scannerState.results.filter(r=>Number(r.score??0)>=min&&(grade==='all'||scannerUtils.gradeOf(r)===grade)&&(conf==='all'||scannerUtils.confidenceOf(r)===conf)); rows.sort((a,b)=>compareResults(a,b,scannerState.sortField)); if(scannerState.sortDirection==='desc')rows.reverse(); scannerState.filteredResults=rows; renderResults(rows)}
-function renderResults(rows){scannerDom.resultCount.textContent=`${rows.length} result${rows.length===1?'':'s'}`; if(!rows.length){scannerDom.resultsBody.innerHTML='<tr><td colspan="9" class="empty-row">No matching results.</td></tr>';return} scannerDom.resultsBody.innerHTML=rows.map(r=>{const s=Number(r.score??0), key=scannerUtils.resultKey(r), change=rankChangeOf(r); return `<tr class="${key===scannerState.selectedKey?'selected-row':''} ${change==='new'?'new-opportunity-row':''}" data-key="${key}"><td>${r.rank??''}</td><td class="rank-${change}">${rankChangeLabel(change)}</td><td class="symbol-cell">${r.symbol}</td><td>${r.timeframe}</td><td class="${scannerUtils.scoreClass(s)}">${s.toFixed(1)}</td><td><span class="badge badge-grade">${scannerUtils.gradeOf(r)}</span></td><td><span class="badge badge-confidence">${scannerUtils.confidenceOf(r)}</span></td><td><span class="status-pill status-${scannerUtils.statusOf(r).toLowerCase()}">${scannerUtils.statusOf(r)}</span></td><td>${r.warnings?.length?r.warnings.join('; '):''}</td></tr>`}).join(''); for(const row of scannerDom.resultsBody.querySelectorAll('tr[data-key]')){row.addEventListener('click',()=>selectResult(row.dataset.key))}}
-function selectResult(key){scannerState.selectedKey=key; const r=scannerState.results.find(x=>scannerUtils.resultKey(x)===key); if(!r)return; const s=Number(r.score??0); scannerDom.opportunityPanel.innerHTML=`<h2>${r.symbol}</h2><div class="inspector-subtitle">${r.timeframe}</div><div class="inspector-score ${scannerUtils.scoreClass(s)}">${s.toFixed(1)}</div><div class="inspector-badges"><span class="badge badge-grade">${scannerUtils.gradeOf(r)}</span><span class="badge badge-confidence">${scannerUtils.confidenceOf(r)}</span><span class="status-pill status-${scannerUtils.statusOf(r).toLowerCase()}">${scannerUtils.statusOf(r)}</span></div><h3>Indicator Output</h3><ul class="indicator-output">${Object.keys(r.indicator_results||{}).map(n=>`<li><b>${n}</b><span>Result available</span></li>`).join('')}</ul>`; renderResults(scannerState.filteredResults)}
-function renderDiagnostics(d){if(!d){scannerDom.diagnosticsPanel.innerHTML='<h3>Diagnostics</h3><p>No diagnostics available.</p>';return} scannerDom.diagnosticsPanel.innerHTML=`<h3>Diagnostics</h3><div class="diagnostics-grid"><div><b>Execution</b><span>${d.execution_ms??'-'} ms</span></div><div><b>Provider</b><span>${d.provider??'demo'}</span></div><div><b>Symbols</b><span>${d.symbols?.length??0}</span></div><div><b>Timeframes</b><span>${d.timeframes?.join(', ')??'-'}</span></div><div><b>Indicators</b><span>${d.indicators?.join(', ')??'-'}</span></div><div><b>Results</b><span>${d.result_count??0}</span></div><div><b>Last Scan</b><span>${scannerDom.lastScanLabel?.textContent||'-'}</span></div><div><b>Live Mode</b><span>${scannerState.liveMode?'Running':'Paused'}</span></div></div><h3>Scan History</h3><div class="scan-history">${scannerState.scanHistory.slice(-5).reverse().map(i=>`<div class="scan-history-row"><span>${i.time}</span><span>${i.count} results</span><span>${i.ms} ms</span></div>`).join('')||'<p>No scan history yet.</p>'}</div>`}
-function renderError(e){scannerDom.resultsBody.innerHTML=`<tr><td colspan="9" class="empty-row error-text">${e.message}</td></tr>`; scannerDom.resultCount.textContent='0 results'; renderDiagnostics(null)}
-async function runScanner({automatic=false}={}){if(scannerState.isRunning)return; scannerStatus.setLoading(true); scannerStatus.setStatus(automatic?'Auto-refresh scan running...':'Creating scan job...','loading'); try{const req=buildScanRequest(); validateScanRequest(req); const job=await scannerClient.createJob(req); scannerState.currentJobId=job.job_id; scannerStatus.setStatus('Running indicators and ranking results...','loading'); const started=performance.now(); const completed=await scannerClient.runJob(job.job_id); const elapsed=Math.round(performance.now()-started); scannerState.previousResults=scannerState.results; scannerState.results=completed.results||[]; scannerState.diagnostics=completed.diagnostics||null; scannerState.selectedKey=null; scannerState.scanHistory.push({time:new Date().toLocaleTimeString(),count:scannerState.results.length,ms:elapsed}); if(scannerDom.lastScanLabel)scannerDom.lastScanLabel.textContent=new Date().toLocaleTimeString(); applyFiltersAndSort(); renderDiagnostics(scannerState.diagnostics); scannerStatus.setStatus(`Completed job ${completed.job_id}`,'success')}catch(e){console.error(e); renderError(e); scannerStatus.setStatus('Error running scan.','error'); stopLiveMode()}finally{scannerStatus.setLoading(false); resetCountdown()}}
-function exportCsv(){const rows=scannerState.filteredResults.length?scannerState.filteredResults:scannerState.results; if(!rows.length){scannerStatus.setStatus('No results to export.','error');return} const headers=['rank','change','symbol','timeframe','score','grade','confidence','status']; const csv=[headers.join(','),...rows.map(r=>[r.rank??'',rankChangeLabel(rankChangeOf(r)),r.symbol,r.timeframe,Number(r.score??0).toFixed(1),scannerUtils.gradeOf(r),scannerUtils.confidenceOf(r),scannerUtils.statusOf(r)].map(v=>`"${String(v).replaceAll('"','""')}"`).join(','))]; const blob=new Blob([csv.join('\n')],{type:'text/csv;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`scanner_results_${new Date().toISOString().replaceAll(':','-')}.csv`; a.click(); URL.revokeObjectURL(url); scannerStatus.setStatus('CSV exported.','success')}
-function resetCountdown(){scannerState.countdownSeconds=scannerState.refreshIntervalSeconds; updateCountdownLabel()}
-function updateCountdownLabel(){if(!scannerDom.countdownLabel)return; scannerDom.countdownLabel.textContent=scannerState.liveMode?`Next scan in ${scannerState.countdownSeconds}s`:'Live scanning paused'}
-function startLiveMode(){scannerState.liveMode=true; scannerState.refreshIntervalSeconds=Number(scannerDom.refreshIntervalSelect?.value||30); resetCountdown(); clearInterval(scannerState.refreshTimerId); clearInterval(scannerState.countdownTimerId); scannerState.countdownTimerId=setInterval(()=>{scannerState.countdownSeconds=Math.max(0,scannerState.countdownSeconds-1); updateCountdownLabel()},1000); scannerState.refreshTimerId=setInterval(()=>runScanner({automatic:true}),scannerState.refreshIntervalSeconds*1000); scannerDom.liveModeButton.disabled=true; scannerDom.pauseLiveButton.disabled=false; scannerStatus.setStatus('Live scanning started.','success')}
-function stopLiveMode(){scannerState.liveMode=false; clearInterval(scannerState.refreshTimerId); clearInterval(scannerState.countdownTimerId); scannerState.refreshTimerId=null; scannerState.countdownTimerId=null; if(scannerDom.liveModeButton)scannerDom.liveModeButton.disabled=false; if(scannerDom.pauseLiveButton)scannerDom.pauseLiveButton.disabled=true; updateCountdownLabel()}
-function bindSorting(){for(const h of document.querySelectorAll('[data-sort]')){h.addEventListener('click',()=>{const f=h.dataset.sort; if(scannerState.sortField===f){scannerState.sortDirection=scannerState.sortDirection==='asc'?'desc':'asc'}else{scannerState.sortField=f; scannerState.sortDirection=f==='score'?'desc':'asc'} applyFiltersAndSort()})}}
-function bootstrap(){scannerDom.watchlistSelect?.addEventListener('change',renderActiveWatchlist); scannerDom.createWatchlistButton?.addEventListener('click',createWatchlist); scannerDom.deleteWatchlistButton?.addEventListener('click',deleteActiveWatchlist); scannerDom.addSymbolButton?.addEventListener('click',addSymbolToActiveWatchlist); scannerDom.exportWatchlistButton?.addEventListener('click',exportActiveWatchlist); scannerDom.importSymbolsInput?.addEventListener('change',importSymbolsToActiveWatchlist); for(const c of [scannerDom.minScoreInput,scannerDom.gradeFilterSelect,scannerDom.confidenceFilterSelect]){c?.addEventListener('input',applyFiltersAndSort); c?.addEventListener('change',applyFiltersAndSort)} scannerDom.runButton?.addEventListener('click',()=>runScanner({automatic:false})); scannerDom.exportButton?.addEventListener('click',exportCsv); scannerDom.liveModeButton?.addEventListener('click',startLiveMode); scannerDom.pauseLiveButton?.addEventListener('click',stopLiveMode); scannerDom.refreshIntervalSelect?.addEventListener('change',()=>{scannerState.refreshIntervalSeconds=Number(scannerDom.refreshIntervalSelect.value||30); resetCountdown(); if(scannerState.liveMode){stopLiveMode(); startLiveMode()}}); document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key.toLowerCase()==='e'){e.preventDefault(); exportCsv()} if(e.key==='Escape'){scannerState.selectedKey=null; scannerDom.opportunityPanel.innerHTML='<h2>Opportunity Inspector</h2><p class="muted">Select a result to inspect score, grade, confidence, and indicator output.</p>'; renderResults(scannerState.filteredResults)}}); bindSorting(); loadWatchlists(); stopLiveMode(); scannerStatus.setStatus('Ready')}
-window.scannerOrchestrator={runScanner,bootstrapScanner:bootstrap}; document.addEventListener('DOMContentLoaded',bootstrap);
+    const parameters = {};
+
+    for (const indicator of indicators) {
+        parameters[indicator] = { length: 20 };
+    }
+
+    return {
+        symbols,
+        timeframes: scannerUtils.parseCsv(scannerDom.timeframesInput.value),
+        indicators,
+        parameters,
+    };
+}
+
+function validateScanRequest(request) {
+    if (!request.symbols.length) throw new Error("Enter at least one symbol.");
+    if (!request.timeframes.length) throw new Error("Enter at least one timeframe.");
+    if (!request.indicators.length) throw new Error("Enter at least one indicator.");
+}
+
+function renderError(error) {
+    scannerDom.resultsBody.innerHTML =
+        `<tr><td colspan="9" class="empty-row error-text">${error.message}</td></tr>`;
+    scannerDom.resultCount.textContent = "0 results";
+    scannerDiagnostics.renderDiagnostics(null);
+}
+
+async function runScanner({ automatic = false } = {}) {
+    if (scannerState.isRunning) return;
+
+    scannerStatus.setLoading(true);
+    scannerStatus.setStatus(
+        automatic ? "Auto-refresh scan running..." : "Creating scan job...",
+        "loading"
+    );
+
+    try {
+        const request = buildScanRequest();
+        validateScanRequest(request);
+
+        const job = await scannerClient.createJob(request);
+        scannerState.currentJobId = job.job_id;
+
+        scannerStatus.setStatus("Running indicators and ranking results...", "loading");
+
+        const started = performance.now();
+        const completed = await scannerClient.runJob(job.job_id);
+        const elapsed = Math.round(performance.now() - started);
+
+        scannerState.previousResults = scannerState.results;
+        scannerState.results = completed.results || [];
+        scannerState.diagnostics = completed.diagnostics || null;
+        scannerState.selectedKey = null;
+
+        scannerState.scanHistory.push({
+            time: new Date().toLocaleTimeString(),
+            count: scannerState.results.length,
+            ms: elapsed,
+        });
+
+        if (scannerDom.lastScanLabel) {
+            scannerDom.lastScanLabel.textContent = new Date().toLocaleTimeString();
+        }
+
+        if (window.opportunityPanel) {
+            window.opportunityPanel.clearOpportunityPanel();
+        }
+
+        scannerFilters.applyFiltersAndSort();
+        scannerDiagnostics.renderDiagnostics(scannerState.diagnostics);
+        scannerStatus.setStatus(`Completed job ${completed.job_id}`, "success");
+    } catch (error) {
+        console.error(error);
+        renderError(error);
+        scannerStatus.setStatus("Error running scan.", "error");
+        scannerLive.stopLiveMode();
+    } finally {
+        scannerStatus.setLoading(false);
+        scannerLive.resetCountdown();
+    }
+}
+
+function bindCoreEvents() {
+    scannerDom.runButton?.addEventListener("click", () => runScanner({ automatic: false }));
+    scannerDom.exportButton?.addEventListener("click", scannerExport.exportCsv);
+
+    document.addEventListener("keydown", event => {
+        if (event.ctrlKey && event.key.toLowerCase() === "e") {
+            event.preventDefault();
+            scannerExport.exportCsv();
+        }
+
+        if (event.key === "Escape") {
+            scannerState.selectedKey = null;
+
+            if (window.opportunityPanel) {
+                window.opportunityPanel.clearOpportunityPanel();
+            }
+
+            scannerResults.renderResults(scannerState.filteredResults);
+        }
+    });
+}
+
+function bootstrapScanner() {
+    bindCoreEvents();
+
+    watchlistManager.bindWatchlistEvents();
+    scannerFilters.bindFilteringAndSorting();
+    scannerLive.bindLiveControls();
+
+    watchlistManager.loadWatchlists();
+    scannerLive.stopLiveMode();
+
+    scannerStatus.setStatus("Ready");
+}
+
+window.scannerOrchestrator = {
+    runScanner,
+    bootstrapScanner,
+};
+
+document.addEventListener("DOMContentLoaded", bootstrapScanner);
