@@ -15,6 +15,13 @@ async function renderOpportunityPanel(result) {
             );
         }
 
+        if (window.lifecyclePanel) {
+            scannerDom.opportunityPanel.insertAdjacentHTML(
+                "beforeend",
+                window.lifecyclePanel.renderLifecyclePanel(enrichment.opportunityLifecycle)
+            );
+        }
+
         if (window.portfolioIntelligencePanel) {
             scannerDom.opportunityPanel.insertAdjacentHTML(
                 "beforeend",

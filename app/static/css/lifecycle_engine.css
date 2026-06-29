@@ -1,0 +1,113 @@
+/* Version 29.4 — Opportunity Lifecycle Engine */
+
+.lifecycle-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.lifecycle-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lifecycle-header h3 {
+    margin: 0;
+}
+
+.lifecycle-header span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.lifecycle-momentum {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: #0f3142;
+    border: 1px solid #61dafb;
+    color: #61dafb;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.lifecycle-momentum.improving {
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+.lifecycle-momentum.degrading {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.lifecycle-narrative {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 9px;
+    color: #dce3ee;
+    line-height: 1.45;
+    font-size: 12px;
+}
+
+.lifecycle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    margin: 9px 0;
+}
+
+.lifecycle-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.lifecycle-grid b {
+    display: block;
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.lifecycle-grid span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.lifecycle-event-list {
+    display: grid;
+    gap: 7px;
+}
+
+.lifecycle-event {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.lifecycle-event b,
+.lifecycle-event span {
+    display: block;
+}
+
+.lifecycle-event b {
+    color: #e6e6e6;
+    margin-bottom: 3px;
+}
+
+.lifecycle-event span {
+    color: #aaa;
+    font-size: 12px;
+}

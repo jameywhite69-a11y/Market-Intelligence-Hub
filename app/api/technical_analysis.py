@@ -13,6 +13,9 @@ from app.engines.market_intelligence.decision_engine import decision_engine
 from app.engines.market_intelligence.scoring_engine import strategy_scoring_engine
 from app.engines.market_intelligence.technical_engine import technical_engine
 from app.engines.market_intelligence.trade_planning_engine import trade_planning_engine
+from app.engines.portfolio_intelligence.opportunity_lifecycle_engine import (
+    opportunity_lifecycle_engine,
+)
 from app.engines.portfolio_intelligence.portfolio_intelligence_engine import (
     portfolio_intelligence_engine,
 )
@@ -81,6 +84,16 @@ def analyze_symbol(
             strategy_matrix=strategy_matrix,
         )
 
+        lifecycle = opportunity_lifecycle_engine.evaluate(
+            symbol=symbol.upper(),
+            timeframe=timeframe,
+            opportunity_score=decision.decision_score,
+            confidence_score=confidence.confidence_score,
+            decision_classification=decision.classification,
+            recommendation=decision.recommendation,
+            confluence_score=confluence.confluence_score,
+        )
+
         intelligence = opportunity_intelligence_engine.analyze(
             symbol=symbol.upper(),
             timeframe=timeframe,
@@ -104,5 +117,6 @@ def analyze_symbol(
         "confluence": confluence.model_dump(),
         "decision": decision.model_dump(),
         "portfolio_intelligence": portfolio_intelligence.model_dump(),
+        "opportunity_lifecycle": lifecycle.model_dump(),
         "opportunity_intelligence": intelligence.model_dump(),
     }
