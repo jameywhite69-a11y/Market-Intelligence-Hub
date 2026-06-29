@@ -28,6 +28,7 @@ function buildLocalPortfolioSnapshot(results) {
     }).sort((a, b) => b.opportunity_score - a.opportunity_score);
 
     const total = ranked.reduce((sum, item) => sum + item.opportunity_score, 0) || 1;
+
     ranked.forEach((item, index) => {
         item.rank = index + 1;
         item.allocation_percent = (item.opportunity_score / total) * 100;
@@ -47,12 +48,17 @@ function renderPortfolioCards(snapshot) {
     if (!panel) return;
 
     if (!snapshot || !snapshot.ranked_opportunities?.length) {
-        panel.innerHTML = "";
+        panel.innerHTML = `
+            <div class="terminal-metric empty"><b>Top Opportunity</b><span>—</span></div>
+            <div class="terminal-metric empty"><b>Highest Confidence</b><span>—</span></div>
+            <div class="terminal-metric empty"><b>Best R:R</b><span>—</span></div>
+            <div class="terminal-metric empty"><b>Largest Allocation</b><span>—</span></div>
+        `;
         return;
     }
 
     const card = (label, item, value) => `
-        <div class="portfolio-card">
+        <div class="terminal-metric">
             <b>${label}</b>
             <span>${item?.symbol || "-"}</span>
             <small>${value || ""}</small>

@@ -1,15 +1,19 @@
 function renderDiagnostics(diagnostics) {
+    const monitor = scannerDom.diagnosticsPanel;
+    if (!monitor) return;
+
     if (!diagnostics) {
-        scannerDom.diagnosticsPanel.innerHTML =
-            window.uiEmptyStates
-                ? window.uiEmptyStates.renderQuietEmptyState("Scan Monitor", "Standing by")
-                : "";
+        monitor.innerHTML = `
+            <div class="terminal-dock-empty">
+                <b>Scan Monitor</b>
+                <span>Standing by</span>
+            </div>
+        `;
         return;
     }
 
-    scannerDom.diagnosticsPanel.innerHTML = `
-        <h3>Scan Monitor</h3>
-        <div class="diagnostics-grid compact">
+    monitor.innerHTML = `
+        <div class="terminal-scan-strip">
             <div><b>Execution</b><span>${diagnostics.execution_ms ?? "-"} ms</span></div>
             <div><b>Provider</b><span>${diagnostics.provider ?? "demo"}</span></div>
             <div><b>Symbols</b><span>${diagnostics.symbols?.length ?? 0}</span></div>
@@ -20,13 +24,9 @@ function renderDiagnostics(diagnostics) {
             <div><b>Live</b><span>${scannerState.liveMode ? "Running" : "Paused"}</span></div>
         </div>
 
-        <div class="scan-history compact">
-            ${scannerState.scanHistory.slice(-4).reverse().map(item => `
-                <div class="scan-history-row">
-                    <span>${item.time}</span>
-                    <span>${item.count} results</span>
-                    <span>${item.ms} ms</span>
-                </div>
+        <div class="terminal-scan-history">
+            ${scannerState.scanHistory.slice(-3).reverse().map(item => `
+                <span>${item.time} · ${item.count} results · ${item.ms} ms</span>
             `).join("")}
         </div>
     `;
