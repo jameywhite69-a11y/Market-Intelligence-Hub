@@ -1,0 +1,177 @@
+/* Version 27.2 — Sprint 2 Professional Workspace Intelligence */
+
+.workspace-intel-widget {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.workspace-widget-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.workspace-widget-header h3 {
+    margin: 0;
+}
+
+.workspace-widget-header span {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.profile-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.profile-button-row button {
+    background: #20252d;
+    border: 1px solid #343944;
+    color: #ddd;
+    border-radius: 999px;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.profile-button-row button.active {
+    border-color: #61dafb;
+    color: #61dafb;
+}
+
+.watchlist-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 8px;
+}
+
+.watchlist-dashboard-card {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.watchlist-dashboard-card b,
+.watchlist-dashboard-card span,
+.watchlist-dashboard-card small {
+    display: block;
+}
+
+.watchlist-dashboard-card b {
+    color: #e6e6e6;
+}
+
+.watchlist-dashboard-card span {
+    color: #61dafb;
+    font-weight: 900;
+    margin: 4px 0;
+}
+
+.watchlist-dashboard-card small {
+    color: #aaa;
+}
+
+.heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 8px;
+}
+
+.heatmap-cell {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.heatmap-cell:hover {
+    border-color: #61dafb;
+}
+
+.heatmap-cell b,
+.heatmap-cell span {
+    display: block;
+}
+
+.heatmap-cell span {
+    color: #61dafb;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 4px 0;
+}
+
+.score-gauge {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+}
+
+.score-gauge-track {
+    height: 7px;
+    background: #16181d;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.score-gauge-fill {
+    height: 100%;
+    background: #61dafb;
+}
+
+.score-gauge b {
+    color: #aaa;
+    font-size: 11px;
+}
+
+.history-list {
+    display: grid;
+    gap: 8px;
+}
+
+.history-row {
+    display: grid;
+    grid-template-columns: 80px 80px 1fr;
+    gap: 10px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 9px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.history-row:hover {
+    border-color: #61dafb;
+}
+
+.history-row b {
+    color: #e6e6e6;
+}
+
+.history-row span {
+    color: #61dafb;
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+.mini-sparkline {
+    width: 100%;
+    height: 28px;
+}
+
+.mini-sparkline polyline {
+    fill: none;
+    stroke: #61dafb;
+    stroke-width: 3;
+}

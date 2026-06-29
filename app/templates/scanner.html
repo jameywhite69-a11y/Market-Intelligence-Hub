@@ -3,18 +3,21 @@
 {% block content %}
 <section class="professional-workspace-header">
     <div>
-        <h1>Professional Trading Workspace</h1>
-        <p>Rank opportunities, manage watchlists, and inspect institutional trade decisions.</p>
+        <h1>Professional Workspace Intelligence</h1>
+        <p>Compare watchlists, track opportunity history, and visualize institutional strength.</p>
     </div>
     <div class="workspace-hotkeys">
         <span>F5 Run Scan</span>
+        <span>Alt+↑ / Alt+↓ Select</span>
         <span>Ctrl+1 Watchlists</span>
-        <span>Ctrl+2 Results</span>
         <span>Ctrl+3 Decision</span>
     </div>
 </section>
 
 <section id="portfolioSummaryCards" class="portfolio-summary-cards"></section>
+<section id="workspaceProfiles" class="workspace-intel-widget"></section>
+<section id="multiWatchlistDashboard" class="workspace-intel-widget"></section>
+<section id="opportunityHeatmap" class="workspace-intel-widget"></section>
 <section id="opportunityQueue" class="opportunity-queue-panel"></section>
 
 <section class="scanner-pro-layout professional-workspace">
@@ -138,6 +141,8 @@
             </tbody>
         </table>
 
+        <section id="opportunityHistory" class="workspace-intel-widget"></section>
+
         <section id="scannerDiagnostics" class="scanner-diagnostics">
             <h3>Diagnostics</h3>
             <p>No scan has run yet.</p>
@@ -180,5 +185,6 @@
 <script src="/static/js/scanner/opportunity_queue.js"></script>
 <script src="/static/js/scanner/portfolio_snapshot.js"></script>
 <script src="/static/js/scanner/workspace_layout.js"></script>
+<script src="/static/js/scanner/workspace_intelligence.js"></script>
 <script src="/static/js/scanner/scanner_orchestrator.js"></script>
 {% endblock %}

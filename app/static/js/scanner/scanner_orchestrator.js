@@ -42,6 +42,10 @@ function renderPortfolioIntelligence() {
     if (window.opportunityQueue) {
         window.opportunityQueue.renderOpportunityQueue(snapshot);
     }
+
+    if (window.workspaceIntelligence) {
+        window.workspaceIntelligence.renderWorkspaceIntelligence(scannerState.filteredResults);
+    }
 }
 
 async function runScanner({ automatic = false } = {}) {
@@ -110,6 +114,16 @@ function bindCoreEvents() {
             scannerExport.exportCsv();
         }
 
+        if (event.altKey && event.key === "ArrowDown") {
+            event.preventDefault();
+            stepSelection(1);
+        }
+
+        if (event.altKey && event.key === "ArrowUp") {
+            event.preventDefault();
+            stepSelection(-1);
+        }
+
         if (event.key === "Escape") {
             scannerState.selectedKey = null;
 
@@ -120,6 +134,19 @@ function bindCoreEvents() {
             scannerResults.renderResults(scannerState.filteredResults);
         }
     });
+}
+
+function stepSelection(direction) {
+    const rows = scannerState.filteredResults || [];
+    if (!rows.length) return;
+
+    const currentIndex = rows.findIndex(row => scannerUtils.resultKey(row) === scannerState.selectedKey);
+    const nextIndex = Math.max(0, Math.min(rows.length - 1, currentIndex + direction));
+    const next = rows[nextIndex < 0 ? 0 : nextIndex];
+
+    if (next) {
+        scannerResults.selectResult(scannerUtils.resultKey(next));
+    }
 }
 
 function bootstrapScanner() {
@@ -133,7 +160,12 @@ function bootstrapScanner() {
         window.workspaceLayout.bindWorkspaceLayout();
     }
 
-    watchlistManager.loadWatchlists();
+    watchlistManager.loadWatchlists().then(() => {
+        if (window.workspaceIntelligence) {
+            window.workspaceIntelligence.renderWorkspaceIntelligence(scannerState.filteredResults || []);
+        }
+    });
+
     scannerLive.stopLiveMode();
 
     scannerStatus.setStatus("Ready");
