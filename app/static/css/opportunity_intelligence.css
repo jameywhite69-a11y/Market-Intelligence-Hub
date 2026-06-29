@@ -1,0 +1,145 @@
+/* Version 29.0 — Opportunity Intelligence Engine */
+
+.opportunity-intelligence-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.intel-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.intel-header h3 {
+    margin: 0;
+}
+
+.intel-header span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.intel-score {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #0f3142;
+    border: 1px solid #61dafb;
+    color: #61dafb;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.intel-summary {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 9px;
+    color: #dce3ee;
+    line-height: 1.45;
+    font-size: 12px;
+}
+
+.intel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    margin: 9px 0;
+}
+
+.intel-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.intel-grid b {
+    display: block;
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.intel-grid span {
+    color: #61dafb;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.mini-collapse {
+    background: #16181d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.mini-collapse summary {
+    cursor: pointer;
+    padding: 8px 10px;
+    background: #20252d;
+    font-weight: 800;
+}
+
+.mini-collapse[open] summary {
+    border-bottom: 1px solid #343944;
+}
+
+.intel-level-list {
+    display: grid;
+    gap: 7px;
+    padding: 8px;
+}
+
+.intel-level-list div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.intel-level-list b,
+.intel-level-list span,
+.intel-level-list small {
+    display: block;
+}
+
+.intel-level-list b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.intel-level-list span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.intel-level-list small {
+    color: #aaa;
+    margin-top: 3px;
+}
+
+.mini-collapse h4 {
+    margin: 10px 10px 4px;
+}
+
+.mini-collapse p,
+.mini-collapse ul {
+    margin: 8px 12px;
+    color: #dce3ee;
+}
+
+.mini-collapse li {
+    margin: 4px 0;
+}

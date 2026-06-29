@@ -1,30 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="professional-workspace-header trading-desk-header">
+<section class="terminal-header">
     <div>
-        <h1>Professional Trading Desk</h1>
-        <p class="workspace-subtle">Institutional opportunity ranking, decision support, and workspace intelligence.</p>
+        <h1>Market Intelligence Hub</h1>
+        <span>Institutional Intelligence Platform</span>
     </div>
-    <div class="workspace-toolbar">
-        <button id="compactTopToggle">Compact Top</button>
-        <button id="decisionPanelToggle">Decision Panel</button>
+    <div class="terminal-toolbar">
+        <button id="terminalTopToggle">Top Dock</button>
+        <button id="terminalBottomToggle">Bottom Dock</button>
+        <button id="terminalDecisionToggle">Decision Panel</button>
         <span>F5 Scan</span>
-        <span>Alt+↑ / Alt+↓</span>
+        <span>Ctrl+Shift+D</span>
     </div>
 </section>
 
-<section id="portfolioSummaryCards" class="portfolio-summary-cards"></section>
-
-<section class="top-widget-strip">
-    <section id="workspaceProfiles" class="workspace-intel-widget"></section>
-    <section id="multiWatchlistDashboard" class="workspace-intel-widget"></section>
-    <section id="opportunityHeatmap" class="workspace-intel-widget"></section>
-    <section id="opportunityQueue" class="opportunity-queue-panel"></section>
+<section class="terminal-summary-strip">
+    <section id="portfolioSummaryCards" class="terminal-summary-cards"></section>
 </section>
 
-<section class="scanner-pro-layout professional-workspace trading-desk-workspace">
-    <aside class="scanner-filter-panel">
+<section class="terminal-top-dock">
+    <section id="workspaceProfiles" class="terminal-widget compact"></section>
+    <section id="multiWatchlistDashboard" class="terminal-widget compact"></section>
+    <section id="opportunityHeatmap" class="terminal-widget heatmap"></section>
+    <section id="opportunityQueue" class="terminal-widget queue"></section>
+</section>
+
+<section class="terminal-workspace">
+    <aside class="scanner-filter-panel terminal-sidebar">
         <h2>Watchlists</h2>
 
         <label for="watchlistSelect">Active Watchlist</label>
@@ -113,57 +116,57 @@
         </div>
     </aside>
 
-    <div id="leftPanelResizer" class="workspace-resizer"></div>
-
-    <main class="scanner-results-panel">
-        <div class="results-header trading-results-header">
+    <main class="terminal-results-area">
+        <div class="terminal-results-header">
             <h2>Institutional Ranked Results</h2>
             <span id="resultCount">0 results</span>
         </div>
 
-        <table class="scanner-table professional-grid expanded-grid">
-            <thead>
-                <tr>
-                    <th data-sort="rank">Rank</th>
-                    <th data-sort="symbol">Symbol</th>
-                    <th data-sort="timeframe">TF</th>
-                    <th data-sort="score">Opportunity</th>
-                    <th data-sort="grade">Decision</th>
-                    <th data-sort="confidence">Confidence</th>
-                    <th>Expected R</th>
-                    <th>Allocation</th>
-                    <th>Momentum</th>
-                    <th>Status</th>
-                    <th>Warnings</th>
-                </tr>
-            </thead>
-            <tbody id="scannerResultsBody">
-                <tr>
-                    <td colspan="11" class="empty-row">
-                        <div class="quiet-empty-state">
-                            <div class="quiet-empty-icon">◆</div>
-                            <div><b>Ready</b><span>Run scan</span></div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="terminal-results-scroll">
+            <table class="scanner-table professional-grid expanded-grid terminal-results-table">
+                <thead>
+                    <tr>
+                        <th data-sort="rank">Rank</th>
+                        <th data-sort="symbol">Symbol</th>
+                        <th data-sort="timeframe">TF</th>
+                        <th data-sort="score">Opportunity</th>
+                        <th data-sort="grade">Decision</th>
+                        <th data-sort="confidence">Confidence</th>
+                        <th>Expected R</th>
+                        <th>Allocation</th>
+                        <th>Momentum</th>
+                        <th>Status</th>
+                        <th>Warnings</th>
+                    </tr>
+                </thead>
+                <tbody id="scannerResultsBody">
+                    <tr>
+                        <td colspan="11" class="empty-row">
+                            <div class="quiet-empty-state">
+                                <div class="quiet-empty-icon">◆</div>
+                                <div><b>Ready</b><span>Run scan</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <section id="opportunityHistory" class="workspace-intel-widget compact-panel"></section>
-        <section id="scannerDiagnostics" class="scanner-diagnostics trading-scan-monitor"></section>
+        <section class="terminal-bottom-dock">
+            <section id="opportunityHistory" class="terminal-bottom-panel"></section>
+            <section id="scannerDiagnostics" class="terminal-bottom-panel"></section>
+        </section>
     </main>
 
-    <div id="rightPanelResizer" class="workspace-resizer"></div>
-
-    <aside id="opportunityPanel" class="opportunity-panel trading-decision-panel">
+    <aside id="opportunityPanel" class="opportunity-panel terminal-decision-panel">
         <div class="decision-idle-card">
             <div class="decision-idle-mark">MIH</div>
-            <h3>Institutional Decision Engine</h3>
+            <h3>Opportunity Intelligence</h3>
             <div class="idle-metric-row">
-                <div><b>Decision</b><span>Waiting</span></div>
-                <div><b>Confidence</b><span>—</span></div>
+                <div><b>Rating</b><span>Waiting</span></div>
+                <div><b>Decision</b><span>—</span></div>
                 <div><b>Expected R</b><span>—</span></div>
-                <div><b>Allocation</b><span>—</span></div>
+                <div><b>Risk</b><span>—</span></div>
             </div>
         </div>
     </aside>
@@ -183,6 +186,7 @@
 <script src="/static/js/scanner/ui_empty_states.js"></script>
 
 <script src="/static/js/scanner/watchlist_manager.js"></script>
+<script src="/static/js/scanner/opportunity_intelligence_panel.js"></script>
 <script src="/static/js/scanner/decision_panel.js"></script>
 <script src="/static/js/scanner/confidence_panel.js"></script>
 <script src="/static/js/scanner/strategy_score_panel.js"></script>
@@ -200,5 +204,6 @@
 <script src="/static/js/scanner/workspace_layout.js"></script>
 <script src="/static/js/scanner/workspace_intelligence.js"></script>
 <script src="/static/js/scanner/trading_desk_ux.js"></script>
+<script src="/static/js/scanner/terminal_layout.js"></script>
 <script src="/static/js/scanner/scanner_orchestrator.js"></script>
 {% endblock %}

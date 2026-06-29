@@ -9,6 +9,7 @@ async function enrichOpportunity(result) {
             tradePlan: payload.trade_plan || null,
             confidence: payload.confidence || null,
             decision: payload.decision || null,
+            opportunityIntelligence: payload.opportunity_intelligence || null,
         };
     } catch (error) {
         console.warn("Technical intelligence unavailable", error);
@@ -18,6 +19,7 @@ async function enrichOpportunity(result) {
             tradePlan: null,
             confidence: null,
             decision: null,
+            opportunityIntelligence: null,
         };
     }
 }

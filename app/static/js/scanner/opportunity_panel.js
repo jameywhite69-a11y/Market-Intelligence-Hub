@@ -8,6 +8,13 @@ async function renderOpportunityPanel(result) {
     if (window.technicalIntelligence) {
         const enrichment = await window.technicalIntelligence.enrichOpportunity(result);
 
+        if (window.opportunityIntelligencePanel) {
+            scannerDom.opportunityPanel.insertAdjacentHTML(
+                "beforeend",
+                window.opportunityIntelligencePanel.renderOpportunityIntelligencePanel(enrichment.opportunityIntelligence)
+            );
+        }
+
         if (window.decisionPanel) {
             scannerDom.opportunityPanel.insertAdjacentHTML(
                 "beforeend",
