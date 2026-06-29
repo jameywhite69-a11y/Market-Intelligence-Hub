@@ -1,0 +1,11 @@
+.portfolio-risk-card,.position-lifecycle-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:8px}
+.portfolio-risk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.portfolio-risk-grid div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px}
+.portfolio-risk-grid b,.portfolio-risk-grid span{display:block}
+.portfolio-risk-grid b{color:#8f98a8;font-size:10px;text-transform:uppercase}
+.portfolio-risk-grid span{color:#61dafb;font-weight:900}
+.lifecycle-event-list{display:grid;gap:5px}
+.lifecycle-event-row{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px}
+.lifecycle-event-row b,.lifecycle-event-row span,.lifecycle-event-row small{display:block}
+.lifecycle-event-row b{color:#61dafb}
+.lifecycle-event-row small{color:#8f98a8}
