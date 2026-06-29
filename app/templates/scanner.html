@@ -1,26 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="professional-workspace-header">
+<section class="professional-workspace-header trading-desk-header">
     <div>
-        <h1>Professional Workspace Intelligence</h1>
-        <p>Compare watchlists, track opportunity history, and visualize institutional strength.</p>
+        <h1>Professional Trading Desk</h1>
+        <p class="workspace-subtle">Institutional opportunity ranking, decision support, and workspace intelligence.</p>
     </div>
-    <div class="workspace-hotkeys">
-        <span>F5 Run Scan</span>
-        <span>Alt+↑ / Alt+↓ Select</span>
-        <span>Ctrl+1 Watchlists</span>
-        <span>Ctrl+3 Decision</span>
+    <div class="workspace-toolbar">
+        <button id="compactTopToggle">Compact Top</button>
+        <button id="decisionPanelToggle">Decision Panel</button>
+        <span>F5 Scan</span>
+        <span>Alt+↑ / Alt+↓</span>
     </div>
 </section>
 
 <section id="portfolioSummaryCards" class="portfolio-summary-cards"></section>
-<section id="workspaceProfiles" class="workspace-intel-widget"></section>
-<section id="multiWatchlistDashboard" class="workspace-intel-widget"></section>
-<section id="opportunityHeatmap" class="workspace-intel-widget"></section>
-<section id="opportunityQueue" class="opportunity-queue-panel"></section>
 
-<section class="scanner-pro-layout professional-workspace">
+<section class="top-widget-strip">
+    <section id="workspaceProfiles" class="workspace-intel-widget"></section>
+    <section id="multiWatchlistDashboard" class="workspace-intel-widget"></section>
+    <section id="opportunityHeatmap" class="workspace-intel-widget"></section>
+    <section id="opportunityQueue" class="opportunity-queue-panel"></section>
+</section>
+
+<section class="scanner-pro-layout professional-workspace trading-desk-workspace">
     <aside class="scanner-filter-panel">
         <h2>Watchlists</h2>
 
@@ -48,7 +51,7 @@
 
         <hr>
 
-        <h2>Live Scan Controls</h2>
+        <h2>Live Scan</h2>
 
         <label for="refreshIntervalSelect">Refresh Interval</label>
         <select id="refreshIntervalSelect">
@@ -63,12 +66,12 @@
             <button id="pauseLiveButton" class="secondary-button" disabled>Pause</button>
         </div>
 
-        <div id="countdownLabel" class="scanner-status">Live scanning paused</div>
-        <div class="scanner-status">Last Scan: <span id="lastScanLabel">Never</span></div>
+        <div id="countdownLabel" class="scanner-status">Paused</div>
+        <div class="scanner-status">Last: <span id="lastScanLabel">—</span></div>
 
         <hr>
 
-        <h2>Scan Controls</h2>
+        <h2>Scan</h2>
 
         <label for="symbolsInput">Symbols</label>
         <input id="symbolsInput" value="">
@@ -80,9 +83,9 @@
         <input id="indicatorsInput" value="SMA,EMA,VWMA">
 
         <button id="runScanButton">Run Scan</button>
-        <button id="exportCsvButton" class="secondary-button">Export Results CSV</button>
+        <button id="exportCsvButton" class="secondary-button">Export CSV</button>
 
-        <div id="scanStatus" class="scanner-status">Status: Ready</div>
+        <div id="scanStatus" class="scanner-status">Ready</div>
 
         <div class="filter-section">
             <h3>Filters</h3>
@@ -113,7 +116,7 @@
     <div id="leftPanelResizer" class="workspace-resizer"></div>
 
     <main class="scanner-results-panel">
-        <div class="results-header">
+        <div class="results-header trading-results-header">
             <h2>Institutional Ranked Results</h2>
             <span id="resultCount">0 results</span>
         </div>
@@ -136,24 +139,33 @@
             </thead>
             <tbody id="scannerResultsBody">
                 <tr>
-                    <td colspan="11" class="empty-row">Run a scan to see results.</td>
+                    <td colspan="11" class="empty-row">
+                        <div class="quiet-empty-state">
+                            <div class="quiet-empty-icon">◆</div>
+                            <div><b>Ready</b><span>Run scan</span></div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <section id="opportunityHistory" class="workspace-intel-widget"></section>
-
-        <section id="scannerDiagnostics" class="scanner-diagnostics">
-            <h3>Diagnostics</h3>
-            <p>No scan has run yet.</p>
-        </section>
+        <section id="opportunityHistory" class="workspace-intel-widget compact-panel"></section>
+        <section id="scannerDiagnostics" class="scanner-diagnostics trading-scan-monitor"></section>
     </main>
 
     <div id="rightPanelResizer" class="workspace-resizer"></div>
 
-    <aside id="opportunityPanel" class="opportunity-panel">
-        <h2>Institutional Decision Engine</h2>
-        <p class="muted">Select a result to view decision, confidence, trade plan, score, and technical context.</p>
+    <aside id="opportunityPanel" class="opportunity-panel trading-decision-panel">
+        <div class="decision-idle-card">
+            <div class="decision-idle-mark">MIH</div>
+            <h3>Institutional Decision Engine</h3>
+            <div class="idle-metric-row">
+                <div><b>Decision</b><span>Waiting</span></div>
+                <div><b>Confidence</b><span>—</span></div>
+                <div><b>Expected R</b><span>—</span></div>
+                <div><b>Allocation</b><span>—</span></div>
+            </div>
+        </div>
     </aside>
 </section>
 {% endblock %}
@@ -168,6 +180,7 @@
 <script src="/static/js/scanner/scanner_dom.js"></script>
 <script src="/static/js/scanner/scanner_utils.js"></script>
 <script src="/static/js/scanner/scanner_status.js"></script>
+<script src="/static/js/scanner/ui_empty_states.js"></script>
 
 <script src="/static/js/scanner/watchlist_manager.js"></script>
 <script src="/static/js/scanner/decision_panel.js"></script>
@@ -186,5 +199,6 @@
 <script src="/static/js/scanner/portfolio_snapshot.js"></script>
 <script src="/static/js/scanner/workspace_layout.js"></script>
 <script src="/static/js/scanner/workspace_intelligence.js"></script>
+<script src="/static/js/scanner/trading_desk_ux.js"></script>
 <script src="/static/js/scanner/scanner_orchestrator.js"></script>
 {% endblock %}

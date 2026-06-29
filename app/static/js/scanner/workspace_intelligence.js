@@ -12,10 +12,19 @@ function saveWorkspaceIntelState(state) {
     localStorage.setItem(WORKSPACE_INTEL_STORAGE_KEY, JSON.stringify(state));
 }
 
+function scoreStrengthClass(value) {
+    const score = Number(value || 0);
+    if (score >= 90) return "elite";
+    if (score >= 80) return "strong";
+    if (score >= 65) return "watch";
+    if (score >= 50) return "speculative";
+    return "avoid";
+}
+
 function scoreBar(value) {
     const score = Math.max(0, Math.min(100, Number(value || 0)));
     return `
-        <div class="score-gauge">
+        <div class="score-gauge ${scoreStrengthClass(score)}">
             <div class="score-gauge-track">
                 <div class="score-gauge-fill" style="width:${score}%"></div>
             </div>
@@ -33,11 +42,11 @@ function renderWorkspaceProfiles() {
     const profiles = ["Day Trading", "Swing Trading", "Crypto", "Futures", "Four-Monitor"];
 
     panel.innerHTML = `
-        <div class="workspace-widget-header">
+        <div class="workspace-widget-header compact-header">
             <h3>Workspace Profile</h3>
             <span>${active}</span>
         </div>
-        <div class="profile-button-row">
+        <div class="profile-button-row compact">
             ${profiles.map(profile => `
                 <button class="${profile === active ? "active" : ""}" data-profile="${profile}">
                     ${profile}
@@ -70,21 +79,22 @@ function renderMultiWatchlistDashboard() {
     }
 
     panel.innerHTML = `
-        <div class="workspace-widget-header">
+        <div class="workspace-widget-header compact-header">
             <h3>Watchlist Dashboard</h3>
             <span>${watchlists.length} lists</span>
         </div>
-        <div class="watchlist-dashboard-grid">
-            ${watchlists.slice(0, 6).map(watchlist => {
+        <div class="watchlist-dashboard-grid compact">
+            ${watchlists.slice(0, 8).map(watchlist => {
                 const symbols = watchlist.symbols || [];
                 const matching = (scannerState.results || []).filter(result => symbols.includes(result.symbol));
                 const elite = matching.filter(result => Number(result.score || 0) >= 90).length;
                 const tradeable = matching.filter(result => Number(result.score || 0) >= 80).length;
+                const best = matching.length ? Math.max(...matching.map(result => Number(result.score || 0))) : 0;
                 return `
-                    <div class="watchlist-dashboard-card">
+                    <div class="watchlist-dashboard-card compact">
                         <b>${watchlist.name}</b>
                         <span>${symbols.length}</span>
-                        <small>${elite} Elite · ${tradeable} Tradeable</small>
+                        <small>${elite} Elite · ${tradeable} Tradeable · Best ${best.toFixed(1)}</small>
                     </div>
                 `;
             }).join("")}
@@ -108,15 +118,16 @@ function renderOpportunityHeatmap(results) {
     }
 
     panel.innerHTML = `
-        <div class="workspace-widget-header">
+        <div class="workspace-widget-header compact-header">
             <h3>Opportunity Heat Map</h3>
             <span>${rows.length} strongest</span>
         </div>
-        <div class="heatmap-grid">
+        <div class="heatmap-grid compact">
             ${rows.map(row => {
                 const score = Number(row.score || 0);
+                const strength = scoreStrengthClass(score);
                 return `
-                    <button class="heatmap-cell" data-key="${scannerUtils.resultKey(row)}">
+                    <button class="heatmap-cell ${strength}" data-key="${scannerUtils.resultKey(row)}">
                         <b>${row.symbol}</b>
                         <span>${score.toFixed(1)}</span>
                         ${scoreBar(score)}
@@ -188,16 +199,16 @@ function renderOpportunityHistory(results) {
     }
 
     panel.innerHTML = `
-        <div class="workspace-widget-header">
+        <div class="workspace-widget-header compact-header">
             <h3>Opportunity History</h3>
             <span>Last 50 scans</span>
         </div>
-        <div class="history-list">
+        <div class="history-list compact">
             ${rows.map(result => {
                 const key = scannerUtils.resultKey(result);
                 const historyRows = history[key] || [];
                 return `
-                    <button class="history-row" data-key="${key}">
+                    <button class="history-row compact" data-key="${key}">
                         <b>${result.symbol}</b>
                         <span>${historyDirection(historyRows)}</span>
                         ${sparkline(historyRows)}

@@ -1,0 +1,223 @@
+/* Version 28.1 — Professional Trading Desk UX */
+
+:root {
+    --workspace-inspector-width: 480px;
+}
+
+.trading-desk-header {
+    margin-bottom: 8px;
+}
+
+.workspace-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.workspace-toolbar button,
+.workspace-toolbar span {
+    background: #20252d;
+    border: 1px solid #343944;
+    color: #aaa;
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+.workspace-toolbar button {
+    cursor: pointer;
+}
+
+.workspace-toolbar button:hover {
+    border-color: #61dafb;
+    color: #61dafb;
+}
+
+.top-widget-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.top-widgets-compact .portfolio-summary-cards {
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.top-widgets-compact .portfolio-card {
+    padding: 7px 10px;
+}
+
+.top-widgets-compact .portfolio-card span {
+    font-size: 16px;
+}
+
+.top-widgets-compact .workspace-intel-widget,
+.top-widgets-compact .opportunity-queue-panel {
+    padding: 8px;
+    margin-bottom: 0;
+}
+
+.top-widgets-compact .workspace-widget-header {
+    margin-bottom: 6px;
+}
+
+.top-widgets-compact .workspace-widget-header h3 {
+    font-size: 13px;
+}
+
+.top-widgets-compact .profile-button-row button {
+    padding: 5px 8px;
+    font-size: 11px;
+}
+
+.watchlist-dashboard-grid.compact {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.watchlist-dashboard-card.compact {
+    padding: 8px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 10px;
+    align-items: center;
+}
+
+.watchlist-dashboard-card.compact small {
+    grid-column: 1 / -1;
+}
+
+.heatmap-grid.compact {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.heatmap-cell.elite {
+    border-color: #22c55e;
+    background: linear-gradient(135deg, rgba(34,197,94,.22), #20252d);
+}
+
+.heatmap-cell.strong {
+    border-color: #84cc16;
+    background: linear-gradient(135deg, rgba(132,204,22,.18), #20252d);
+}
+
+.heatmap-cell.watch {
+    border-color: #facc15;
+    background: linear-gradient(135deg, rgba(250,204,21,.16), #20252d);
+}
+
+.heatmap-cell.speculative {
+    border-color: #fb923c;
+    background: linear-gradient(135deg, rgba(251,146,60,.16), #20252d);
+}
+
+.heatmap-cell.avoid {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239,68,68,.16), #20252d);
+}
+
+.score-gauge.elite .score-gauge-fill,
+.score-gauge.strong .score-gauge-fill {
+    background: #22c55e;
+}
+
+.score-gauge.watch .score-gauge-fill {
+    background: #facc15;
+}
+
+.score-gauge.speculative .score-gauge-fill {
+    background: #fb923c;
+}
+
+.score-gauge.avoid .score-gauge-fill {
+    background: #ef4444;
+}
+
+.trading-desk-workspace {
+    min-height: calc(100vh - 360px);
+}
+
+.trading-decision-panel {
+    min-width: 360px;
+    background: #10151f;
+}
+
+.decision-panel-hidden .trading-desk-workspace {
+    grid-template-columns:
+        var(--workspace-sidebar-width)
+        8px
+        minmax(620px, 1fr)
+        0
+        0 !important;
+}
+
+.decision-panel-hidden #rightPanelResizer,
+.decision-panel-hidden .trading-decision-panel {
+    display: none;
+}
+
+.trading-results-header {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background: #20252d;
+    border-bottom: 1px solid #343944;
+    padding-bottom: 8px;
+}
+
+.trading-scan-monitor {
+    padding: 8px;
+}
+
+.trading-scan-monitor h3 {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.trading-scan-monitor .diagnostics-grid {
+    gap: 7px;
+}
+
+.trading-scan-monitor .diagnostics-grid div {
+    padding: 7px;
+}
+
+.compact-panel {
+    padding: 8px;
+}
+
+.history-list.compact {
+    gap: 6px;
+}
+
+.history-row.compact {
+    padding: 7px;
+    grid-template-columns: 70px 70px 1fr;
+}
+
+.history-row.compact .mini-sparkline {
+    height: 22px;
+}
+
+@media (min-width: 1500px) {
+    .top-widget-strip {
+        grid-template-columns: 0.75fr 1fr;
+    }
+
+    #workspaceProfiles {
+        grid-column: 1;
+    }
+
+    #multiWatchlistDashboard {
+        grid-column: 2;
+    }
+
+    #opportunityHeatmap,
+    #opportunityQueue {
+        grid-column: 1 / -1;
+    }
+}
