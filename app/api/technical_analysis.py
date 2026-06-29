@@ -7,6 +7,7 @@ from app.engines.institutional_intelligence.confluence_engine import confluence_
 from app.engines.institutional_intelligence.opportunity_intelligence_engine import (
     opportunity_intelligence_engine,
 )
+from app.engines.institutional_intelligence.strategy_engine import institutional_strategy_engine
 from app.engines.market_intelligence.confidence_engine import confidence_engine
 from app.engines.market_intelligence.decision_engine import decision_engine
 from app.engines.market_intelligence.scoring_engine import strategy_scoring_engine
@@ -55,12 +56,19 @@ def analyze_symbol(
             base_confidence=confidence,
         )
 
+        strategy_matrix = institutional_strategy_engine.evaluate(
+            technical=levels,
+            trade_plan=plan,
+            confluence=confluence,
+        )
+
         decision = decision_engine.decide(
             technical=levels,
             strategy_score=score,
             trade_plan=plan,
             confidence=confidence,
         )
+
         intelligence = opportunity_intelligence_engine.analyze(
             symbol=symbol.upper(),
             timeframe=timeframe,
@@ -78,6 +86,7 @@ def analyze_symbol(
         "timeframe": timeframe,
         "technical": levels.model_dump(),
         "strategy_score": score.model_dump(),
+        "strategy_matrix": strategy_matrix.model_dump(),
         "trade_plan": plan.model_dump(),
         "confidence": confidence.model_dump(),
         "confluence": confluence.model_dump(),

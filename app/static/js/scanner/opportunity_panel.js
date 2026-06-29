@@ -15,6 +15,13 @@ async function renderOpportunityPanel(result) {
             );
         }
 
+        if (window.strategyMatrixPanel) {
+            scannerDom.opportunityPanel.insertAdjacentHTML(
+                "beforeend",
+                window.strategyMatrixPanel.renderStrategyMatrixPanel(enrichment.strategyMatrix)
+            );
+        }
+
         if (window.confluencePanel) {
             scannerDom.opportunityPanel.insertAdjacentHTML(
                 "beforeend",
