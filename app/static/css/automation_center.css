@@ -1,0 +1,3 @@
+.automation-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px}
+.auto-row{display:flex;justify-content:space-between;background:#20252d;border:1px solid #343944;border-radius:8px;padding:8px;margin:6px 0}
+.auto-row button{min-width:56px}

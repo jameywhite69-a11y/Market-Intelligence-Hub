@@ -71,7 +71,9 @@ positions, AI, and diagnostics can scale without vertical clutter.
         moveIntoDock("portfolioRiskPanel", "positions");
         moveIntoDock("positionLifecyclePanel", "positions");
         moveIntoDock("portfolioIntelligencePanel", "positions");
-        
+        moveIntoDock("tradeLifecyclePanel", "positions");
+        moveIntoDock("institutionalRiskPanel", "positions");
+
         // AI tab
         moveIntoDock("opportunityPanel", "ai");
         moveIntoDock("aiDecisionCenterPanel", "ai");
@@ -82,6 +84,10 @@ positions, AI, and diagnostics can scale without vertical clutter.
         moveIntoDock("scannerDiagnostics", "diagnostics");
         moveIntoDock("moduleRegistryPanel", "diagnostics");
         moveIntoDock("activityTimelinePanel", "diagnostics");
+        moveIntoDock("workspaceProfilesPanel", "diagnostics");
+        moveIntoDock("commercialReadinessPanel", "diagnostics");
+        moveIntoDock("automationCenterPanel","diagnostics");
+
     }
 
     function bindDockTabs() {
