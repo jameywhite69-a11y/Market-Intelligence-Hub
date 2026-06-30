@@ -28,9 +28,17 @@
             <section class="workstation-bottom-dock"><section id="opportunityHistory" class="desk-panel compact"></section><section id="scannerDiagnostics" class="desk-panel compact"></section><section id="coreDiagnosticsPanel" class="desk-panel compact"></section><section id="eventDiagnosticsPanel" class="desk-panel compact"></section></section>
         </main>
         <aside class="workstation-right-dock"><section id="brokerAdapterPanel"></section><section id="tradeContextPanel"></section><section id="institutionalOrderTicket"></section><section id="tradingTerminalPanel" class="trading-terminal-dock"></section><section id="paperTradingPanel" class="paper-trading-panel"></section><section class="desk-panel ai-panel"><div class="desk-panel-header"><h2>AI Decision Stack</h2><span>Selected Opportunity</span></div><section id="opportunityPanel" class="opportunity-panel workstation-ai-panel"></section></section></aside>
+        <section id="brokerAdapterPanel"></section>
+        <section id="institutionalOrderTicket"></section>
+        <section id="tradingTerminalPanel"></section>
+        <section id="paperTradingPanel"></section>
         <section id="positionManagementPanel"></section>
         <section id="portfolioRiskPanel"></section>
         <section id="positionLifecyclePanel"></section>
+        <section id="liveMarketDataPanel"></section>
+        <section id="workspaceContextPanel"></section>
+        <section id="moduleRegistryPanel"></section>
+        <section id="aiDecisionCenterPanel"></section>
     </section>
 </section>
 {% endblock %}
@@ -39,11 +47,19 @@
 <script src="/static/js/core/dom_registry.js"></script>
 <script src="/static/js/core/event_bus.js"></script>
 <script src="/static/js/core/workspace_store.js"></script>
+<script src="/static/js/core/module_registry.js"></script>
+<script src="/static/js/core/workspace_context.js"></script>
+<script src="/static/js/core/lifecycle_manager.js"></script>
+<script src="/static/js/core/workspace_persistence.js"></script>
+<script src="/static/js/workflow/workspace_context_bridge.js"></script>
+<script src="/static/js/workstation/workspace_context_panel.js"></script>
+<script src="/static/js/workstation/module_registry_panel.js"></script>
 <script src="/static/js/core/api_client.js"></script>
 <script src="/static/js/scanner_api_client.js"></script>
 <script src="/static/js/watchlist_api_client.js"></script>
 <script src="/static/js/technical_api_client.js"></script>
 <script src="/static/js/execution_api_client.js"></script>
+<script src="/static/js/trading/institutional_order_ticket_v42.js"></script>
 <script src="/static/js/scanner/scanner_state.js"></script>
 <script src="/static/js/scanner/scanner_events.js"></script>
 <script src="/static/js/scanner/scanner_utils.js"></script>
@@ -89,6 +105,11 @@
 <script src="/static/js/positions/portfolio_risk_panel.js"></script>
 <script src="/static/js/positions/position_lifecycle_panel.js"></script>
 <script src="/static/js/workstation/institutional_dock_system.js"></script>
-<script src="/static/js/workstation/dock_status_panel.js"></script>
+<script src="/static/js/market/live_market_data_client.js"></script>
+<script src="/static/js/market/live_market_data_panel.js"></script>
+<script src="/static/js/strategy/strategy_execution_client.js"></script>
+<script src="/static/js/strategy/strategy_execution_panel.js"></script>
+<script src="/static/js/ai/ai_decision_client.js"></script>
+<script src="/static/js/ai/ai_decision_center_panel.js"></script>
 
 {% endblock %}
