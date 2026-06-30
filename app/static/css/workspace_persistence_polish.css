@@ -1,0 +1,124 @@
+.workspace-profiles-card,
+.commercial-readiness-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.workspace-profile-form {
+    display: grid;
+    grid-template-columns: 1fr 74px;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.workspace-profile-form input {
+    background: #20252d;
+    border: 1px solid #343944;
+    color: #e6e6e6;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.workspace-profile-list {
+    display: grid;
+    gap: 6px;
+}
+
+.workspace-profile-row {
+    display: grid;
+    grid-template-columns: 1fr 64px;
+    gap: 6px;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.workspace-profile-row.active {
+    border-color: #61dafb;
+}
+
+.workspace-profile-row b,
+.workspace-profile-row span {
+    display: block;
+}
+
+.workspace-profile-row b {
+    color: #61dafb;
+}
+
+.workspace-profile-row span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.professional-statusbar-v42 {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    width: 100%;
+    padding: 0 8px;
+}
+
+.professional-statusbar-v42 div {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    color: #8f98a8;
+}
+
+.professional-statusbar-v42 b {
+    color: #61dafb;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.professional-statusbar-v42 span {
+    color: #e6e6e6;
+    font-weight: 700;
+}
+
+.commercial-readiness-meter {
+    height: 8px;
+    background: #0b0f16;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.commercial-readiness-meter div {
+    height: 100%;
+    background: #22c55e;
+}
+
+.commercial-readiness-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.commercial-readiness-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.commercial-readiness-grid b,
+.commercial-readiness-grid span {
+    display: block;
+}
+
+.commercial-readiness-grid b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.commercial-readiness-grid span {
+    color: #61dafb;
+    font-weight: 900;
+}
