@@ -51,6 +51,16 @@ from app.api.portfolio_intelligence_api import (
     portfolio_intelligence_snapshot,
     router as portfolio_intelligence_router,
 )
+from app.api.trade_lifecycle_api import (
+    lifecycle_mark_closed,
+    lifecycle_mark_entered,
+    lifecycle_mark_partial_exit,
+    lifecycle_mark_runner,
+    trade_lifecycle_reset,
+    trade_lifecycle_snapshot,
+    update_lifecycle_from_opportunity,
+    router as trade_lifecycle_router,
+)
 
 ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
@@ -148,6 +158,13 @@ app.add_api_route(
     portfolio_intelligence_snapshot,
     methods=["GET"],
 )
+app.add_api_route("/api/trade-lifecycle/snapshot", trade_lifecycle_snapshot, methods=["GET"])
+app.add_api_route("/api/trade-lifecycle/opportunity", update_lifecycle_from_opportunity, methods=["POST"])
+app.add_api_route("/api/trade-lifecycle/entered", lifecycle_mark_entered, methods=["POST"])
+app.add_api_route("/api/trade-lifecycle/partial-exit", lifecycle_mark_partial_exit, methods=["POST"])
+app.add_api_route("/api/trade-lifecycle/runner", lifecycle_mark_runner, methods=["POST"])
+app.add_api_route("/api/trade-lifecycle/closed", lifecycle_mark_closed, methods=["POST"])
+app.add_api_route("/api/trade-lifecycle/reset", trade_lifecycle_reset, methods=["POST"])
 
 # Keep router includes for compatibility with existing application modules.
 app.include_router(scanner_api_router)
@@ -169,6 +186,7 @@ app.include_router(strategy_execution_router)
 app.include_router(position_management_router)
 app.include_router(ai_decision_router)
 app.include_router(portfolio_intelligence_router)
+app.include_router(trade_lifecycle_router)
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):
