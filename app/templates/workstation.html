@@ -28,6 +28,21 @@
             <section class="workstation-bottom-dock"><section id="opportunityHistory" class="desk-panel compact"></section><section id="scannerDiagnostics" class="desk-panel compact"></section><section id="coreDiagnosticsPanel" class="desk-panel compact"></section><section id="eventDiagnosticsPanel" class="desk-panel compact"></section></section>
         </main>
         <aside class="workstation-right-dock"><section id="brokerAdapterPanel"></section><section id="tradeContextPanel"></section><section id="institutionalOrderTicket"></section><section id="tradingTerminalPanel" class="trading-terminal-dock"></section><section id="paperTradingPanel" class="paper-trading-panel"></section><section class="desk-panel ai-panel"><div class="desk-panel-header"><h2>AI Decision Stack</h2><span>Selected Opportunity</span></div><section id="opportunityPanel" class="opportunity-panel workstation-ai-panel"></section></section></aside>
+        <div class="institutional-dock">
+    <div class="institutional-dock-tabs">
+        <button class="institutional-dock-tab active" data-dock-tab="execution">Execution</button>
+        <button class="institutional-dock-tab" data-dock-tab="positions">Positions</button>
+        <button class="institutional-dock-tab" data-dock-tab="ai">AI</button>
+        <button class="institutional-dock-tab" data-dock-tab="diagnostics">Diagnostics</button>
+    </div>
+
+    <div class="institutional-dock-panels">
+        <div class="institutional-dock-panel active" data-dock-panel="execution"></div>
+        <div class="institutional-dock-panel" data-dock-panel="positions"></div>
+        <div class="institutional-dock-panel" data-dock-panel="ai"></div>
+        <div class="institutional-dock-panel" data-dock-panel="diagnostics"></div>
+    </div>
+</div>
         <section id="brokerAdapterPanel"></section>
         <section id="institutionalOrderTicket"></section>
         <section id="tradingTerminalPanel"></section>
@@ -47,6 +62,10 @@
         <section id="portfolioIntelligencePanel"></section>
         <section id="automationCenterPanel"></section>
         <section id="activityTimelinePanel"></section>
+        <section id="institutionalCommandCenterPanel"></section>
+        <section id="brokerManagerPanel"></section>
+        <section id="newsCatalystCenterPanel"></section>
+        <section id="strategyRegistryPanel"></section>
 
     </section>
 </section>
@@ -134,8 +153,15 @@
 <script src="/static/js/workspace/professional_status_bar_v42.js"></script>
 <script src="/static/js/workspace/commercial_readiness_panel.js"></script>
 <script src="/static/js/automation/automation_center.js"></script>
-<script src="/static/js/timeline/activity_timeline_store.js"></script>
-<script src="/static/js/timeline/activity_timeline_subscribers.js"></script>
-<script src="/static/js/timeline/activity_timeline_panel.js"></script>
+<script src="/static/js/command/command_center_store.js"></script>
+<script src="/static/js/command/command_center_orchestrator.js"></script>
+<script src="/static/js/command/command_center_panel.js"></script>
+<script src="/static/js/journal/trade_journal_store.js"></script>
+<script src="/static/js/journal/performance_analytics.js"></script>
+<script src="/static/js/journal/trade_journal_panel.js"></script>
+<script src="/static/js/broker/broker_manager_panel.js"></script>
+<script src="/static/js/market_intelligence/news_catalyst_center.js"></script>
+<script src="/static/js/research/strategy_registry_client.js"></script>
+<script src="/static/js/research/strategy_registry_panel.js"></script>
 
 {% endblock %}
