@@ -1,0 +1,9 @@
+.workspace-context-card,.module-registry-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:8px}
+.workspace-context-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:8px}
+.workspace-context-grid div,.workspace-context-opportunity,.module-registry-row{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px}
+.workspace-context-grid b,.workspace-context-grid span,.workspace-context-opportunity b,.workspace-context-opportunity span{display:block}
+.workspace-context-grid b{color:#8f98a8;font-size:10px;text-transform:uppercase}
+.workspace-context-grid span,.workspace-context-opportunity b{color:#61dafb;font-weight:900}
+.module-registry-list{display:grid;gap:5px}
+.module-registry-row{display:flex;justify-content:space-between;font-size:12px}
+.module-registry-row.healthy b{color:#22c55e}.module-registry-row.failed b{color:#ef4444}
