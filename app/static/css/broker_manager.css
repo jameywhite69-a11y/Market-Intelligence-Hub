@@ -1,0 +1,6 @@
+.broker-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px}
+.broker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.broker-grid div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px}
+.broker-grid b,.broker-grid span{display:block}
+.broker-grid b{font-size:10px;color:#8f98a8;text-transform:uppercase}
+.broker-grid span{color:#61dafb;font-weight:700}

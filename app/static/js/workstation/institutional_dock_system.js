@@ -66,6 +66,7 @@ positions, AI, and diagnostics can scale without vertical clutter.
         moveIntoDock("workspaceContextPanel", "execution");
         moveIntoDock("institutionalOrderTicketV42", "execution");
         moveIntoDock("institutionalCommandCenterPanel", "execution");
+        moveIntoDock("brokerManagerPanel","execution");
 
         // Positions tab
         moveIntoDock("positionManagementPanel", "positions");
