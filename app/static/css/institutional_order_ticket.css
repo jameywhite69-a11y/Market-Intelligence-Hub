@@ -1,0 +1,94 @@
+.institutional-ticket-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.ticket-symbol-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.ticket-symbol-row b,
+.ticket-symbol-row span {
+    display: block;
+}
+
+.ticket-symbol-row b {
+    color: #61dafb;
+    font-size: 18px;
+}
+
+.ticket-symbol-row strong {
+    color: #22c55e;
+    font-size: 22px;
+}
+
+.institutional-ticket-grid {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.institutional-ticket-grid label {
+    color: #8f98a8;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.institutional-ticket-grid input,
+.institutional-ticket-grid select {
+    width: 100%;
+    background: #20252d;
+    border: 1px solid #343944;
+    color: #e6e6e6;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.ticket-risk-summary.institutional {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.ticket-risk-summary.institutional div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.ticket-risk-summary.institutional b,
+.ticket-risk-summary.institutional span {
+    display: block;
+}
+
+.ticket-risk-summary.institutional b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.ticket-risk-summary.institutional span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.ticket-action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
