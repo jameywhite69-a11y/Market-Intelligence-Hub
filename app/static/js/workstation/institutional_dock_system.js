@@ -62,7 +62,8 @@ positions, AI, and diagnostics can scale without vertical clutter.
         moveIntoDock("institutionalOrderTicket", "execution");
         moveIntoDock("tradingTerminalPanel", "execution");
         moveIntoDock("paperTradingPanel", "execution");
-
+        moveIntoDock("strategyExecutionPanel", "execution");
+        
         // Positions tab
         moveIntoDock("positionManagementPanel", "positions");
         moveIntoDock("portfolioRiskPanel", "positions");

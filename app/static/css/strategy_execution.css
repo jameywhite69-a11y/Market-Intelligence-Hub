@@ -1,0 +1,10 @@
+.strategy-execution-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:8px}
+.strategy-plan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:8px}
+.strategy-plan-grid div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px}
+.strategy-plan-grid b,.strategy-plan-grid span{display:block}
+.strategy-plan-grid b{color:#8f98a8;font-size:10px;text-transform:uppercase}
+.strategy-plan-grid span{color:#61dafb;font-weight:900}
+.strategy-rationale{display:grid;gap:4px;margin-bottom:8px}
+.strategy-rationale p{background:#20252d;border-radius:6px;padding:6px;margin:0;color:#cbd5e1;font-size:12px}
+.strategy-rationale .rejection{color:#ef4444}
+#executeStrategyPlanButton:disabled{opacity:.45;cursor:not-allowed}

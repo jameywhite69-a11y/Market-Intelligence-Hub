@@ -23,12 +23,28 @@ from app.api.technical_analysis import router as technical_router
 from app.api.trade_planner import router as trade_planner_router
 from app.api.watchlist_api import router as watchlist_router
 from app.api.execution_api import router as execution_router
+
 from app.api.execution_api import (
     execution_snapshot,
     list_execution_adapters,
     reset_execution,
     set_execution_adapter,
     submit_execution_order,
+    router as execution_router,
+)
+from app.api.position_management_api import (
+    managed_positions,
+    refresh_positions,
+    reset_managed_positions,
+    position_lifecycle,
+    portfolio_risk,
+    router as position_management_router,
+)
+from app.api.strategy_execution_api import (
+    build_execution_plan,
+    execute_plan,
+    list_strategies,
+router as strategy_execution_router,
 )
 
 ROOT = Path(__file__).resolve().parent
@@ -44,6 +60,15 @@ templates = Jinja2Templates(directory=str(TEMPLATES))
 # Direct API route registration.
 # This is used because this environment has shown router inclusion quirks
 # where included router entries may appear as _IncludedRouter instead of APIRoute.
+app.add_api_route("/api/strategy-execution/strategies", 
+                  list_strategies, methods=["GET"]
+)                 
+app.add_api_route("/api/strategy-execution/plan", 
+                  build_execution_plan, methods=["POST"]
+)                 
+app.add_api_route("/api/strategy-execution/execute", 
+                  execute_plan, methods=["POST"]
+)
 app.add_api_route(
     "/api/market-data/quote/{symbol}", 
     get_quote, methods=["GET"]
@@ -124,6 +149,8 @@ app.include_router(market_data_router)
 app.include_router(indicator_router)
 app.include_router(execution_router)
 app.include_router(live_market_data_router)
+app.include_router(strategy_execution_router)
+app.include_router(position_management_router)
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):
@@ -133,6 +160,30 @@ def dashboard(request: Request):
         {},
     )
 
+app.add_api_route(
+    "/api/positions/managed", 
+    managed_positions, methods=["GET"]
+    )
+
+app.add_api_route(
+    "/api/positions/refresh", 
+    refresh_positions, methods=["POST"]
+    )
+
+app.add_api_route(
+    "/api/positions/reset", 
+    reset_managed_positions, methods=["POST"]
+    )
+
+app.add_api_route(
+    "/api/positions/lifecycle", 
+    position_lifecycle, methods=["GET"]
+    )
+
+app.add_api_route(
+    "/api/positions/portfolio-risk", 
+    portfolio_risk, methods=["GET"]
+    )
 
 @app.get("/workstation", response_class=HTMLResponse)
 def workstation_page(request: Request):
@@ -141,7 +192,6 @@ def workstation_page(request: Request):
         "workstation.html",
         {},
     )
-
 
 @app.get("/scanner", response_class=HTMLResponse)
 def scanner_page(request: Request):
