@@ -25,8 +25,12 @@ from app.api.watchlist_api import router as watchlist_router
 from app.api.execution_api import router as execution_router
 from app.api.ai_decision_api import analyze_decision, router as ai_decision_router
 from app.api.institutional_risk_api import assess_risk, router as institutional_risk_router
-
-
+from app.api.strategy_registry_api import (
+    get_research_strategy,
+    list_research_strategies,
+    strategy_registry_health,
+    router as strategy_registry_router,
+)
 from app.api.execution_api import (
     execution_snapshot,
     list_execution_adapters,
@@ -79,9 +83,10 @@ templates = Jinja2Templates(directory=str(TEMPLATES))
 # where included router entries may appear as _IncludedRouter instead of APIRoute.
 
 app.add_api_route("/api/risk/assess", assess_risk, methods=["POST"])
-
-app.add_api_route("/api/strategy-execution/strategies", 
-                  list_strategies, methods=["GET"]
+app.add_api_route("/api/research/strategies", list_research_strategies, methods=["GET"])
+app.add_api_route("/api/research/strategies/health", strategy_registry_health, methods=["GET"])
+app.add_api_route("/api/research/strategies/strategy_id", get_research_strategy, methods=["GET"])
+app.add_api_route("/api/strategy-execution/strategies",list_strategies, methods=["GET"]
 )                 
 app.add_api_route("/api/strategy-execution/plan", 
                   build_execution_plan, methods=["POST"]
@@ -169,10 +174,10 @@ app.add_api_route("/api/trade-lifecycle/entered", lifecycle_mark_entered, method
 app.add_api_route("/api/trade-lifecycle/partial-exit", lifecycle_mark_partial_exit, methods=["POST"])
 app.add_api_route("/api/trade-lifecycle/runner", lifecycle_mark_runner, methods=["POST"])
 app.add_api_route("/api/trade-lifecycle/closed", lifecycle_mark_closed, methods=["POST"])
-app.add_api_route("/api/trade-lifecycle/reset", trade_lifecycle_reset, methods=["POST"])
 
 # Keep router includes for compatibility with existing application modules.
 
+app.include_router(strategy_registry_router)
 app.include_router(institutional_risk_router)
 app.include_router(scanner_api_router)
 app.include_router(watchlist_router)
