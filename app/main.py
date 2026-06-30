@@ -47,6 +47,10 @@ from app.api.strategy_execution_api import (
     list_strategies,
 router as strategy_execution_router,
 )
+from app.api.portfolio_intelligence_api import (
+    portfolio_intelligence_snapshot,
+    router as portfolio_intelligence_router,
+)
 
 ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
@@ -139,6 +143,12 @@ app.add_api_route(
     analyze_decision,
     methods=["POST"],
 )
+app.add_api_route(
+    "/api/portfolio-intelligence/snapshot",
+    portfolio_intelligence_snapshot,
+    methods=["GET"],
+)
+
 # Keep router includes for compatibility with existing application modules.
 app.include_router(scanner_api_router)
 app.include_router(watchlist_router)
@@ -158,6 +168,7 @@ app.include_router(live_market_data_router)
 app.include_router(strategy_execution_router)
 app.include_router(position_management_router)
 app.include_router(ai_decision_router)
+app.include_router(portfolio_intelligence_router)
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):
