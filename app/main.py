@@ -23,6 +23,7 @@ from app.api.technical_analysis import router as technical_router
 from app.api.trade_planner import router as trade_planner_router
 from app.api.watchlist_api import router as watchlist_router
 from app.api.execution_api import router as execution_router
+from app.api.ai_decision_api import analyze_decision, router as ai_decision_router
 
 from app.api.execution_api import (
     execution_snapshot,
@@ -133,6 +134,11 @@ app.add_api_route(
     methods=["POST"],
 )
 
+app.add_api_route(
+    "/api/ai-decision/analyze",
+    analyze_decision,
+    methods=["POST"],
+)
 # Keep router includes for compatibility with existing application modules.
 app.include_router(scanner_api_router)
 app.include_router(watchlist_router)
@@ -151,6 +157,7 @@ app.include_router(execution_router)
 app.include_router(live_market_data_router)
 app.include_router(strategy_execution_router)
 app.include_router(position_management_router)
+app.include_router(ai_decision_router)
 
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):

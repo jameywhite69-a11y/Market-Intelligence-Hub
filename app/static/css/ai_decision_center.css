@@ -1,0 +1,8 @@
+.ai-decision-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:8px}
+.ai-decision-hero{display:flex;justify-content:space-between;align-items:center;background:#20252d;border:1px solid #343944;border-radius:10px;padding:8px;margin-bottom:8px}
+.ai-decision-hero b,.ai-decision-hero span{display:block}.ai-decision-hero b{color:#61dafb;font-size:18px}.ai-decision-hero strong{color:#a78bfa;font-size:24px}
+.ai-decision-summary{background:#151b25;border-left:3px solid #a78bfa;padding:8px;border-radius:8px;color:#dbeafe}
+.ai-factor-list{display:grid;gap:6px;margin-bottom:8px}.ai-factor-row{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px;display:grid;grid-template-columns:1fr 42px;gap:4px}
+.ai-factor-row b,.ai-factor-row span,.ai-factor-row small{display:block}.ai-factor-row b{color:#61dafb}.ai-factor-row strong{color:#22c55e;font-size:18px}.ai-factor-row small{grid-column:1/-1;color:#8f98a8}
+.ai-case-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}.ai-case-grid div,.ai-action-plan{background:#20252d;border:1px solid #343944;border-radius:8px;padding:8px}
+.ai-case-grid h4,.ai-action-plan h4{margin:0 0 6px;color:#a78bfa}.ai-case-grid p,.ai-action-plan p{margin:0 0 5px;font-size:12px}
