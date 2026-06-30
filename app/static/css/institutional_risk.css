@@ -1,0 +1,119 @@
+.institutional-risk-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.institutional-risk-card.approved { border-color: #22c55e; }
+.institutional-risk-card.caution { border-color: #fbbf24; }
+.institutional-risk-card.rejected { border-color: #ef4444; }
+
+.risk-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.risk-hero b,
+.risk-hero span {
+    display: block;
+}
+
+.risk-hero b {
+    color: #61dafb;
+    font-size: 18px;
+}
+
+.risk-hero strong {
+    color: #22c55e;
+}
+
+.institutional-risk-card.caution .risk-hero strong { color: #fbbf24; }
+.institutional-risk-card.rejected .risk-hero strong { color: #ef4444; }
+
+.risk-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.risk-metric-grid div,
+.risk-check-row {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.risk-metric-grid b,
+.risk-metric-grid span {
+    display: block;
+}
+
+.risk-metric-grid b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.risk-metric-grid span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.risk-check-list {
+    display: grid;
+    gap: 6px;
+}
+
+.risk-check-row {
+    display: grid;
+    grid-template-columns: 1fr 54px;
+    gap: 6px;
+}
+
+.risk-check-row b,
+.risk-check-row span {
+    display: block;
+}
+
+.risk-check-row b {
+    color: #e6e6e6;
+}
+
+.risk-check-row span {
+    color: #8f98a8;
+    font-size: 12px;
+}
+
+.risk-check-row strong {
+    text-align: right;
+}
+
+.risk-check-row.pass strong { color: #22c55e; }
+.risk-check-row.fail strong { color: #ef4444; }
+
+.risk-warning,
+.risk-rejection {
+    padding: 7px;
+    border-radius: 8px;
+    margin: 6px 0 0;
+}
+
+.risk-warning {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fbbf24;
+}
+
+.risk-rejection {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}

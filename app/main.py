@@ -24,6 +24,8 @@ from app.api.trade_planner import router as trade_planner_router
 from app.api.watchlist_api import router as watchlist_router
 from app.api.execution_api import router as execution_router
 from app.api.ai_decision_api import analyze_decision, router as ai_decision_router
+from app.api.institutional_risk_api import assess_risk, router as institutional_risk_router
+
 
 from app.api.execution_api import (
     execution_snapshot,
@@ -75,6 +77,9 @@ templates = Jinja2Templates(directory=str(TEMPLATES))
 # Direct API route registration.
 # This is used because this environment has shown router inclusion quirks
 # where included router entries may appear as _IncludedRouter instead of APIRoute.
+
+app.add_api_route("/api/risk/assess", assess_risk, methods=["POST"])
+
 app.add_api_route("/api/strategy-execution/strategies", 
                   list_strategies, methods=["GET"]
 )                 
@@ -167,6 +172,8 @@ app.add_api_route("/api/trade-lifecycle/closed", lifecycle_mark_closed, methods=
 app.add_api_route("/api/trade-lifecycle/reset", trade_lifecycle_reset, methods=["POST"])
 
 # Keep router includes for compatibility with existing application modules.
+
+app.include_router(institutional_risk_router)
 app.include_router(scanner_api_router)
 app.include_router(watchlist_router)
 app.include_router(technical_router)
