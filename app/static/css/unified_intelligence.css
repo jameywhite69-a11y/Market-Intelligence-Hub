@@ -1,0 +1,57 @@
+.workspace-health-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.workspace-health-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.workspace-health-row,
+.event-recorder-row {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.workspace-health-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.workspace-health-row b,
+.event-recorder-row b {
+    color: #e6e6e6;
+}
+
+.workspace-health-row span {
+    font-weight: 900;
+}
+
+.workspace-health-row.ok span { color: #22c55e; }
+.workspace-health-row.fail span { color: #ef4444; }
+
+.event-recorder-list {
+    display: grid;
+    gap: 5px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.event-recorder-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.event-recorder-row span {
+    color: #8f98a8;
+}

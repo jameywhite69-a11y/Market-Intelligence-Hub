@@ -1,147 +1,92 @@
-/*
-Version 40-ready — Institutional Dock System
-
-Turns the right workstation column into a tabbed dock so execution,
-positions, AI, and diagnostics can scale without vertical clutter.
-*/
-
+/* Version 44.0 — Platform Stabilization Dock System */
 (function () {
-    const tabs = [
-        { id: "execution", label: "Execution" },
-        { id: "positions", label: "Positions" },
-        { id: "ai", label: "AI" },
-        { id: "diagnostics", label: "Diagnostics" },
-    ];
+    const DOCK_MAP = {
+        execution: ["brokerAdapterPanel","institutionalCommandCenterPanel","brokerManagerPanel","tradeContextPanel","institutionalOrderTicket","tradingTerminalPanel","paperTradingPanel"],
+        positions: ["positionManagementPanel","portfolioRiskPanel","positionLifecyclePanel","portfolioIntelligencePanel","tradeLifecyclePanel","institutionalRiskPanel"],
+        ai: ["opportunityPanel","aiDecisionCenterPanel","newsCatalystCenterPanel","strategyRegistryPanel"],
+        diagnostics: ["liveMarketDataPanel","workspaceContextPanel","moduleRegistryPanel","activityTimelinePanel","tradeJournalPanel","workspaceProfilesPanel","commercialReadinessPanel","automationCenterPanel"]
+    };
 
-    function moveIntoDock(panelId, tabId) {
-        const panel = document.getElementById(panelId);
-        const target = document.querySelector(`[data-dock-panel="${tabId}"]`);
-
-        if (!panel || !target || panel.dataset.docked === "true") return;
-
-        panel.dataset.docked = "true";
-        target.appendChild(panel);
-    }
-
-    function buildDock() {
-        const rightDock = document.querySelector(".workstation-right-dock");
-
-        if (!rightDock || document.getElementById("institutionalDockSystem")) return;
-
-        const dock = document.createElement("section");
-        dock.id = "institutionalDockSystem";
-        dock.className = "institutional-dock-system";
-
-        dock.innerHTML = `
-            <div class="institutional-dock-tabs">
-                ${tabs.map((tab, index) => `
-                    <button class="institutional-dock-tab ${index === 0 ? "active" : ""}" data-dock-tab="${tab.id}">
-                        ${tab.label}
-                    </button>
-                `).join("")}
-            </div>
-
-            <div class="institutional-dock-body">
-                ${tabs.map((tab, index) => `
-                    <section class="institutional-dock-panel ${index === 0 ? "active" : ""}" data-dock-panel="${tab.id}"></section>
-                `).join("")}
-            </div>
-        `;
-
-        rightDock.prepend(dock);
-
-        movePanelsIntoDock();
-        bindDockTabs();
-    }
-
-    function movePanelsIntoDock() {
-        // Execution tab
-        moveIntoDock("brokerAdapterPanel", "execution");
-        moveIntoDock("tradeContextPanel", "execution");
-        moveIntoDock("liveMarketDataPanel", "execution");
-        moveIntoDock("institutionalOrderTicket", "execution");
-        moveIntoDock("tradingTerminalPanel", "execution");
-        moveIntoDock("paperTradingPanel", "execution");
-        moveIntoDock("strategyExecutionPanel", "execution");
-        moveIntoDock("workspaceContextPanel", "execution");
-        moveIntoDock("institutionalOrderTicketV42", "execution");
-        moveIntoDock("institutionalCommandCenterPanel", "execution");
-        moveIntoDock("brokerManagerPanel","execution");
-
-        // Positions tab
-        moveIntoDock("positionManagementPanel", "positions");
-        moveIntoDock("portfolioRiskPanel", "positions");
-        moveIntoDock("positionLifecyclePanel", "positions");
-        moveIntoDock("portfolioIntelligencePanel", "positions");
-        moveIntoDock("tradeLifecyclePanel", "positions");
-        moveIntoDock("institutionalRiskPanel", "positions");
-
-        // AI tab
-        moveIntoDock("opportunityPanel", "ai");
-        moveIntoDock("aiDecisionCenterPanel", "ai");
-
-        // Diagnostics tab
-        moveIntoDock("coreDiagnosticsPanel", "diagnostics");
-        moveIntoDock("eventDiagnosticsPanel", "diagnostics");
-        moveIntoDock("scannerDiagnostics", "diagnostics");
-        moveIntoDock("moduleRegistryPanel", "diagnostics");
-        moveIntoDock("activityTimelinePanel", "diagnostics");
-        moveIntoDock("workspaceProfilesPanel", "diagnostics");
-        moveIntoDock("commercialReadinessPanel", "diagnostics");
-        moveIntoDock("automationCenterPanel","diagnostics");
-        moveIntoDock("tradeJournalPanel", "diagnostics");
-
-    }
-
-    function bindDockTabs() {
-        for (const tab of document.querySelectorAll("[data-dock-tab]")) {
-            tab.addEventListener("click", () => activateTab(tab.dataset.dockTab));
-        }
+    function getPanel(tabId) {
+        return document.querySelector(`[data-dock-panel="${tabId}"]`);
     }
 
     function activateTab(tabId) {
-        for (const tab of document.querySelectorAll("[data-dock-tab]")) {
-            tab.classList.toggle("active", tab.dataset.dockTab === tabId);
-        }
+        if (!tabId || !DOCK_MAP[tabId]) tabId = "execution";
 
-        for (const panel of document.querySelectorAll("[data-dock-panel]")) {
+        document.querySelectorAll("[data-dock-tab]").forEach(tab => {
+            tab.classList.toggle("active", tab.dataset.dockTab === tabId);
+        });
+
+        document.querySelectorAll("[data-dock-panel]").forEach(panel => {
             panel.classList.toggle("active", panel.dataset.dockPanel === tabId);
-        }
+        });
 
         localStorage.setItem("mih.activeDockTab", tabId);
         window.EventBus?.publish?.("dock:tab-changed", { tabId });
+        return tabId;
     }
 
-    function restoreLastTab() {
-        const tabId = localStorage.getItem("mih.activeDockTab");
-        if (tabId) activateTab(tabId);
+    function moveIntoDock(elementId, tabId) {
+        const element = document.getElementById(elementId);
+        const panel = getPanel(tabId);
+        if (!element || !panel) return false;
+        element.dataset.docked = "true";
+        panel.appendChild(element);
+        return true;
     }
 
-    function bootstrapDockSystem() {
-        buildDock();
-        movePanelsIntoDock();
-        restoreLastTab();
+    function movePanels() {
+        const result = {};
+        Object.entries(DOCK_MAP).forEach(([tabId, ids]) => {
+            result[tabId] = { moved: [], missing: [] };
+            ids.forEach(id => (moveIntoDock(id, tabId) ? result[tabId].moved : result[tabId].missing).push(id));
+        });
+        return result;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(bootstrapDockSystem, 100);
-    });
+    function wireTabs() {
+        document.querySelectorAll("[data-dock-tab]").forEach(tab => {
+            tab.onclick = event => {
+                event.preventDefault();
+                activateTab(tab.dataset.dockTab);
+            };
+        });
+    }
 
-    window.EventBus?.subscribe?.("scan:completed", () => {
-        setTimeout(bootstrapDockSystem, 0);
-    });
+    function validateDockDom() {
+        return {
+            tabs: document.querySelectorAll("[data-dock-tab]").length,
+            panels: document.querySelectorAll("[data-dock-panel]").length
+        };
+    }
 
-    window.EventBus?.subscribe?.("paper-order-filled", () => {
-        setTimeout(bootstrapDockSystem, 0);
-    });
+    function debugState() {
+        return {
+            dom: validateDockDom(),
+            activeTab: localStorage.getItem("mih.activeDockTab") || "execution",
+            panels: [...document.querySelectorAll("[data-dock-panel]")].map(panel => ({
+                tab: panel.dataset.dockPanel,
+                className: panel.className,
+                display: getComputedStyle(panel).display,
+                children: panel.children.length
+            }))
+        };
+    }
 
-    window.EventBus?.subscribe?.("market-data:tick", () => {
-        setTimeout(bootstrapDockSystem, 0);
-    });
+    function initDockSystem() {
+        const dom = validateDockDom();
+        if (dom.tabs !== 4 || dom.panels !== 4) {
+            console.warn("[TIOS Dock] DOM incomplete", dom);
+            return false;
+        }
+        wireTabs();
+        const moved = movePanels();
+        activateTab(localStorage.getItem("mih.activeDockTab") || "execution");
+        console.log("[TIOS Dock] ready", { dom, moved, state: debugState() });
+        return true;
+    }
 
-    window.InstitutionalDockSystem = {
-        bootstrapDockSystem,
-        activateTab,
-        movePanelsIntoDock,
-    };
+    window.InstitutionalDockSystem = { activateTab, moveIntoDock, movePanels, initDockSystem, debugState, validateDockDom };
+    document.addEventListener("DOMContentLoaded", () => setTimeout(initDockSystem, 250));
 })();
