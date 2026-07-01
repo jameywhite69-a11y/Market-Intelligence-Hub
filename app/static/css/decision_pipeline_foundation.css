@@ -1,0 +1,147 @@
+.decision-monitor-card,
+.decision-inspector-card,
+.institutional-decision-card,
+.decision-audit-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.decision-monitor-target,
+.institutional-decision-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 9px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.decision-monitor-target b,
+.institutional-decision-main b {
+    color: #61dafb;
+    display: block;
+    font-size: 18px;
+}
+
+.decision-monitor-target span,
+.institutional-decision-main span {
+    color: #8f98a8;
+    display: block;
+}
+
+.institutional-decision-main strong {
+    color: #22c55e;
+    font-size: 22px;
+}
+
+.institutional-decision-main small {
+    display: block;
+    font-size: 12px;
+    text-align: right;
+}
+
+.decision-monitor-list,
+.decision-audit-list {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.decision-monitor-row,
+.decision-audit-row {
+    display: grid;
+    grid-template-columns: 26px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.decision-monitor-row strong {
+    color: #8f98a8;
+    font-size: 18px;
+}
+
+.decision-monitor-row.ok strong {
+    color: #22c55e;
+}
+
+.decision-monitor-row.fail strong {
+    color: #ef4444;
+}
+
+.decision-monitor-row b,
+.decision-audit-row b {
+    color: #e6e6e6;
+    display: block;
+}
+
+.decision-monitor-row span,
+.decision-audit-row span,
+.decision-audit-row small {
+    color: #8f98a8;
+    display: block;
+    font-size: 12px;
+}
+
+.decision-monitor-row em,
+.decision-audit-row em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 800;
+}
+
+.institutional-decision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.institutional-decision-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.institutional-decision-grid b,
+.institutional-decision-grid span {
+    display: block;
+}
+
+.institutional-decision-grid b {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.institutional-decision-grid span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.institutional-decision-text {
+    color: #dbeafe;
+    background: #151b25;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.decision-inspector-card pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    max-height: 320px;
+    background: #0b0f16;
+    color: #dbeafe;
+    border-radius: 8px;
+    padding: 8px;
+}
