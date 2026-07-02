@@ -1,0 +1,215 @@
+/*
+Version 55.0 — Institutional Trading Terminal Polish
+Turns text-heavy panels into professional terminal cards.
+*/
+
+.terminal-commander,
+.institutional-report-card,
+.terminal-heatmap-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.terminal-commander {
+    border-color: rgba(97, 218, 251, 0.35);
+}
+
+.terminal-commander.wait {
+    border-color: rgba(251, 191, 36, 0.7);
+}
+
+.terminal-commander.ready {
+    border-color: rgba(34, 197, 94, 0.75);
+}
+
+.terminal-commander.avoid {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.terminal-commander-header,
+.report-header,
+.heatmap-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 9px;
+}
+
+.terminal-commander-header h2,
+.report-header h2,
+.heatmap-head h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.terminal-commander-header span,
+.report-header span,
+.heatmap-head span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.terminal-verdict {
+    text-align: right;
+}
+
+.terminal-verdict b {
+    display: block;
+    color: #fbbf24;
+    font-size: 18px;
+}
+
+.terminal-verdict span {
+    color: #22c55e;
+    font-weight: 900;
+}
+
+.terminal-action-block,
+.report-summary,
+.report-note {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 9px;
+    margin-bottom: 8px;
+}
+
+.terminal-action-badge,
+.report-summary b {
+    display: inline-block;
+    background: #20252d;
+    color: #fbbf24;
+    border: 1px solid #343944;
+    border-radius: 999px;
+    padding: 4px 9px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.terminal-action-block p,
+.report-summary span,
+.report-note span {
+    color: #e6e6e6;
+    margin: 0;
+    font-size: 12px;
+}
+
+.terminal-level-grid,
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.terminal-level-grid div,
+.report-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.terminal-level-grid small,
+.terminal-level-grid b,
+.report-grid small,
+.report-grid b {
+    display: block;
+}
+
+.terminal-level-grid small,
+.report-grid small {
+    color: #8f98a8;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+
+.terminal-level-grid b,
+.report-grid b {
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.terminal-gauge-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.terminal-gauge-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: #e6e6e6;
+    font-size: 11px;
+}
+
+.terminal-gauge-head b {
+    color: #61dafb;
+}
+
+.terminal-gauge-track,
+.heatmap-row i {
+    display: block;
+    height: 8px;
+    background: #080c12;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.terminal-gauge-track i,
+.heatmap-row i em {
+    display: block;
+    height: 100%;
+    background: #22c55e;
+    border-radius: 999px;
+}
+
+.heatmap-bars {
+    display: grid;
+    gap: 7px;
+}
+
+.heatmap-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 48px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.heatmap-row b {
+    color: #e6e6e6;
+}
+
+.heatmap-row span {
+    color: #61dafb;
+    font-weight: 900;
+    text-align: right;
+}
+
+#aiTradingCommanderPanel,
+#institutionalPackageReportPanel {
+    grid-column: 1 / -1;
+}
+
+#institutionalDecisionPackagePanel {
+    display: none !important;
+}
+
+@media (max-width: 1500px) {
+    .terminal-level-grid,
+    .report-grid,
+    .terminal-gauge-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
