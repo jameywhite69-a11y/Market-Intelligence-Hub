@@ -1,0 +1,186 @@
+/*
+Version 57.0 — Unified Institutional Decision Engine UI
+*/
+
+#unifiedDecisionEnginePanel,
+#opportunityTimelineV57Panel,
+#positionSizeCalculatorPanel {
+    grid-column: 1 / -1;
+}
+
+.v57-decision-card,
+.v57-timeline-card,
+.v57-position-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v57-decision-card.ready {
+    border-color: rgba(34, 197, 94, 0.75);
+}
+
+.v57-decision-card.watch {
+    border-color: rgba(251, 191, 36, 0.7);
+}
+
+.v57-decision-card.wait {
+    border-color: rgba(251, 191, 36, 0.55);
+}
+
+.v57-decision-card.avoid {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v57-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v57-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v57-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v57-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v57-decision-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v57-decision-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v57-decision-grid small,
+.v57-decision-grid b {
+    display: block;
+}
+
+.v57-decision-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v57-decision-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v57-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.v57-metric span,
+.v57-metric b {
+    display: inline-block;
+}
+
+.v57-metric span {
+    color: #e6e6e6;
+    font-size: 11px;
+}
+
+.v57-metric b {
+    float: right;
+    color: #61dafb;
+}
+
+.v57-metric i {
+    display: block;
+    height: 8px;
+    background: #080c12;
+    border-radius: 999px;
+    overflow: hidden;
+    clear: both;
+    margin-top: 4px;
+}
+
+.v57-metric i em {
+    display: block;
+    height: 100%;
+    background: #22c55e;
+    border-radius: 999px;
+}
+
+.v57-summary {
+    margin-top: 8px;
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.v57-timeline-list {
+    display: grid;
+    gap: 6px;
+}
+
+.v57-timeline-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 90px 52px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.v57-timeline-row b {
+    color: #8f98a8;
+}
+
+.v57-timeline-row span {
+    color: #e6e6e6;
+}
+
+.v57-timeline-row em {
+    color: #fbbf24;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.v57-timeline-row strong {
+    color: #61dafb;
+    text-align: right;
+}
+
+.v57-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v57-decision-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .v57-metric-grid {
+        grid-template-columns: 1fr;
+    }
+}

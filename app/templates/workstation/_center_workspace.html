@@ -22,6 +22,9 @@
         <section id="multiWatchlistDashboard" class="desk-panel compact"></section>
         <section id="opportunityHeatmap" class="desk-panel compact wide-card"></section>
         <section id="opportunityQueue" class="desk-panel compact wide-card"></section>
+        <section id="institutionalWatchlistPanel"></section>
+        <section id="institutionalHeatmapV56Panel"></section>
+        <section id="executionReadinessPanel"></section>  
     </section>
 
     <!-- ----------------------------------------------------- -->
@@ -29,6 +32,10 @@
     <!-- ----------------------------------------------------- -->
     <section class="native-decision-grid">
 
+        <script src="/static/js/decision/unified_decision_engine_v57.js"></script>
+        <script src="/static/js/risk/position_size_calculator_v57.js"></script>
+        <script src="/static/js/decision/opportunity_timeline_v57.js"></script>
+        
         <!-- AI Trading Commander: primary recommendation panel. -->
         <section id="aiTradingCommanderPanel"></section>
 
@@ -43,6 +50,7 @@
 
         <!-- Institutional Decision Package: recommended action package. -->
         <section id="institutionalDecisionPackagePanel" class="native-scroll-panel"></section>
+        <section id="institutionalPackageReportPanel"></section>
 
         <!-- Optional legacy/detail panels retained for compatibility. -->
         <section id="institutionalDecisionCardPanel" class="native-scroll-panel"></section>
