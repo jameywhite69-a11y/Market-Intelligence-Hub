@@ -1,27 +1,18 @@
-/* Version 44.0 — Platform Stabilization Dock System */
+/* Version 49.1 — Inventory-Safe Institutional Dock System */
 (function () {
     const DOCK_MAP = {
         execution: ["brokerAdapterPanel","institutionalCommandCenterPanel","brokerManagerPanel","tradeContextPanel","institutionalOrderTicket","tradingTerminalPanel","paperTradingPanel"],
         positions: ["positionManagementPanel","portfolioRiskPanel","positionLifecyclePanel","portfolioIntelligencePanel","tradeLifecyclePanel","institutionalRiskPanel"],
-        ai: ["opportunityPanel","aiDecisionCenterPanel","newsCatalystCenterPanel","strategyRegistryPanel"],
-        diagnostics: ["liveMarketDataPanel","workspaceContextPanel","moduleRegistryPanel","activityTimelinePanel","tradeJournalPanel","workspaceProfilesPanel","commercialReadinessPanel","automationCenterPanel"]
+        ai: ["opportunityPanel","decisionPipelineMonitorPanel","decisionObjectInspectorPanel","decisionAuditTrailPanel","institutionalDecisionAuditPanelV48","aiDecisionCenterPanel","newsCatalystCenterPanel","strategyRegistryPanel"],
+        diagnostics: ["liveMarketDataPanel","workspaceContextPanel","moduleRegistryPanel","workspaceHealthDashboardPanel","activityTimelinePanel","tradeJournalPanel","workspaceProfilesPanel","commercialReadinessPanel","automationCenterPanel"]
     };
 
-    function getPanel(tabId) {
-        return document.querySelector(`[data-dock-panel="${tabId}"]`);
-    }
+    function getPanel(tabId) { return document.querySelector(`[data-dock-panel="${tabId}"]`); }
 
     function activateTab(tabId) {
         if (!tabId || !DOCK_MAP[tabId]) tabId = "execution";
-
-        document.querySelectorAll("[data-dock-tab]").forEach(tab => {
-            tab.classList.toggle("active", tab.dataset.dockTab === tabId);
-        });
-
-        document.querySelectorAll("[data-dock-panel]").forEach(panel => {
-            panel.classList.toggle("active", panel.dataset.dockPanel === tabId);
-        });
-
+        document.querySelectorAll("[data-dock-tab]").forEach(tab => tab.classList.toggle("active", tab.dataset.dockTab === tabId));
+        document.querySelectorAll("[data-dock-panel]").forEach(panel => panel.classList.toggle("active", panel.dataset.dockPanel === tabId));
         localStorage.setItem("mih.activeDockTab", tabId);
         window.EventBus?.publish?.("dock:tab-changed", { tabId });
         return tabId;

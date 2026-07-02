@@ -1,0 +1,14 @@
+.ownership-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:8px}
+.ownership-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:8px}
+.ownership-summary-grid div,.ownership-panel-row,.ownership-module-row,.ownership-event-row{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px}
+.ownership-summary-grid b,.ownership-summary-grid span,.ownership-panel-row b,.ownership-panel-row span,.ownership-panel-row em,.ownership-module-row b,.ownership-module-row span,.ownership-event-row b,.ownership-event-row span{display:block}
+.ownership-summary-grid b,.ownership-panel-row b,.ownership-module-row b,.ownership-event-row b{color:#e6e6e6}
+.ownership-summary-grid span,.ownership-panel-row em{color:#61dafb;font-weight:900}
+.ownership-panel-row span,.ownership-module-row span,.ownership-event-row span{color:#8f98a8;font-size:11px;overflow-wrap:anywhere}
+.ownership-panel-row{display:grid;grid-template-columns:1fr 1fr auto;gap:6px}
+.ownership-module-row{display:grid;grid-template-columns:1fr auto;gap:6px}
+.ownership-panel-row.missing em,.ownership-panel-row.missing span,.ownership-module-row.missing span{color:#ef4444}
+.ownership-actions{display:flex;gap:6px;margin-bottom:8px}
+.ownership-card h4{color:#61dafb;font-size:12px;margin:8px 0 6px}
+.ownership-list,.ownership-module-list,.ownership-event-list{display:grid;gap:6px;max-height:280px;overflow-y:auto}
+.ownership-event-row pre{margin:6px 0 0;color:#fbbf24;white-space:pre-wrap;font-size:10px}

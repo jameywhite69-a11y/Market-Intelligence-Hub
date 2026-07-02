@@ -1,0 +1,49 @@
+<!-- ========================================================= -->
+<!-- INSTITUTIONAL RANKED RESULTS                              -->
+<!-- Purpose:
+     Primary scanner result grid. Row selections feed the unified
+     opportunity store and update the decision / execution panels.
+-->
+<!-- ========================================================= -->
+
+<section id="workstationResultsPanel" class="desk-panel workstation-results-panel">
+    <div class="desk-panel-header">
+        <h2>Institutional Ranked Results</h2>
+        <span id="resultCount">0 results</span>
+    </div>
+
+    <div class="workstation-results-scroll">
+        <table class="scanner-table professional-grid expanded-grid terminal-results-table">
+            <thead>
+                <tr>
+                    <th data-sort="rank">Rank</th>
+                    <th data-sort="symbol">Symbol</th>
+                    <th data-sort="timeframe">TF</th>
+                    <th data-sort="score">Opportunity</th>
+                    <th data-sort="grade">Decision</th>
+                    <th data-sort="confidence">Confidence</th>
+                    <th>Expected R</th>
+                    <th>Allocation</th>
+                    <th>Momentum</th>
+                    <th>Status</th>
+                    <th>Paper</th>
+                    <th>Warnings</th>
+                </tr>
+            </thead>
+
+            <tbody id="scannerResultsBody">
+                <tr>
+                    <td colspan="12" class="empty-row">
+                        <div class="quiet-empty-state">
+                            <div class="quiet-empty-icon">◆</div>
+                            <div>
+                                <b>Ready</b>
+                                <span>Run scan</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

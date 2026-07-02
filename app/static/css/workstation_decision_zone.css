@@ -1,0 +1,46 @@
+.workstation-decision-zone {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0 12px;
+    align-items: start;
+}
+
+#decisionPipelinePanel {
+    max-height: 310px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#decisionPipelinePanel .decision-score-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#decisionPipelinePanel .decision-narrative {
+    max-height: 72px;
+    overflow-y: auto;
+}
+
+#institutionalIntelligencePanel,
+#institutionalDecisionPackagePanel,
+#institutionalDecisionCardPanel,
+#decisionStagePipelinePanel {
+    max-height: 310px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.workstation-center-dock {
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.workstation-results-panel {
+    margin-top: 10px;
+}
+
+@media (max-width: 1400px) {
+    .workstation-decision-zone {
+        grid-template-columns: 1fr;
+    }
+}

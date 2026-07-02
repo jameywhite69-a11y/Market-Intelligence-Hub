@@ -1,0 +1,180 @@
+<!-- ========================================================= -->
+<!-- JAVASCRIPT MODULE LOAD ORDER                              -->
+<!-- Keep order intentional:
+     Core -> APIs -> Intelligence -> Decision -> Institutional
+     -> AI Commander -> Workstation -> Scanner -> Trading
+     -> Market/Risk -> Journal/Workspace -> Bootstrap/Finalizers.
+-->
+<!-- ========================================================= -->
+
+<!-- ===================================================== -->
+<!-- CORE FRAMEWORK                                       -->
+<!-- ===================================================== -->
+<script src="/static/js/core/dom_registry.js"></script>
+<script src="/static/js/core/event_bus.js"></script>
+<script src="/static/js/core/startup_ownership_analyzer.js"></script>
+<script src="/static/js/core/startup_trace.js"></script>
+<script src="/static/js/core/workspace_store.js"></script>
+<script src="/static/js/core/module_registry.js"></script>
+<script src="/static/js/core/workspace_context.js"></script>
+<script src="/static/js/core/lifecycle_manager.js"></script>
+<script src="/static/js/core/workspace_persistence.js"></script>
+<script src="/static/js/core/api_client.js"></script>
+
+<!-- ===================================================== -->
+<!-- API CLIENTS                                          -->
+<!-- ===================================================== -->
+<script src="/static/js/scanner_api_client.js"></script>
+<script src="/static/js/watchlist_api_client.js"></script>
+<script src="/static/js/technical_api_client.js"></script>
+<script src="/static/js/execution_api_client.js"></script>
+
+<!-- ===================================================== -->
+<!-- INTELLIGENCE SYNCHRONIZATION ENGINE                   -->
+<!-- ===================================================== -->
+<script src="/static/js/intelligence/unified_opportunity_store.js"></script>
+<script src="/static/js/intelligence/scanner_selection_unifier.js"></script>
+<script src="/static/js/intelligence/workspace_synchronization_engine.js"></script>
+<script src="/static/js/intelligence/event_recorder.js"></script>
+<script src="/static/js/intelligence/workspace_health_dashboard.js"></script>
+
+<!-- ===================================================== -->
+<!-- DECISION ENGINE                                      -->
+<!-- ===================================================== -->
+<script src="/static/js/decision/decision_engine.js"></script>
+<script src="/static/js/decision/decision_pipeline_panel.js"></script>
+<script src="/static/js/decision/decision_timeline.js"></script>
+
+<!-- ===================================================== -->
+<!-- INSTITUTIONAL INTELLIGENCE MODULES                    -->
+<!-- ===================================================== -->
+<script src="/static/js/institutional/institutional_scoring_engine.js"></script>
+<script src="/static/js/institutional/strategy_consensus_engine.js"></script>
+<script src="/static/js/institutional/opportunity_ranking_engine.js"></script>
+<script src="/static/js/institutional/institutional_audit.js"></script>
+<script src="/static/js/institutional/institutional_intelligence_panel.js"></script>
+<script src="/static/js/institutional/institutional_decision_package.js"></script>
+<script src="/static/js/institutional/institutional_decision_package_panel.js"></script>
+<script src="/static/js/institutional/decision_stage_pipeline.js"></script>
+<script src="/static/js/institutional/decision_stage_pipeline_panel.js"></script>
+<script src="/static/js/institutional/institutional_decision_audit_v48.js"></script>
+<script src="/static/js/institutional/institutional_decision_audit_panel_v48.js"></script>
+
+<!-- ===================================================== -->
+<!-- AI COMMANDER / V54 DECISION ENHANCEMENTS              -->
+<!-- ===================================================== -->
+<script src="/static/js/ai/ai_trading_commander_panel.js"></script>
+<script src="/static/js/institutional/institutional_scorecard_panel_v54.js"></script>
+<script src="/static/js/institutional/compact_decision_pipeline_v54.js"></script>
+
+<!-- ===================================================== -->
+<!-- WORKSTATION PANELS                                   -->
+<!-- ===================================================== -->
+<script src="/static/js/workstation/workspace_context_panel.js"></script>
+<script src="/static/js/workstation/module_registry_panel.js"></script>
+<script src="/static/js/workstation/trading_terminal_panel.js"></script>
+
+<!-- ===================================================== -->
+<!-- SCANNER MODULES                                      -->
+<!-- ===================================================== -->
+<script src="/static/js/scanner/scanner_state.js"></script>
+<script src="/static/js/scanner/scanner_events.js"></script>
+<script src="/static/js/scanner/scanner_utils.js"></script>
+<script src="/static/js/scanner/scanner_status.js"></script>
+<script src="/static/js/scanner/ui_empty_states.js"></script>
+<script src="/static/js/scanner/watchlist_manager.js"></script>
+<script src="/static/js/scanner/opportunity_intelligence_panel.js"></script>
+<script src="/static/js/scanner/lifecycle_panel.js"></script>
+<script src="/static/js/scanner/portfolio_intelligence_panel.js"></script>
+<script src="/static/js/scanner/strategy_matrix_panel.js"></script>
+<script src="/static/js/scanner/confluence_panel.js"></script>
+<script src="/static/js/scanner/decision_panel.js"></script>
+<script src="/static/js/scanner/confidence_panel.js"></script>
+<script src="/static/js/scanner/strategy_score_panel.js"></script>
+<script src="/static/js/scanner/trade_plan_panel.js"></script>
+<script src="/static/js/scanner/technical_intelligence.js"></script>
+<script src="/static/js/scanner/opportunity_panel.js"></script>
+<script src="/static/js/scanner/scanner_results.js"></script>
+<script src="/static/js/scanner/scanner_filters.js"></script>
+<script src="/static/js/scanner/scanner_diagnostics.js"></script>
+<script src="/static/js/scanner/scanner_export.js"></script>
+<script src="/static/js/scanner/scanner_live.js"></script>
+<script src="/static/js/scanner/opportunity_queue.js"></script>
+<script src="/static/js/scanner/portfolio_snapshot.js"></script>
+<script src="/static/js/scanner/workspace_layout.js"></script>
+<script src="/static/js/scanner/workspace_intelligence.js"></script>
+<script src="/static/js/scanner/paper_trading_panel.js"></script>
+<script src="/static/js/scanner/scanner_orchestrator.js"></script>
+
+<!-- ===================================================== -->
+<!-- TRADING / EXECUTION / POSITIONS                       -->
+<!-- ===================================================== -->
+<script src="/static/js/trading/trade_context.js"></script>
+<script src="/static/js/trading/risk_engine.js"></script>
+<script src="/static/js/trading/lifecycle_engine.js"></script>
+<script src="/static/js/trading/trade_context_panel.js"></script>
+<script src="/static/js/trading/order_ticket.js"></script>
+<script src="/static/js/trading/institutional_order_ticket_v42.js"></script>
+<script src="/static/js/execution/broker_adapter_panel.js"></script>
+<script src="/static/js/positions/position_management_panel.js"></script>
+<script src="/static/js/positions/portfolio_risk_panel.js"></script>
+<script src="/static/js/positions/position_lifecycle_panel.js"></script>
+
+<!-- ===================================================== -->
+<!-- MARKET / STRATEGY / AI / PORTFOLIO / RISK CLIENTS     -->
+<!-- ===================================================== -->
+<script src="/static/js/market/live_market_data_client.js"></script>
+<script src="/static/js/market/live_market_data_panel.js"></script>
+<script src="/static/js/strategy/strategy_execution_client.js"></script>
+<script src="/static/js/strategy/strategy_execution_panel.js"></script>
+<script src="/static/js/ai/ai_decision_client.js"></script>
+<script src="/static/js/ai/ai_decision_center_panel.js"></script>
+<script src="/static/js/portfolio/portfolio_intelligence_client.js"></script>
+<script src="/static/js/portfolio/portfolio_intelligence_panel.js"></script>
+<script src="/static/js/lifecycle/trade_lifecycle_client.js"></script>
+<script src="/static/js/lifecycle/trade_lifecycle_panel.js"></script>
+<script src="/static/js/risk/institutional_risk_client.js"></script>
+<script src="/static/js/risk/institutional_risk_panel.js"></script>
+
+<!-- ===================================================== -->
+<!-- V55 PRODUCTION WORKSPACE PANELS                       -->
+<!-- ===================================================== -->
+<script src="/static/js/ai/trade_execution_planner_v55.js"></script>
+<script src="/static/js/risk/risk_matrix_panel_v55.js"></script>
+
+<!-- ===================================================== -->
+<!-- TIMELINE / JOURNAL / WORKSPACE / AUTOMATION           -->
+<!-- ===================================================== -->
+<script src="/static/js/timeline/activity_timeline_store.js"></script>
+<script src="/static/js/timeline/activity_timeline_subscribers.js"></script>
+<script src="/static/js/timeline/activity_timeline_panel.js"></script>
+<script src="/static/js/journal/trade_journal_store.js"></script>
+<script src="/static/js/journal/performance_analytics.js"></script>
+<script src="/static/js/journal/trade_journal_panel.js"></script>
+<script src="/static/js/workspace/workspace_profiles.js"></script>
+<script src="/static/js/workspace/workspace_profiles_panel.js"></script>
+<script src="/static/js/workspace/professional_status_bar_v42.js"></script>
+<script src="/static/js/workspace/commercial_readiness_panel.js"></script>
+<script src="/static/js/automation/automation_center.js"></script>
+<script src="/static/js/broker/broker_manager_panel.js"></script>
+<script src="/static/js/market_intelligence/news_catalyst_center.js"></script>
+<script src="/static/js/research/strategy_registry_client.js"></script>
+<script src="/static/js/research/strategy_registry_panel.js"></script>
+
+<!-- ===================================================== -->
+<!-- CORE PIPELINE / DIAGNOSTICS                           -->
+<!-- ===================================================== -->
+<script src="/static/js/core/scanner_pipeline.js"></script>
+<script src="/static/js/core/pipeline_subscribers.js"></script>
+<script src="/static/js/core/event_diagnostics.js"></script>
+<script src="/static/js/core/core_bootstrap.js"></script>
+<script src="/static/js/core/startup_trace_panel.js"></script>
+<script src="/static/js/core/startup_ownership_panel.js"></script>
+
+<!-- ===================================================== -->
+<!-- NATIVE SHELL FINALIZERS                              -->
+<!-- ===================================================== -->
+<script src="/static/js/workstation/platform_asset_validator.js"></script>
+<script src="/static/js/workstation/institutional_dock_system.js"></script>
+<script src="/static/js/workstation/native_workstation_controller_v53_1.js"></script>
+<script src="/static/js/workstation/developer_mode_controller_v55.js"></script>

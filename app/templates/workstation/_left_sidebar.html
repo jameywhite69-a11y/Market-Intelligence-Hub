@@ -1,0 +1,108 @@
+<!-- ========================================================= -->
+<!-- LEFT SIDEBAR                                              -->
+<!-- Purpose:
+     Operational controls: watchlists, scanner inputs, filters,
+     and live scan controls.
+-->
+<!-- ========================================================= -->
+
+<aside class="native-tios-left">
+
+    <!-- ----------------------------------------------------- -->
+    <!-- WATCHLIST MANAGER                                     -->
+    <!-- ----------------------------------------------------- -->
+    <section class="desk-panel native-control-card">
+        <h2>Watchlists</h2>
+
+        <label for="watchlistSelect">Active Watchlist</label>
+        <select id="watchlistSelect"></select>
+
+        <input id="newWatchlistName" placeholder="New watchlist name">
+
+        <div class="desk-button-row">
+            <button id="createWatchlistButton" class="secondary-button">Create</button>
+            <button id="deleteWatchlistButton" class="danger-button">Delete</button>
+        </div>
+
+        <label for="addSymbolInput">Add Symbol</label>
+        <div class="inline-control">
+            <input id="addSymbolInput" placeholder="AAPL">
+            <button id="addSymbolButton">Add</button>
+        </div>
+
+        <div id="watchlistSymbols" class="watchlist-symbols"></div>
+
+        <label for="importSymbolsInput">Import Symbols</label>
+        <textarea id="importSymbolsInput" placeholder="Paste CSV or one symbol per line"></textarea>
+
+        <button id="exportWatchlistButton" class="secondary-button">Export Watchlist</button>
+    </section>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- SCANNER CONTROLS                                      -->
+    <!-- ----------------------------------------------------- -->
+    <section class="desk-panel native-control-card">
+        <h2>Scanner Controls</h2>
+
+        <label for="symbolsInput">Symbols</label>
+        <input id="symbolsInput" value="BTC,ETH,SOL">
+
+        <label for="timeframesInput">Timeframes</label>
+        <input id="timeframesInput" value="15m,1h">
+
+        <label for="indicatorsInput">Indicators</label>
+        <input id="indicatorsInput" value="SMA,EMA,VWMA">
+
+        <label for="minScoreInput">Minimum Score</label>
+        <input id="minScoreInput" type="number" min="0" max="100" value="0">
+
+        <label for="gradeFilterSelect">Grade</label>
+        <select id="gradeFilterSelect">
+            <option value="all">All Grades</option>
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+
+        <label for="confidenceFilterSelect">Confidence</label>
+        <select id="confidenceFilterSelect">
+            <option value="all">All Confidence</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+        <div class="desk-button-row">
+            <button id="runScanButton">Run Scan</button>
+            <button id="exportCsvButton" class="secondary-button">Export CSV</button>
+        </div>
+
+        <div id="scanStatus" class="scanner-status">Ready</div>
+    </section>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- LIVE SCAN CONTROL                                     -->
+    <!-- ----------------------------------------------------- -->
+    <section class="desk-panel native-control-card">
+        <h2>Live Scan</h2>
+
+        <label for="refreshIntervalSelect">Refresh Interval</label>
+        <select id="refreshIntervalSelect">
+            <option value="15">15 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="60">1 minute</option>
+            <option value="300">5 minutes</option>
+        </select>
+
+        <div class="desk-button-row">
+            <button id="liveModeButton">Start Live</button>
+            <button id="pauseLiveButton" class="secondary-button" disabled>Pause</button>
+        </div>
+
+        <div id="countdownLabel" class="scanner-status">Paused</div>
+        <div class="scanner-status">Last: <span id="lastScanLabel">—</span></div>
+    </section>
+
+</aside>

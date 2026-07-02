@@ -1,0 +1,180 @@
+/*
+Version 55.0 — Production Workspace Mode
+*/
+
+body[data-developer-mode="off"] #startupTracePanel,
+body[data-developer-mode="off"] #startupOwnershipPanel,
+body[data-developer-mode="off"] #tiosLayoutManagerPanel,
+.developer-hidden {
+    display: none !important;
+}
+
+.developer-mode-strip {
+    padding: 6px 0 8px;
+}
+
+.developer-mode-strip button.active {
+    background: #0e7490;
+    color: #ffffff;
+    border-color: #22d3ee;
+}
+
+#tradeExecutionPlannerPanel,
+#riskMatrixPanel {
+    grid-column: 1 / -1;
+}
+
+.trade-execution-planner,
+.risk-matrix-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.planner-header,
+.risk-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.planner-header h2,
+.risk-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.planner-header span,
+.risk-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.planner-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.risk-header span {
+    color: #22c55e;
+    font-weight: 900;
+}
+
+.planner-route {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.planner-route div,
+.planner-levels div,
+.risk-cell {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.planner-route b {
+    display: inline-grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: #0e7490;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.planner-route span,
+.planner-route em,
+.planner-levels small,
+.planner-levels b,
+.risk-cell span,
+.risk-cell b {
+    display: block;
+}
+
+.planner-route span,
+.planner-levels small,
+.risk-cell span {
+    color: #8f98a8;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.planner-route em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.planner-levels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.planner-levels b {
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.planner-guidance {
+    border-left: 3px solid #fbbf24;
+    background: #0f1724;
+    border-radius: 8px;
+    padding: 8px 9px;
+}
+
+.planner-guidance b,
+.planner-guidance span {
+    display: block;
+}
+
+.planner-guidance b {
+    color: #fbbf24;
+}
+
+.planner-guidance span {
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.risk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+}
+
+.risk-cell b {
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.risk-cell.good {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.risk-cell.warn {
+    border-color: rgba(251, 191, 36, 0.65);
+}
+
+.risk-cell.bad {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+@media (max-width: 1500px) {
+    .planner-route,
+    .planner-levels,
+    .risk-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

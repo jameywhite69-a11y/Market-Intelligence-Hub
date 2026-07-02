@@ -1,0 +1,16 @@
+/*
+Version 54.0 — Modular Workstation Shell
+This stylesheet is intentionally light. The main layout uses the
+existing native_tios_v53 / v53.1 / v55 styles.
+*/
+
+.native-v54 .native-decision-grid > #aiTradingCommanderPanel,
+.native-v54 .native-decision-grid > #compactDecisionPipelinePanel,
+.native-v54 .native-decision-grid > #tradeExecutionPlannerPanel,
+.native-v54 .native-decision-grid > #riskMatrixPanel {
+    grid-column: 1 / -1;
+}
+
+.native-v54 #institutionalDecisionCardPanel:empty {
+    display: none;
+}

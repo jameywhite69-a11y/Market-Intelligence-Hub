@@ -1,0 +1,20 @@
+html,body{height:100%;overflow:hidden}
+.tios-workstation-shell{height:100vh;display:grid;grid-template-rows:42px 48px 1fr;background:#0b0f16;color:#e6e6e6;overflow:hidden}
+.tios-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 14px;background:#151b25;border-bottom:1px solid #343944;position:relative;z-index:100}
+.tios-brand h1{margin:0;font-size:14px;color:#61dafb}.tios-brand span{display:block;font-size:10px;color:#8f98a8}
+.tios-topnav{display:flex;align-items:center;gap:14px;position:relative;z-index:9999;pointer-events:auto}
+.tios-topnav a{color:#dbeafe;text-decoration:none;font-size:11px;font-weight:800}.tios-topnav a:hover{color:#61dafb}
+.tios-execution-ribbon{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:8px;padding:8px 14px;background:#10151f;border-bottom:1px solid #343944;overflow:hidden}
+.tios-execution-ribbon div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:5px 8px}
+.tios-execution-ribbon b,.tios-execution-ribbon span{display:block}.tios-execution-ribbon b{color:#8f98a8;font-size:9px;text-transform:uppercase}.tios-execution-ribbon span{color:#61dafb;font-weight:900}
+.tios-three-column-layout{min-height:0;display:grid;grid-template-columns:300px minmax(720px,1fr) 360px;gap:10px;padding:10px;overflow:hidden}
+.tios-left-rail,.tios-center-workspace,.tios-right-rail{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.tios-mini-panel-grid{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:8px;margin-bottom:10px}
+.tios-decision-workspace{display:grid;grid-template-columns:repeat(2,minmax(320px,1fr));gap:10px;margin:10px 0;align-items:start}
+.tios-scroll-card{min-width:0;max-height:330px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.tios-scroll-card .decision-narrative,.tios-scroll-card .idp-summary,.tios-scroll-card .institutional-intelligence-narrative{max-height:90px;overflow-y:auto}
+.tios-bottom-diagnostics{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:8px;margin-top:10px}
+.workstation-results-panel{margin-top:10px}.workstation-results-scroll{max-height:320px;overflow:auto}
+.institutional-dock{height:100%;display:flex;flex-direction:column;min-height:0}.institutional-dock-tabs{flex:0 0 auto}.institutional-dock-panels{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden}.institutional-dock-panel.active{display:block}
+@media(max-width:1500px){.tios-three-column-layout{grid-template-columns:280px minmax(620px,1fr) 330px}.tios-mini-panel-grid,.tios-bottom-diagnostics{grid-template-columns:repeat(2,minmax(160px,1fr))}}
+@media(max-width:1200px){html,body{overflow:auto}.tios-workstation-shell{height:auto;min-height:100vh;grid-template-rows:auto auto auto}.tios-three-column-layout{grid-template-columns:1fr;overflow:visible}.tios-left-rail,.tios-center-workspace,.tios-right-rail{overflow:visible}.tios-decision-workspace{grid-template-columns:1fr}}

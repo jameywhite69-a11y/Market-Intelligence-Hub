@@ -1,0 +1,69 @@
+<!-- ========================================================= -->
+<!-- CENTER WORKSPACE                                          -->
+<!-- Purpose:
+     Main trader workflow: opportunity discovery, AI commander,
+     institutional decisioning, execution planning, and ranked
+     opportunities.
+-->
+<!-- ========================================================= -->
+
+<main class="native-tios-center">
+
+    <!-- ----------------------------------------------------- -->
+    <!-- PORTFOLIO SUMMARY CARDS                               -->
+    <!-- ----------------------------------------------------- -->
+    <section id="portfolioSummaryCards" class="terminal-summary-cards"></section>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- TOP OPPORTUNITY DASHBOARD                             -->
+    <!-- ----------------------------------------------------- -->
+    <section class="native-center-top">
+        <section id="workspaceProfiles" class="desk-panel compact"></section>
+        <section id="multiWatchlistDashboard" class="desk-panel compact"></section>
+        <section id="opportunityHeatmap" class="desk-panel compact wide-card"></section>
+        <section id="opportunityQueue" class="desk-panel compact wide-card"></section>
+    </section>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- AI COMMANDER / DECISION WORKFLOW                      -->
+    <!-- ----------------------------------------------------- -->
+    <section class="native-decision-grid">
+
+        <!-- AI Trading Commander: primary recommendation panel. -->
+        <section id="aiTradingCommanderPanel"></section>
+
+        <!-- Institutional Scorecard: trend, momentum, risk, portfolio fit. -->
+        <section id="institutionalScorecardPanel"></section>
+
+        <!-- Compact Pipeline: compressed status view of decision stages. -->
+        <section id="compactDecisionPipelinePanel"></section>
+
+        <!-- Decision Intelligence: confidence bars and decision state. -->
+        <section id="decisionPipelinePanel" class="native-scroll-panel"></section>
+
+        <!-- Institutional Decision Package: recommended action package. -->
+        <section id="institutionalDecisionPackagePanel" class="native-scroll-panel"></section>
+
+        <!-- Optional legacy/detail panels retained for compatibility. -->
+        <section id="institutionalDecisionCardPanel" class="native-scroll-panel"></section>
+        <section id="institutionalIntelligencePanel" class="native-scroll-panel"></section>
+        <section id="decisionStagePipelinePanel" class="native-scroll-panel"></section>
+
+        <!-- V55 production panels. -->
+        <section id="tradeExecutionPlannerPanel"></section>
+        <section id="riskMatrixPanel"></section>
+    </section>
+
+    {% include "workstation/_results_panel.html" %}
+
+    <!-- ----------------------------------------------------- -->
+    <!-- CENTER DIAGNOSTICS / HISTORY                          -->
+    <!-- ----------------------------------------------------- -->
+    <section class="native-center-bottom">
+        <section id="opportunityHistory" class="desk-panel compact"></section>
+        <section id="scannerDiagnostics" class="desk-panel compact"></section>
+        <section id="coreDiagnosticsPanel" class="desk-panel compact"></section>
+        <section id="eventDiagnosticsPanel" class="desk-panel compact"></section>
+    </section>
+
+</main>

@@ -1,0 +1,214 @@
+/*
+Version 54.0 — AI Trading Commander Styles
+*/
+
+.ai-commander-card,
+.institutional-scorecard,
+.compact-pipeline-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.ai-commander-header,
+.scorecard-header,
+.compact-pipeline-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.ai-commander-header h2,
+.scorecard-header h2,
+.compact-pipeline-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.ai-commander-header span,
+.scorecard-header span,
+.compact-pipeline-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.ai-commander-header strong,
+.scorecard-header strong {
+    color: #22c55e;
+    font-size: 18px;
+}
+
+.ai-commander-verdict {
+    border: 1px solid #343944;
+    background: #20252d;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.ai-commander-verdict b {
+    display: block;
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.ai-commander-verdict span {
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.ai-commander-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.ai-commander-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.ai-commander-grid small,
+.ai-commander-grid b {
+    display: block;
+}
+
+.ai-commander-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.ai-commander-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.ai-commander-metrics,
+.institutional-score-list {
+    display: grid;
+    gap: 6px;
+}
+
+.commander-metric-label,
+.institutional-score-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+    align-items: center;
+}
+
+.commander-metric-label span,
+.institutional-score-row span {
+    color: #e6e6e6;
+    font-size: 11px;
+}
+
+.commander-metric-label b,
+.institutional-score-row b {
+    color: #61dafb;
+}
+
+.commander-bar,
+.institutional-score-row i {
+    display: block;
+    height: 7px;
+    background: #080c12;
+    border-radius: 999px;
+    overflow: hidden;
+    grid-column: 1 / -1;
+}
+
+.commander-bar i,
+.institutional-score-row i em {
+    display: block;
+    height: 100%;
+    background: #22c55e;
+    border-radius: 999px;
+}
+
+.ai-commander-narrative,
+.scorecard-footer {
+    margin-top: 8px;
+    border-left: 3px solid #61dafb;
+    padding: 8px 9px;
+    background: #0f1724;
+    border-radius: 8px;
+}
+
+.ai-commander-narrative b,
+.ai-commander-narrative span,
+.scorecard-footer b,
+.scorecard-footer span {
+    display: block;
+}
+
+.ai-commander-narrative b,
+.scorecard-footer b {
+    color: #61dafb;
+}
+
+.ai-commander-narrative span,
+.scorecard-footer span {
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.compact-pipeline-steps {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+}
+
+.compact-pipeline-step {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+    text-align: center;
+}
+
+.compact-pipeline-step b,
+.compact-pipeline-step span {
+    display: block;
+}
+
+.compact-pipeline-step b {
+    color: #8f98a8;
+    font-size: 10px;
+}
+
+.compact-pipeline-step span {
+    color: #22c55e;
+    font-weight: 900;
+}
+
+#aiTradingCommanderPanel {
+    grid-column: 1 / -1;
+}
+
+#compactDecisionPipelinePanel {
+    grid-column: 1 / -1;
+}
+
+#decisionStagePipelinePanel {
+    display: none !important;
+}
+
+@media (max-width: 1500px) {
+    .compact-pipeline-steps {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .ai-commander-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

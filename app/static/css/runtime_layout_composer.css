@@ -1,0 +1,148 @@
+/*
+Version 49.2 — Runtime Layout Composer CSS
+Creates a professional layout without breaking existing module initialization.
+*/
+
+body[data-runtime-layout-composer="49.2"] {
+    overflow: hidden;
+}
+
+.runtime-original-layout-hidden {
+    display: none !important;
+}
+
+.runtime-layout-shell {
+    height: calc(100vh - 76px);
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 300px minmax(720px, 1fr) 360px;
+    gap: 10px;
+    padding: 10px;
+    background: #0b0f16;
+    overflow: hidden;
+}
+
+.runtime-left-rail,
+.runtime-center-workspace,
+.runtime-right-rail {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
+
+.runtime-left-rail,
+.runtime-right-rail {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.runtime-center-workspace {
+    padding: 0 2px;
+}
+
+.runtime-center-top {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.runtime-decision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: start;
+}
+
+.runtime-decision-grid > section {
+    min-width: 0;
+    max-height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 12px;
+}
+
+.runtime-decision-grid .decision-narrative,
+.runtime-decision-grid .idp-summary,
+.runtime-decision-grid .institutional-intelligence-narrative {
+    max-height: 90px;
+    overflow-y: auto;
+}
+
+.runtime-results-zone {
+    display: grid;
+    gap: 10px;
+}
+
+.runtime-results-panel .workstation-results-scroll {
+    max-height: 320px;
+    overflow: auto;
+}
+
+.runtime-right-content,
+.runtime-left-content {
+    width: 100%;
+}
+
+.runtime-right-content .institutional-dock,
+.runtime-right-rail .institutional-dock {
+    min-height: 0;
+    height: auto;
+}
+
+.runtime-right-content .institutional-dock-panels,
+.runtime-right-rail .institutional-dock-panels {
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.runtime-layout-shell ::-webkit-scrollbar {
+    width: 8px;
+}
+
+.runtime-layout-shell ::-webkit-scrollbar-thumb {
+    background: #343944;
+    border-radius: 999px;
+}
+
+.runtime-layout-shell ::-webkit-scrollbar-track {
+    background: #0b0f16;
+}
+
+@media (max-width: 1500px) {
+    .runtime-layout-shell {
+        grid-template-columns: 280px minmax(620px, 1fr) 330px;
+    }
+
+    .runtime-center-top {
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
+    }
+}
+
+@media (max-width: 1200px) {
+    body[data-runtime-layout-composer="49.2"] {
+        overflow: auto;
+    }
+
+    .runtime-layout-shell {
+        height: auto;
+        min-height: 100vh;
+        grid-template-columns: 1fr;
+        overflow: visible;
+    }
+
+    .runtime-left-rail,
+    .runtime-center-workspace,
+    .runtime-right-rail {
+        overflow: visible;
+    }
+
+    .runtime-decision-grid {
+        grid-template-columns: 1fr;
+    }
+}

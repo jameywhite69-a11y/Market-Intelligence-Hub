@@ -1,0 +1,37 @@
+/*
+Version 48.0A — Center Decision Zone Layout
+*/
+
+.workstation-decision-zone {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 10px;
+    margin: 10px 0 12px 0;
+    align-items: start;
+}
+
+.workstation-decision-zone > section {
+    min-width: 0;
+}
+
+.workstation-decision-zone .idp-card,
+.workstation-decision-zone .decision-pipeline-card,
+.workstation-decision-zone .institutional-decision-card,
+.workstation-decision-zone .institutional-intelligence-card {
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.workstation-results-panel {
+    margin-top: 10px;
+}
+
+.workstation-mini-panels {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1400px) {
+    .workstation-decision-zone {
+        grid-template-columns: 1fr;
+    }
+}

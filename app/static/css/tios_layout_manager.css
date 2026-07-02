@@ -1,0 +1,222 @@
+/*
+Version 50.0 — TIOS Layout Manager CSS
+*/
+
+body[data-tios-layout-manager="50.0"] {
+    overflow: hidden;
+}
+
+.tios-original-layout-hidden {
+    display: none !important;
+}
+
+.tios-layout-manager-shell {
+    height: calc(100vh - 82px);
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 300px minmax(720px, 1fr) 360px;
+    gap: 10px;
+    padding: 10px;
+    background: #0b0f16;
+    overflow: hidden;
+}
+
+.tios-layout-left,
+.tios-layout-center,
+.tios-layout-right {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
+
+.tios-layout-left,
+.tios-layout-right {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.tios-region-center-top {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tios-region-center-decision {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: start;
+}
+
+.tios-region-center-results {
+    display: grid;
+    gap: 10px;
+}
+
+.tios-layout-panel {
+    min-width: 0;
+}
+
+.tios-layout-panel-compact {
+    max-height: 340px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 12px;
+}
+
+.tios-layout-panel-compact .decision-narrative,
+.tios-layout-panel-compact .idp-summary,
+.tios-layout-panel-compact .institutional-intelligence-narrative {
+    max-height: 90px;
+    overflow-y: auto;
+}
+
+.tios-managed-dock {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tios-managed-dock .institutional-dock-tabs {
+    flex: 0 0 auto;
+}
+
+.tios-managed-dock .institutional-dock-panels {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tios-managed-dock .institutional-dock-panel {
+    display: none;
+}
+
+.tios-managed-dock .institutional-dock-panel.active {
+    display: block;
+}
+
+.tios-layout-manager-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.tios-layout-list {
+    display: grid;
+    gap: 6px;
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 8px;
+}
+
+.tios-layout-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.tios-layout-row b,
+.tios-layout-row span {
+    display: block;
+}
+
+.tios-layout-row b {
+    color: #e6e6e6;
+}
+
+.tios-layout-row span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.tios-layout-row em {
+    color: #22c55e;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.tios-layout-row.missing em {
+    color: #ef4444;
+}
+
+.tios-layout-manager-shell ::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tios-layout-manager-shell ::-webkit-scrollbar-thumb {
+    background: #343944;
+    border-radius: 999px;
+}
+
+.tios-layout-manager-shell ::-webkit-scrollbar-track {
+    background: #0b0f16;
+}
+
+@media (max-width: 1500px) {
+    .tios-layout-manager-shell {
+        grid-template-columns: 280px minmax(620px, 1fr) 330px;
+    }
+
+    .tios-region-center-top {
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
+    }
+}
+
+@media (max-width: 1200px) {
+    body[data-tios-layout-manager="50.0"] {
+        overflow: auto;
+    }
+
+    .tios-layout-manager-shell {
+        height: auto;
+        min-height: 100vh;
+        grid-template-columns: 1fr;
+        overflow: visible;
+    }
+
+    .tios-layout-left,
+    .tios-layout-center,
+    .tios-layout-right {
+        overflow: visible;
+    }
+
+    .tios-region-center-decision {
+        grid-template-columns: 1fr;
+    }
+}
+.workstation-main-grid,
+.tios-three-column-layout,
+.terminal-workspace {
+    display: none !important;
+}
+
+#tiosLayoutManagerShell {
+    display: grid !important;
+}
+body[data-tios-layout-manager="50.0"] .workstation-main-grid {
+    display: none !important;
+}
+
+body[data-tios-layout-manager="50.0"] #tiosLayoutManagerShell {
+    height: calc(100vh - 90px) !important;
+    overflow: hidden !important;
+}
+
+body[data-tios-layout-manager="50.0"] #startupTracePanel,
+body[data-tios-layout-manager="50.0"] #startupOwnershipPanel {
+    max-height: 360px;
+    overflow-y: auto;
+}

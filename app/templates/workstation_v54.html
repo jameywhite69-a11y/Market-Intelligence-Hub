@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ========================================================= -->
+<!-- TIOS WORKSTATION V54 — MODULAR PRODUCTION ARCHITECTURE    -->
+<!-- Purpose:
+     Clean native workstation shell assembled from focused template
+     partials. This replaces the large monolithic workstation template
+     with maintainable layout modules.
+-->
+<!-- ========================================================= -->
+
+<section id="nativeTIOSWorkstation"
+         class="native-tios-workstation native-v54"
+         data-tios-version="54.0">
+
+    {% include "workstation/_header.html" %}
+
+    <section class="native-tios-shell">
+
+        {% include "workstation/_left_sidebar.html" %}
+
+        {% include "workstation/_center_workspace.html" %}
+
+        {% include "workstation/_right_dock.html" %}
+
+    </section>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+    {% include "workstation/_script_loader.html" %}
+{% endblock %}

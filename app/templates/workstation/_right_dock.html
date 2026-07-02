@@ -1,0 +1,78 @@
+<!-- ========================================================= -->
+<!-- RIGHT INSTITUTIONAL DOCK                                  -->
+<!-- Purpose:
+     Task-oriented dock for execution, positions, AI support,
+     market data, automation, and developer diagnostics.
+-->
+<!-- ========================================================= -->
+
+<aside class="native-tios-right workstation-right-dock">
+
+    <!-- ----------------------------------------------------- -->
+    <!-- DOCK TAB FRAMEWORK                                    -->
+    <!-- ----------------------------------------------------- -->
+    <div class="institutional-dock native-managed-dock">
+        <div class="institutional-dock-tabs">
+            <button class="institutional-dock-tab active" data-dock-tab="execution">Execution</button>
+            <button class="institutional-dock-tab" data-dock-tab="positions">Positions</button>
+            <button class="institutional-dock-tab" data-dock-tab="ai">AI</button>
+            <button class="institutional-dock-tab" data-dock-tab="diagnostics">Diagnostics</button>
+        </div>
+
+        <div class="institutional-dock-panels">
+            <div class="institutional-dock-panel active" data-dock-panel="execution"></div>
+            <div class="institutional-dock-panel" data-dock-panel="positions"></div>
+            <div class="institutional-dock-panel" data-dock-panel="ai"></div>
+            <div class="institutional-dock-panel" data-dock-panel="diagnostics"></div>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- EXECUTION / BROKER PANELS                             -->
+    <!-- ----------------------------------------------------- -->
+    <section id="brokerAdapterPanel"></section>
+    <section id="institutionalCommandCenterPanel"></section>
+    <section id="brokerManagerPanel"></section>
+    <section id="tradeContextPanel"></section>
+    <section id="institutionalOrderTicket"></section>
+    <section id="tradingTerminalPanel" class="trading-terminal-dock"></section>
+    <section id="paperTradingPanel" class="paper-trading-panel"></section>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- POSITION / PORTFOLIO RISK PANELS                      -->
+    <!-- ----------------------------------------------------- -->
+    <section id="positionManagementPanel"></section>
+    <section id="portfolioRiskPanel"></section>
+    <section id="positionLifecyclePanel"></section>
+    <section id="portfolioIntelligencePanel"></section>
+    <section id="tradeLifecyclePanel"></section>
+    <section id="institutionalRiskPanel"></section>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- AI / DECISION SUPPORT PANELS                          -->
+    <!-- ----------------------------------------------------- -->
+    <section id="opportunityPanel" class="opportunity-panel workstation-ai-panel"></section>
+    <section id="decisionPipelineMonitorPanel"></section>
+    <section id="decisionObjectInspectorPanel"></section>
+    <section id="decisionAuditTrailPanel"></section>
+    <section id="institutionalDecisionAuditPanelV48"></section>
+    <section id="aiDecisionCenterPanel"></section>
+    <section id="newsCatalystCenterPanel"></section>
+    <section id="strategyRegistryPanel"></section>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- MARKET DATA / WORKSPACE / AUTOMATION PANELS           -->
+    <!-- ----------------------------------------------------- -->
+    <section id="liveMarketDataPanel"></section>
+    <section id="workspaceContextPanel"></section>
+    <section id="moduleRegistryPanel"></section>
+    <section id="workspaceHealthDashboardPanel"></section>
+    <section id="activityTimelinePanel"></section>
+    <section id="tradeJournalPanel"></section>
+    <section id="workspaceProfilesPanel"></section>
+    <section id="commercialReadinessPanel"></section>
+    <section id="automationCenterPanel"></section>
+
+    {% include "workstation/_developer_panels.html" %}
+
+</aside>

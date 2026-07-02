@@ -1,0 +1,85 @@
+/*
+Version 48.1 — Professional Decision Workspace
+*/
+
+.workstation-decision-zone {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 10px;
+    margin: 10px 0 12px 0;
+    align-items: start;
+}
+
+.workstation-decision-zone > section {
+    min-width: 0;
+}
+
+/* Only Decision Intelligence scrolls internally. */
+#decisionPipelinePanel {
+    max-height: 420px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 12px;
+    min-width: 0;
+    scrollbar-width: thin;
+}
+
+#decisionPipelinePanel .decision-pipeline-card {
+    margin-bottom: 0;
+}
+
+#decisionPipelinePanel .decision-score-grid {
+    grid-template-columns: repeat(2, minmax(90px, 1fr));
+}
+
+#decisionPipelinePanel .decision-narrative {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#decisionPipelinePanel::-webkit-scrollbar,
+#decisionPipelinePanel .decision-narrative::-webkit-scrollbar {
+    width: 8px;
+}
+
+#decisionPipelinePanel::-webkit-scrollbar-thumb,
+#decisionPipelinePanel .decision-narrative::-webkit-scrollbar-thumb {
+    background: #343944;
+    border-radius: 999px;
+}
+
+#decisionPipelinePanel::-webkit-scrollbar-track,
+#decisionPipelinePanel .decision-narrative::-webkit-scrollbar-track {
+    background: #0b0f16;
+}
+
+#institutionalDecisionCardPanel,
+#institutionalIntelligencePanel,
+#institutionalDecisionPackagePanel,
+#decisionStagePipelinePanel {
+    min-width: 0;
+}
+
+.workstation-decision-zone .idp-card,
+.workstation-decision-zone .institutional-decision-card,
+.workstation-decision-zone .institutional-intelligence-card {
+    margin-bottom: 0;
+}
+
+.workstation-results-panel {
+    margin-top: 10px;
+}
+
+.workstation-mini-panels {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1400px) {
+    .workstation-decision-zone {
+        grid-template-columns: 1fr;
+    }
+
+    #decisionPipelinePanel {
+        max-height: 360px;
+    }
+}

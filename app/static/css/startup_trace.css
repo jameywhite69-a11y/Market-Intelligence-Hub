@@ -1,0 +1,17 @@
+.startup-trace-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+.startup-trace-actions { display: flex; gap: 6px; margin-bottom: 8px; }
+.startup-trace-card h4 { margin: 8px 0 6px; color: #61dafb; font-size: 12px; }
+.startup-trace-panel-list,.startup-trace-list { display: grid; gap: 6px; max-height: 280px; overflow-y: auto; }
+.startup-trace-panel-row,.startup-trace-row { background: #20252d; border: 1px solid #343944; border-radius: 8px; padding: 7px; }
+.startup-trace-panel-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; }
+.startup-trace-panel-row b,.startup-trace-panel-row span,.startup-trace-panel-row em,.startup-trace-row b,.startup-trace-row span { display:block; }
+.startup-trace-panel-row b,.startup-trace-row b { color:#e6e6e6; }
+.startup-trace-panel-row span,.startup-trace-row span { color:#8f98a8; font-size:11px; overflow-wrap:anywhere; }
+.startup-trace-panel-row em { color:#61dafb; font-style:normal; font-weight:800; }
+.startup-trace-panel-row.missing span,.startup-trace-panel-row.missing em { color:#ef4444; }
