@@ -1,0 +1,135 @@
+/*
+Version 71.0 — Production Polish UI
+*/
+
+#productionPolishPanelV71,
+#runtimeHealthMonitorPanelV71 {
+    grid-column: 1 / -1;
+}
+
+body[data-production-mode="true"] .native-diagnostics-only {
+    display: none !important;
+}
+
+.v71-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v71-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v71-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v71-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v71-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v71-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v71-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v71-grid small,
+.v71-grid b {
+    display: block;
+}
+
+.v71-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v71-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v71-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v71-action-row button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v71-action-row button:hover {
+    border-color: #61dafb;
+}
+
+.v71-check-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.v71-check-list div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v71-check-list .pass {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v71-check-list .fail {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v71-check-list b {
+    color: #22c55e;
+}
+
+.v71-check-list .fail b {
+    color: #ef4444;
+}
+
+.v71-check-list span {
+    color: #e6e6e6;
+}
+
+@media (max-width: 1500px) {
+    .v71-grid,
+    .v71-check-list {
+        grid-template-columns: 1fr;
+    }
+}
