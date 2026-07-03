@@ -1,0 +1,160 @@
+/*
+Version 76.0 — Module Registry UI
+*/
+
+#moduleRegistryPanelV76,
+#moduleLifecyclePanelV76,
+#moduleDependencyHealthPanelV76 {
+    grid-column: 1 / -1;
+}
+
+.v76-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v76-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v76-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v76-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v76-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v76-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v76-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v76-grid small,
+.v76-grid b {
+    display: block;
+}
+
+.v76-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v76-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v76-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v76-actions button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v76-actions button:hover {
+    border-color: #61dafb;
+}
+
+.v76-module-list,
+.v76-check-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v76-module-list div,
+.v76-check-list div {
+    display: grid;
+    grid-template-columns: 1fr 100px 90px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v76-module-list .ready,
+.v76-check-list .pass {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v76-module-list .missing,
+.v76-module-list .error,
+.v76-check-list .fail {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v76-module-list .waiting {
+    border-color: rgba(251, 191, 36, 0.7);
+}
+
+.v76-module-list b,
+.v76-check-list span {
+    color: #e6e6e6;
+}
+
+.v76-module-list span {
+    color: #8f98a8;
+}
+
+.v76-module-list em,
+.v76-check-list em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v76-check-list b {
+    color: #22c55e;
+}
+
+.v76-check-list .fail b {
+    color: #ef4444;
+}
+
+.v76-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v76-grid,
+    .v76-module-list div,
+    .v76-check-list div {
+        grid-template-columns: 1fr;
+    }
+}
