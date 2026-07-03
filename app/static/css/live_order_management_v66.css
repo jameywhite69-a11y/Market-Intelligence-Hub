@@ -1,0 +1,170 @@
+/*
+Version 66.0 — Live Order Management UI
+*/
+
+#liveOrderManagerPanelV66,
+#bracketOrderPanelV66,
+#orderMonitorPanelV66 {
+    grid-column: 1 / -1;
+}
+
+.v66-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v66-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v66-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v66-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v66-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v66-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v66-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v66-grid small,
+.v66-grid b {
+    display: block;
+}
+
+.v66-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v66-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v66-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v66-actions button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v66-actions button:hover {
+    border-color: #61dafb;
+}
+
+.v66-note {
+    background: #0f1724;
+    border-left: 3px solid #fbbf24;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.v66-note b,
+.v66-note span {
+    display: block;
+}
+
+.v66-note b {
+    color: #fbbf24;
+}
+
+.v66-order-list,
+.v66-event-list {
+    display: grid;
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v66-order-list div {
+    display: grid;
+    grid-template-columns: 1fr 120px 110px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v66-order-list .filled,
+.v66-order-list .managing {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v66-order-list .closed,
+.v66-order-list .cancelled {
+    border-color: rgba(239, 68, 68, 0.6);
+}
+
+.v66-order-list b,
+.v66-order-list em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.v66-order-list span {
+    color: #8f98a8;
+}
+
+.v66-event-list div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.v66-event-list b {
+    color: #8f98a8;
+    margin-right: 8px;
+}
+
+.v66-event-list span,
+.v66-empty {
+    color: #e6e6e6;
+}
+
+@media (max-width: 1500px) {
+    .v66-grid,
+    .v66-order-list div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
