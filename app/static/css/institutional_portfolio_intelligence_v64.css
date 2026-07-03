@@ -1,0 +1,189 @@
+/*
+Version 64.0 — Institutional Portfolio Intelligence UI
+*/
+
+#portfolioHealthDashboardV64Panel,
+#portfolioExposureEngineV64Panel,
+#portfolioCorrelationEngineV64Panel,
+#riskBudgetEngineV64Panel {
+    grid-column: 1 / -1;
+}
+
+.v64-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v64-health.healthy {
+    border-color: rgba(34, 197, 94, 0.7);
+}
+
+.v64-health.elevated {
+    border-color: rgba(251, 191, 36, 0.7);
+}
+
+.v64-health.hot {
+    border-color: rgba(239, 68, 68, 0.75);
+}
+
+.v64-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v64-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v64-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v64-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v64-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v64-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v64-grid small,
+.v64-grid b {
+    display: block;
+}
+
+.v64-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v64-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v64-bar-list {
+    display: grid;
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v64-bar-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 58px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.v64-bar-row b {
+    color: #e6e6e6;
+}
+
+.v64-bar-row span {
+    color: #61dafb;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v64-bar-row i {
+    display: block;
+    height: 8px;
+    background: #080c12;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.v64-bar-row i em {
+    display: block;
+    height: 100%;
+    background: #22c55e;
+    border-radius: 999px;
+}
+
+.v64-table-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v64-table-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 90px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.v64-table-row b {
+    color: #e6e6e6;
+}
+
+.v64-table-row span {
+    color: #8f98a8;
+}
+
+.v64-table-row em {
+    color: #fbbf24;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v64-note {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.v64-note b,
+.v64-note span {
+    display: block;
+}
+
+.v64-note b {
+    color: #61dafb;
+}
+
+.v64-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v64-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .v64-table-row {
+        grid-template-columns: 1fr;
+    }
+}
