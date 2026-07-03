@@ -1,0 +1,121 @@
+/*
+Version 69.0 — Workflow Automation UI
+*/
+
+#workflowAutomationEnginePanelV69,
+#automationEventLogPanelV69,
+#alertRuleBuilderPanelV69 {
+    grid-column: 1 / -1;
+}
+
+.v69-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v69-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v69-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v69-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v69-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v69-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v69-action-row button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v69-action-row button:hover {
+    border-color: #61dafb;
+}
+
+.v69-rule-list,
+.v69-event-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v69-rule-list div,
+.v69-event-list div {
+    display: grid;
+    grid-template-columns: 170px 90px 1fr;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v69-event-list div {
+    grid-template-columns: 90px 1fr;
+}
+
+.v69-rule-list .positive {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v69-rule-list .warning {
+    border-color: rgba(251, 191, 36, 0.65);
+}
+
+.v69-rule-list .danger {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v69-rule-list b,
+.v69-event-list b {
+    color: #e6e6e6;
+}
+
+.v69-rule-list span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.v69-rule-list em {
+    color: #fbbf24;
+    font-style: normal;
+}
+
+.v69-event-list span,
+.v69-empty {
+    color: #e6e6e6;
+}
+
+@media (max-width: 1500px) {
+    .v69-rule-list div,
+    .v69-event-list div {
+        grid-template-columns: 1fr;
+    }
+}
