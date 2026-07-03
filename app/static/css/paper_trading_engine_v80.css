@@ -1,0 +1,158 @@
+/*
+Version 80.0 — Institutional Paper Trading Engine UI
+*/
+
+#paperTradingAccountPanelV80,
+#paperOrderTicketPanelV80,
+#paperPositionsPanelV80 {
+    grid-column: 1 / -1;
+}
+
+.v80-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v80-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v80-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v80-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v80-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v80-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v80-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v80-grid small,
+.v80-grid b {
+    display: block;
+}
+
+.v80-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v80-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v80-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v80-actions button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v80-actions button:hover {
+    border-color: #61dafb;
+}
+
+.v80-note {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.v80-note b,
+.v80-note span {
+    display: block;
+}
+
+.v80-note b {
+    color: #61dafb;
+}
+
+.v80-position-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v80-position-list div {
+    display: grid;
+    grid-template-columns: 1fr 150px 120px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v80-position-list .open {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v80-position-list .closed {
+    border-color: rgba(251, 191, 36, 0.55);
+}
+
+.v80-position-list b {
+    color: #e6e6e6;
+}
+
+.v80-position-list span {
+    color: #8f98a8;
+}
+
+.v80-position-list em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v80-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v80-grid,
+    .v80-position-list div {
+        grid-template-columns: 1fr;
+    }
+}
