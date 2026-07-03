@@ -1,0 +1,170 @@
+/*
+Version 79.0 — Live Opportunity Engine UI
+*/
+
+#liveOpportunityEnginePanelV79,
+#liveOpportunityTapePanelV79,
+#liveOpportunityHealthPanelV79 {
+    grid-column: 1 / -1;
+}
+
+.v79-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v79-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v79-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v79-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v79-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v79-opportunity-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v79-opportunity-list button {
+    display: grid;
+    grid-template-columns: 1fr 80px 100px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    cursor: pointer;
+    text-align: left;
+}
+
+.v79-opportunity-list button:hover {
+    border-color: #61dafb;
+}
+
+.v79-opportunity-list b {
+    color: #e6e6e6;
+}
+
+.v79-opportunity-list span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.v79-opportunity-list em {
+    color: #fbbf24;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v79-tape {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+}
+
+.v79-tape div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v79-tape .ready {
+    border-color: rgba(34, 197, 94, 0.65);
+}
+
+.v79-tape .watch {
+    border-color: rgba(251, 191, 36, 0.65);
+}
+
+.v79-tape .avoid {
+    border-color: rgba(239, 68, 68, 0.65);
+}
+
+.v79-tape b,
+.v79-tape span,
+.v79-tape em {
+    display: block;
+}
+
+.v79-tape b {
+    color: #e6e6e6;
+}
+
+.v79-tape span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.v79-tape em {
+    color: #fbbf24;
+    font-style: normal;
+    font-size: 11px;
+}
+
+.v79-check-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.v79-check-list div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v79-check-list .pass {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v79-check-list .fail {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v79-check-list b {
+    color: #22c55e;
+}
+
+.v79-check-list .fail b {
+    color: #ef4444;
+}
+
+.v79-check-list span,
+.v79-empty {
+    color: #e6e6e6;
+}
+
+@media (max-width: 1500px) {
+    .v79-opportunity-list button,
+    .v79-tape,
+    .v79-check-list {
+        grid-template-columns: 1fr;
+    }
+}
