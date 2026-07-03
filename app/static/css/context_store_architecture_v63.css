@@ -1,0 +1,73 @@
+/*
+Version 63.0 — Context Store Architecture UI
+*/
+
+#contextOverviewPanelV63 {
+    grid-column: 1 / -1;
+}
+
+.v63-context-overview {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v63-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v63-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v63-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v63-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v63-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+}
+
+.v63-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v63-grid small,
+.v63-grid b {
+    display: block;
+}
+
+.v63-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v63-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+@media (max-width: 1500px) {
+    .v63-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
