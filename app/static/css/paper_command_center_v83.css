@@ -1,0 +1,157 @@
+/*
+Version 83.0 — Paper Trading Command Center UI
+*/
+
+#paperTradingCommandCenterPanelV83,
+#paperTradeAuditPanelV83,
+#paperTradingSessionPanelV83 {
+    grid-column: 1 / -1;
+}
+
+.v83-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v83-card.paper-buy-ready { border-color: rgba(34,197,94,.7); }
+.v83-card.watch { border-color: rgba(251,191,36,.7); }
+.v83-card.defensive { border-color: rgba(239,68,68,.75); }
+
+.v83-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v83-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v83-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v83-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v83-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v83-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v83-grid small,
+.v83-grid b {
+    display: block;
+}
+
+.v83-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v83-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v83-note {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.v83-note b,
+.v83-note span {
+    display: block;
+}
+
+.v83-note b {
+    color: #61dafb;
+}
+
+.v83-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v83-actions button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v83-actions button:hover {
+    border-color: #61dafb;
+}
+
+.v83-check-list,
+.v83-event-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v83-check-list div,
+.v83-event-list div {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v83-check-list .pass { border-color: rgba(34,197,94,.55); }
+.v83-check-list .fail { border-color: rgba(239,68,68,.7); }
+
+.v83-check-list b {
+    color: #22c55e;
+}
+
+.v83-check-list .fail b {
+    color: #ef4444;
+}
+
+.v83-check-list span,
+.v83-event-list span,
+.v83-empty {
+    color: #e6e6e6;
+}
+
+.v83-event-list b {
+    color: #8f98a8;
+}
+
+@media (max-width: 1500px) {
+    .v83-grid {
+        grid-template-columns: 1fr;
+    }
+}
