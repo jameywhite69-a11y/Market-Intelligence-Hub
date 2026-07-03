@@ -1,0 +1,138 @@
+/*
+Version 75.0 — Core Event Dispatcher UI
+*/
+
+#coreEventDispatcherPanelV75,
+#canonicalStateViewerPanelV75,
+#eventPipelineHealthPanelV75 {
+    grid-column: 1 / -1;
+}
+
+.v75-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v75-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v75-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v75-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v75-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v75-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v75-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v75-grid small,
+.v75-grid b {
+    display: block;
+}
+
+.v75-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v75-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v75-event-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v75-event-list div {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v75-event-list b {
+    color: #8f98a8;
+}
+
+.v75-event-list span,
+.v75-empty {
+    color: #e6e6e6;
+}
+
+.v75-check-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.v75-check-list div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v75-check-list .pass {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v75-check-list .fail {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v75-check-list b {
+    color: #22c55e;
+}
+
+.v75-check-list .fail b {
+    color: #ef4444;
+}
+
+.v75-check-list span {
+    color: #e6e6e6;
+}
+
+@media (max-width: 1500px) {
+    .v75-grid,
+    .v75-check-list {
+        grid-template-columns: 1fr;
+    }
+}
