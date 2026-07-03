@@ -1,0 +1,170 @@
+/*
+Version 78.0 — Live Data Adapter Framework UI
+*/
+
+#marketDataAdapterRegistryPanelV78,
+#realtimeAdapterBridgePanelV78,
+#dataProviderHealthPanelV78 {
+    grid-column: 1 / -1;
+}
+
+.v78-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v78-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v78-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v78-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v78-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v78-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v78-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v78-grid small,
+.v78-grid b {
+    display: block;
+}
+
+.v78-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v78-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v78-adapter-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v78-adapter-list button {
+    display: grid;
+    grid-template-columns: 1fr 130px 110px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    cursor: pointer;
+    text-align: left;
+}
+
+.v78-adapter-list button.active {
+    border-color: #61dafb;
+}
+
+.v78-adapter-list b {
+    color: #e6e6e6;
+}
+
+.v78-adapter-list span {
+    color: #8f98a8;
+}
+
+.v78-adapter-list em {
+    color: #fbbf24;
+    font-style: normal;
+    text-align: right;
+}
+
+.v78-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v78-actions button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v78-actions button:hover {
+    border-color: #61dafb;
+}
+
+.v78-check-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.v78-check-list div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v78-check-list .pass {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v78-check-list .fail {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v78-check-list b {
+    color: #22c55e;
+}
+
+.v78-check-list .fail b {
+    color: #ef4444;
+}
+
+.v78-check-list span {
+    color: #e6e6e6;
+}
+
+@media (max-width: 1500px) {
+    .v78-grid,
+    .v78-adapter-list button,
+    .v78-check-list {
+        grid-template-columns: 1fr;
+    }
+}
