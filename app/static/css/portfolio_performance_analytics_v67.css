@@ -1,0 +1,131 @@
+/*
+Version 67.0 — Portfolio Performance Analytics UI
+*/
+
+#performanceDashboardV67Panel,
+#strategyRankingPanelV67,
+#equityCurvePanelV67 {
+    grid-column: 1 / -1;
+}
+
+.v67-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v67-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v67-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v67-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v67-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v67-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+}
+
+.v67-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v67-grid small,
+.v67-grid b {
+    display: block;
+}
+
+.v67-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v67-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v67-table {
+    display: grid;
+    gap: 7px;
+}
+
+.v67-table div {
+    display: grid;
+    grid-template-columns: 1fr 90px 150px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v67-table b {
+    color: #e6e6e6;
+}
+
+.v67-table span {
+    color: #8f98a8;
+}
+
+.v67-table em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v67-equity-bars {
+    display: flex;
+    align-items: end;
+    gap: 6px;
+    height: 120px;
+    background: #0f1724;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v67-equity-bars i {
+    display: block;
+    flex: 1;
+    min-width: 8px;
+    background: #22c55e;
+    border-radius: 4px 4px 0 0;
+}
+
+.v67-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v67-grid,
+    .v67-table div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
