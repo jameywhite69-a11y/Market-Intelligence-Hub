@@ -1,0 +1,155 @@
+/*
+Version 82.0 — AI Trading Assistant UI
+*/
+
+#aiTradingAssistantPanelV82,
+#aiTradeGuidancePanelV82,
+#aiAssistantHealthPanelV82 {
+    grid-column: 1 / -1;
+}
+
+.v82-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v82-card.paper-buy-ready {
+    border-color: rgba(34,197,94,.7);
+}
+
+.v82-card.watch {
+    border-color: rgba(251,191,36,.7);
+}
+
+.v82-card.defensive {
+    border-color: rgba(239,68,68,.75);
+}
+
+.v82-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v82-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v82-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v82-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v82-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v82-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v82-grid small,
+.v82-grid b {
+    display: block;
+}
+
+.v82-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v82-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v82-note {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.v82-note b,
+.v82-note span {
+    display: block;
+}
+
+.v82-note b {
+    color: #61dafb;
+}
+
+.v82-step-list,
+.v82-check-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v82-step-list div,
+.v82-check-list div {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v82-step-list b {
+    display: grid;
+    place-items: center;
+    background: #0f1724;
+    color: #61dafb;
+    border-radius: 999px;
+    width: 26px;
+    height: 26px;
+}
+
+.v82-step-list span,
+.v82-check-list span {
+    color: #e6e6e6;
+}
+
+.v82-check-list .pass {
+    border-color: rgba(34,197,94,.55);
+}
+
+.v82-check-list .fail {
+    border-color: rgba(239,68,68,.7);
+}
+
+.v82-check-list b {
+    color: #22c55e;
+}
+
+.v82-check-list .fail b {
+    color: #ef4444;
+}
+
+@media (max-width: 1500px) {
+    .v82-grid {
+        grid-template-columns: 1fr;
+    }
+}
