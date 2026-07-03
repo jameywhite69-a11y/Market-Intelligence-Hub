@@ -1,0 +1,202 @@
+/*
+Version 60.0 — Execution Workflow Engine UI
+*/
+
+#executionWorkflowEnginePanel,
+#executionConsoleV60Panel,
+#capitalAllocationEnginePanel {
+    grid-column: 1 / -1;
+}
+
+.v60-workflow-card,
+.v60-console-card,
+.v60-allocation-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v60-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v60-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v60-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v60-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v60-stage-track {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.v60-stage-track div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+    text-align: center;
+}
+
+.v60-stage-track b {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    margin: 0 auto 5px;
+    border-radius: 999px;
+    background: #0f1724;
+    color: #8f98a8;
+}
+
+.v60-stage-track span {
+    color: #e6e6e6;
+    font-size: 10px;
+}
+
+.v60-stage-track .complete {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v60-stage-track .complete b {
+    background: #166534;
+    color: white;
+}
+
+.v60-stage-track .active {
+    border-color: rgba(251, 191, 36, 0.75);
+}
+
+.v60-stage-track .active b {
+    background: #fbbf24;
+    color: #111827;
+}
+
+.v60-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v60-summary-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v60-summary-grid small,
+.v60-summary-grid b {
+    display: block;
+}
+
+.v60-summary-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v60-summary-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v60-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v60-action-row button,
+.v60-console-list button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v60-action-row button:hover,
+.v60-console-list button:hover {
+    border-color: #61dafb;
+}
+
+.v60-console-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.v60-console-grid h3 {
+    margin: 0 0 7px;
+    color: #61dafb;
+    font-size: 12px;
+}
+
+.v60-console-list,
+.v60-event-log {
+    display: grid;
+    gap: 6px;
+}
+
+.v60-console-list button {
+    display: grid;
+    grid-template-columns: 1fr 110px 60px;
+    gap: 6px;
+    text-align: left;
+}
+
+.v60-console-list b,
+.v60-console-list em {
+    color: #61dafb;
+    font-style: normal;
+}
+
+.v60-console-list span,
+.v60-event-log span,
+.v60-event-log b {
+    color: #e6e6e6;
+}
+
+.v60-event-log div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.v60-event-log b {
+    color: #8f98a8;
+    margin-right: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v60-stage-track {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .v60-summary-grid,
+    .v60-console-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
