@@ -1,0 +1,130 @@
+/*
+Version 81.0 — Position & Risk Manager UI
+*/
+
+#positionRiskManagerPanelV81,
+#positionLifecycleDashboardV81,
+#stopTargetManagerPanelV81 {
+    grid-column: 1 / -1;
+}
+
+.v81-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v81-card.controlled { border-color: rgba(34,197,94,.65); }
+.v81-card.elevated { border-color: rgba(251,191,36,.7); }
+.v81-card.hot { border-color: rgba(239,68,68,.75); }
+
+.v81-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v81-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v81-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v81-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v81-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v81-grid div,
+.v81-position-list div,
+.v81-target-list div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v81-grid small,
+.v81-grid b {
+    display: block;
+}
+
+.v81-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v81-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v81-position-list,
+.v81-target-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v81-position-list div,
+.v81-target-list div {
+    display: grid;
+    grid-template-columns: 1fr 140px 100px;
+    gap: 8px;
+    align-items: center;
+}
+
+.v81-position-list .tp1-zone,
+.v81-position-list .runner-tp2 {
+    border-color: rgba(34,197,94,.6);
+}
+
+.v81-position-list .stop-threat {
+    border-color: rgba(239,68,68,.75);
+}
+
+.v81-position-list b,
+.v81-target-list b {
+    color: #e6e6e6;
+}
+
+.v81-position-list span,
+.v81-target-list span {
+    color: #8f98a8;
+}
+
+.v81-position-list em,
+.v81-target-list em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v81-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v81-grid,
+    .v81-position-list div,
+    .v81-target-list div {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,136 +1,194 @@
 <!-- ========================================================= -->
 <!-- CENTER WORKSPACE                                          -->
-<!-- Purpose:
-     Main trader workflow: opportunity discovery, AI commander,
-     institutional decisioning, execution planning, and ranked
-     opportunities.
--->
+<!-- Version 80 corrected center workspace                     -->
+<!--                                                           -->
+<!-- Purpose:                                                  -->
+<!-- Main trader workflow: opportunity discovery, live data,    -->
+<!-- AI commander, institutional decisioning, paper execution,  -->
+<!-- portfolio intelligence, analytics, automation, settings,   -->
+<!-- diagnostics, and release-readiness panels.                 -->
 <!-- ========================================================= -->
 
 <main class="native-tios-center">
 
-    <!-- ----------------------------------------------------- -->
-    <!-- PORTFOLIO SUMMARY CARDS                               -->
-    <!-- ----------------------------------------------------- -->
+    <!-- ===================================================== -->
+    <!-- 01 PORTFOLIO / ACCOUNT SUMMARY                         -->
+    <!-- ===================================================== -->
     <section id="portfolioSummaryCards" class="terminal-summary-cards"></section>
 
-    <!-- ----------------------------------------------------- -->
-    <!-- TOP OPPORTUNITY DASHBOARD                             -->
-    <!-- ----------------------------------------------------- -->
+    <!-- ===================================================== -->
+    <!-- 02 TOP OPPORTUNITY DASHBOARD                           -->
+    <!-- Fast-glance modules that should stay near the top.      -->
+    <!-- ===================================================== -->
     <section class="native-center-top">
         <section id="opportunityHeatmap" class="desk-panel compact wide-card"></section>
         <section id="workspaceProfiles" class="desk-panel compact"></section>
         <section id="multiWatchlistDashboard" class="desk-panel compact"></section>
         <section id="opportunityQueue" class="desk-panel compact wide-card"></section>
-       
-        <section id="institutionalWatchlistPanel"></section>
-        <section id="executionReadinessPanel"></section>  
-        <section id="institutionalHeatmapV56Panel"></section>
 
+        <section id="institutionalWatchlistPanel" class="desk-panel compact"></section>
+        <section id="executionReadinessPanel" class="desk-panel compact"></section>
+        <section id="institutionalHeatmapV56Panel" class="desk-panel compact wide-card"></section>
     </section>
 
-    <!-- ----------------------------------------------------- -->
-    <!-- AI COMMANDER / DECISION WORKFLOW                      -->
-    <!-- ----------------------------------------------------- -->
+    <!-- ===================================================== -->
+    <!-- 03 PRIMARY DECISION GRID                               -->
+    <!-- Order follows platform workflow:                       -->
+    <!-- Context -> Live Data -> Opportunities -> AI Decision -> -->
+    <!-- Portfolio -> Execution -> Paper Trading -> Analytics -> -->
+    <!-- Automation -> Platform Health.                         -->
+    <!-- ===================================================== -->
     <section class="native-decision-grid">
 
-               <!-- AI Trading Commander: primary recommendation panel. -->
+        <!-- ------------------------------------------------- -->
+        <!-- A. AI COMMANDER / CORE DECISION OVERVIEW           -->
+        <!-- ------------------------------------------------- -->
         <section id="aiTradingCommanderPanel"></section>
-        <section id="productionPolishPanelV71"></section>
-        <section id="runtimeHealthMonitorPanelV71"></section>
-
-        <!-- Institutional Scorecard: trend, momentum, risk, portfolio fit. -->
-        <section id="contextOverviewPanelV63"></section>
         <section id="institutionalScorecardPanel"></section>
+        <section id="compactDecisionPipelinePanel"></section>
+        <section id="decisionPipelinePanel" class="native-scroll-panel"></section>
+        <section id="contextOverviewPanelV63"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- B. MARKET INTELLIGENCE / MARKET CONTEXT            -->
+        <!-- ------------------------------------------------- -->
         <section id="marketRegimeEnginePanel"></section>
         <section id="relativeStrengthRankingsPanel"></section>
         <section id="marketBreadthPanelV61"></section>
+        <section id="institutionalFlowPanelV61"></section>
+
         <section id="institutionalMarketContextPanel"></section>
         <section id="marketContextDashboardV62Panel"></section>
         <section id="marketContextAIBridgePanel"></section>
-        <section id="institutionalFlowPanelV61"></section>
 
-        <!-- Compact Pipeline: compressed status view of decision stages. -->
-        <section id="compactDecisionPipelinePanel"></section>
-        <section id="releaseCandidateDashboardV70Panel"></section>
-        <section id="platformSettingsPanelV70"></section>
-        <section id="deploymentChecklistPanelV70"></section>
+        <!-- ------------------------------------------------- -->
+        <!-- C. REALTIME DATA / LIVE OPPORTUNITY ENGINE         -->
+        <!-- V74/V78 feed V79; V79 feeds V80 paper trading.     -->
+        <!-- ------------------------------------------------- -->
+        <section id="realtimeDataBusPanelV74"></section>
+        <section id="realtimeQuoteTapePanelV74"></section>
+        <section id="dataSyncHealthPanelV74"></section>
 
-        <!-- Decision Intelligence: confidence bars and decision state. -->
-        <section id="decisionPipelinePanel" class="native-scroll-panel"></section>
-        <section id="institutionalTradeEnginePanel"></section>
-        <section id="institutionalDecisionQueuePanel"></section>
-        <section id="portfolioExposureEnginePanel"></section>
+        <section id="marketDataAdapterRegistryPanelV78"></section>
+        <section id="realtimeAdapterBridgePanelV78"></section>
+        <section id="dataProviderHealthPanelV78"></section>
 
-        <!-- Institutional Decision Package: recommended action package. -->
+        <section id="liveOpportunityEnginePanelV79"></section>
+        <section id="liveOpportunityTapePanelV79"></section>
+        <section id="liveOpportunityHealthPanelV79"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- D. INSTITUTIONAL DECISION PACKAGE                  -->
+        <!-- ------------------------------------------------- -->
         <section id="institutionalDecisionPackagePanel" class="native-scroll-panel"></section>
         <section id="institutionalPackageReportPanel"></section>
-
-        <!-- Optional legacy/detail panels retained for compatibility. -->
         <section id="institutionalDecisionCardPanel" class="native-scroll-panel"></section>
         <section id="institutionalIntelligencePanel" class="native-scroll-panel"></section>
         <section id="decisionStagePipelinePanel" class="native-scroll-panel"></section>
 
-        <!-- V55 production panels. -->
-        <section id="nativeDockingManagerPanelV77"></section>
-        <section id="dockStateInspectorPanelV77"></section>
-        <section id="tradeExecutionPlannerPanel"></section>
-        <section id="riskMatrixPanel"></section>
+        <!-- ------------------------------------------------- -->
+        <!-- E. TRADE ENGINE / EXECUTION WORKFLOW               -->
+        <!-- ------------------------------------------------- -->
+        <section id="institutionalTradeEnginePanel"></section>
+        <section id="institutionalDecisionQueuePanel"></section>
+        <section id="portfolioExposureEnginePanel"></section>
+
         <section id="executionWorkflowEnginePanel"></section>
         <section id="capitalAllocationEnginePanel"></section>
+        <section id="executionConsoleV60Panel"></section>
+
+        <section id="tradeExecutionPlannerPanel"></section>
+        <section id="riskMatrixPanel"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- F. PORTFOLIO INTELLIGENCE / RISK                   -->
+        <!-- ------------------------------------------------- -->
         <section id="portfolioHealthDashboardV64Panel"></section>
         <section id="portfolioExposureEngineV64Panel"></section>
         <section id="portfolioCorrelationEngineV64Panel"></section>
         <section id="riskBudgetEngineV64Panel"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- G. BROKER ABSTRACTION / LIVE-READY ORDER MGMT      -->
+        <!-- Still paper/live-ready only; no live routing here.  -->
+        <!-- ------------------------------------------------- -->
         <section id="executionServicePanelV65"></section>
         <section id="brokerAdapterRegistryPanelV65"></section>
         <section id="orderLifecyclePanelV65"></section>
-        <section id="aiTradeReviewPanelV68"></section>
-        <section id="workflowAutomationEnginePanelV69"></section>
-        <section id="alertRuleBuilderPanelV69"></section>
-        <section id="automationEventLogPanelV69"></section>
-        <section id="performanceDashboardV67Panel"></section>
-        <section id="equityCurvePanelV67"></section>
-        <section id="strategyRankingPanelV67"></section>
-        <section id="executionConsoleV60Panel"></section>
+
         <section id="liveOrderManagerPanelV66"></section>
         <section id="bracketOrderPanelV66"></section>
         <section id="orderMonitorPanelV66"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- H. INSTITUTIONAL PAPER TRADING ENGINE V80          -->
+        <!-- ------------------------------------------------- -->
+        <section id="paperTradingAccountPanelV80"></section>
+        <section id="paperOrderTicketPanelV80"></section>
+        <section id="paperPositionsPanelV80"></section>
+        <section id="positionRiskManagerPanelV81"></section>
+        <section id="positionLifecycleDashboardV81"></section>
+        <section id="stopTargetManagerPanelV81"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- I. PERFORMANCE ANALYTICS / AI REVIEW               -->
+        <!-- ------------------------------------------------- -->
+        <section id="performanceDashboardV67Panel"></section>
+        <section id="equityCurvePanelV67"></section>
+        <section id="strategyRankingPanelV67"></section>
+        <section id="aiTradeReviewPanelV68"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- J. WORKFLOW AUTOMATION                             -->
+        <!-- ------------------------------------------------- -->
+        <section id="workflowAutomationEnginePanelV69"></section>
+        <section id="alertRuleBuilderPanelV69"></section>
+        <section id="automationEventLogPanelV69"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- K. SETTINGS / WORKSPACE / DOCKING                  -->
+        <!-- ------------------------------------------------- -->
         <section id="workspacePersistencePanelV72"></section>
         <section id="layoutProfileManagerPanelV72"></section>
-        <section id="realtimeDataBusPanelV74"></section>
-        <section id="dataSyncHealthPanelV74"></section>
-        <section id="realtimeQuoteTapePanelV74"></section>
-        <section id="marketDataAdapterRegistryPanelV78"></section>
-        <section id="realtimeAdapterBridgePanelV78"></section>
-        <section id="dataProviderHealthPanelV78"></section>
-        <section id="moduleRegistryPanelV76"></section>
+        <section id="unifiedSettingsPanelV73"></section>
+        <section id="settingsHealthPanelV73"></section>
 
+        <section id="nativeDockingManagerPanelV77"></section>
+        <section id="dockStateInspectorPanelV77"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- L. PLATFORM HEALTH / RELEASE READINESS             -->
+        <!-- ------------------------------------------------- -->
+        <section id="releaseCandidateDashboardV70Panel"></section>
+        <section id="platformSettingsPanelV70"></section>
+        <section id="deploymentChecklistPanelV70"></section>
+        <section id="productionPolishPanelV71"></section>
+        <section id="runtimeHealthMonitorPanelV71"></section>
+
+        <section id="coreEventDispatcherPanelV75"></section>
+        <section id="canonicalStateViewerPanelV75"></section>
+        <section id="eventPipelineHealthPanelV75"></section>
+
+        <section id="moduleRegistryPanelV76"></section>
         <section id="moduleLifecyclePanelV76"></section>
         <section id="moduleDependencyHealthPanelV76"></section>
     </section>
 
+    <!-- ===================================================== -->
+    <!-- 04 SCANNER RESULTS PANEL                              -->
+    <!-- Kept as include for compatibility with existing app.   -->
+    <!-- ===================================================== -->
     {% include "workstation/_results_panel.html" %}
 
-    <!-- ----------------------------------------------------- -->
-    <!-- CENTER DIAGNOSTICS / HISTORY                          -->
-    <!-- ----------------------------------------------------- -->
+    <!-- ===================================================== -->
+    <!-- 05 CENTER DIAGNOSTICS / HISTORY                        -->
+    <!-- Lower-priority history and legacy diagnostics.          -->
+    <!-- ===================================================== -->
     <section class="native-center-bottom">
         <section id="opportunityHistory" class="desk-panel compact"></section>
         <section id="scannerDiagnostics" class="desk-panel compact"></section>
-        <section id="liveOpportunityEnginePanelV79"></section>
-        <section id="liveOpportunityTapePanelV79"></section>
-        <section id="liveOpportunityHealthPanelV79"></section>
-        <section id="paperTradingAccountPanelV80"></section>
-        <section id="paperOrderTicketPanelV80"></section>
-        <section id="paperPositionsPanelV80"></section>
         <section id="coreDiagnosticsPanel" class="desk-panel compact"></section>
         <section id="eventDiagnosticsPanel" class="desk-panel compact"></section>
-        <section id="unifiedSettingsPanelV73"></section>
-        <section id="settingsHealthPanelV73"></section>
-        <section id="coreEventDispatcherPanelV75"></section>
-        <section id="canonicalStateViewerPanelV75"></section>
-        <section id="eventPipelineHealthPanelV75"></section>
     </section>
 
 </main>
