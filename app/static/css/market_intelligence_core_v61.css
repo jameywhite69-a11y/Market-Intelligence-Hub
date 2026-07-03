@@ -1,0 +1,181 @@
+/*
+Version 61.0 — Market Intelligence Core UI
+*/
+
+#marketRegimeEnginePanel,
+#relativeStrengthRankingsPanel,
+#marketBreadthPanelV61,
+#institutionalFlowPanelV61 {
+    grid-column: 1 / -1;
+}
+
+.v61-regime-card,
+.v61-rs-card,
+.v61-breadth-card,
+.v61-flow-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v61-regime-card.risk-on-trend {
+    border-color: rgba(34, 197, 94, 0.7);
+}
+
+.v61-regime-card.risk-off {
+    border-color: rgba(239, 68, 68, 0.75);
+}
+
+.v61-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v61-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v61-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v61-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v61-regime-grid,
+.v61-breadth-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v61-regime-grid div,
+.v61-breadth-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v61-regime-grid small,
+.v61-regime-grid b,
+.v61-breadth-grid small,
+.v61-breadth-grid b {
+    display: block;
+}
+
+.v61-regime-grid small,
+.v61-breadth-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v61-regime-grid b,
+.v61-breadth-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v61-leadership-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v61-leadership-strip span {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 999px;
+    padding: 5px 9px;
+    color: #e6e6e6;
+}
+
+.v61-leadership-strip em {
+    color: #61dafb;
+    font-style: normal;
+    margin-left: 6px;
+}
+
+.v61-rs-list {
+    display: grid;
+    gap: 6px;
+}
+
+.v61-rs-list button {
+    display: grid;
+    grid-template-columns: 90px 1fr 54px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.v61-rs-list button:hover {
+    border-color: #61dafb;
+}
+
+.v61-rs-list b {
+    color: #e6e6e6;
+}
+
+.v61-rs-list span {
+    color: #61dafb;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v61-rs-list i,
+.v61-flow-score i {
+    display: block;
+    height: 8px;
+    background: #080c12;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.v61-rs-list i em,
+.v61-flow-score i em {
+    display: block;
+    height: 100%;
+    background: #22c55e;
+    border-radius: 999px;
+}
+
+.v61-flow-score {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.v61-flow-score b {
+    color: #61dafb;
+    font-size: 20px;
+}
+
+.v61-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v61-regime-grid,
+    .v61-breadth-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
