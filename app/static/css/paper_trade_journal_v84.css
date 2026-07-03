@@ -1,0 +1,103 @@
+#paperTradeJournalPanelV84,
+#sessionReviewDashboardPanelV84,
+#ruleComplianceReviewPanelV84 { grid-column: 1 / -1; }
+
+.v84-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v84-card.positive { border-color: rgba(34,197,94,.65); }
+.v84-card.negative { border-color: rgba(239,68,68,.75); }
+
+.v84-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v84-header h2 { margin: 0; color: #61dafb; font-size: 14px; }
+.v84-header span { color: #8f98a8; font-size: 11px; }
+.v84-header strong { color: #fbbf24; font-size: 16px; }
+
+.v84-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v84-grid div,
+.v84-journal-list div,
+.v84-check-list div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v84-grid small,
+.v84-grid b { display: block; }
+
+.v84-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v84-grid b { color: #61dafb; font-size: 13px; }
+
+.v84-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v84-actions button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v84-actions button:hover { border-color: #61dafb; }
+
+.v84-journal-list,
+.v84-check-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v84-journal-list .win { border-color: rgba(34,197,94,.55); }
+.v84-journal-list .loss { border-color: rgba(239,68,68,.7); }
+
+.v84-journal-list b { color: #8f98a8; margin-right: 8px; }
+.v84-journal-list span { color: #e6e6e6; font-weight: 900; }
+.v84-journal-list em { float: right; color: #61dafb; font-style: normal; }
+.v84-journal-list p { margin: 6px 0 0; color: #d4d4d4; font-size: 12px; }
+
+.v84-check-list div {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 8px;
+    align-items: center;
+}
+
+.v84-check-list .pass { border-color: rgba(34,197,94,.55); }
+.v84-check-list .fail { border-color: rgba(239,68,68,.7); }
+.v84-check-list b { color: #22c55e; }
+.v84-check-list .fail b { color: #ef4444; }
+
+.v84-check-list span,
+.v84-empty { color: #e6e6e6; }
+
+@media (max-width: 1500px) {
+    .v84-grid { grid-template-columns: 1fr; }
+}
