@@ -1,0 +1,124 @@
+/*
+Version 58.3 — Stable Opportunity Panel Styling
+*/
+
+.v583-opportunity-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v583-opportunity-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.v583-opportunity-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v583-opportunity-header span {
+    color: #8f98a8;
+    font-size: 10px;
+}
+
+.v583-opportunity-header strong {
+    display: grid;
+    place-items: center;
+    min-width: 54px;
+    height: 54px;
+    border: 2px solid #61dafb;
+    border-radius: 999px;
+    color: #61dafb;
+    font-size: 16px;
+}
+
+.v583-opportunity-symbol {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.v583-opportunity-symbol b,
+.v583-opportunity-symbol span {
+    display: block;
+}
+
+.v583-opportunity-symbol b {
+    color: #e6e6e6;
+    font-size: 14px;
+}
+
+.v583-opportunity-symbol span {
+    color: #8f98a8;
+    font-size: 10px;
+}
+
+.v583-opportunity-symbol em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.v583-opportunity-note {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.v583-opportunity-note b,
+.v583-opportunity-note span {
+    display: block;
+}
+
+.v583-opportunity-note b {
+    color: #fbbf24;
+}
+
+.v583-opportunity-note span {
+    color: #e6e6e6;
+    font-size: 11px;
+}
+
+.v583-opportunity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+}
+
+.v583-opportunity-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.v583-opportunity-grid small,
+.v583-opportunity-grid b {
+    display: block;
+}
+
+.v583-opportunity-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v583-opportunity-grid b {
+    color: #61dafb;
+    font-size: 12px;
+}

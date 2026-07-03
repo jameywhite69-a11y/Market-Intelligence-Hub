@@ -1,0 +1,163 @@
+/*
+Version 59.0 — Institutional Trade Engine UI
+*/
+
+#institutionalTradeEnginePanel,
+#institutionalDecisionQueuePanel,
+#portfolioExposureEnginePanel {
+    grid-column: 1 / -1;
+}
+
+.v59-trade-engine-card,
+.v59-queue-card,
+.v59-exposure-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v59-trade-engine-card.ready-to-execute {
+    border-color: rgba(34, 197, 94, 0.75);
+}
+
+.v59-trade-engine-card.stage-plan {
+    border-color: rgba(251, 191, 36, 0.7);
+}
+
+.v59-trade-engine-card.stand-down {
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.v59-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v59-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v59-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v59-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v59-trade-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v59-trade-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v59-trade-grid small,
+.v59-trade-grid b {
+    display: block;
+}
+
+.v59-trade-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v59-trade-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v59-readiness-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.v59-readiness-strip span {
+    border: 1px solid #343944;
+    background: #20252d;
+    border-radius: 999px;
+    padding: 5px 8px;
+    font-size: 11px;
+    color: #e6e6e6;
+}
+
+.v59-readiness-strip .pass {
+    border-color: rgba(34, 197, 94, 0.55);
+    color: #22c55e;
+}
+
+.v59-readiness-strip .fail {
+    border-color: rgba(239, 68, 68, 0.65);
+    color: #ef4444;
+}
+
+.v59-queue-list {
+    display: grid;
+    gap: 6px;
+}
+
+.v59-queue-row {
+    display: grid;
+    grid-template-columns: 1fr 70px 90px;
+    gap: 8px;
+    align-items: center;
+    text-align: left;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.v59-queue-row:hover {
+    background: rgba(97, 218, 251, 0.08);
+}
+
+.v59-queue-row b {
+    color: #e6e6e6;
+}
+
+.v59-queue-row span {
+    color: #61dafb;
+    font-weight: 900;
+}
+
+.v59-queue-row em {
+    color: #fbbf24;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v59-note,
+.v59-empty {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+@media (max-width: 1500px) {
+    .v59-trade-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

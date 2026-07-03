@@ -1,0 +1,85 @@
+/*
+Version 58.2 — AI Dock State Subscriber Styling
+*/
+
+.ai-dock-state-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.ai-dock-state-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.ai-dock-state-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.ai-dock-state-header span {
+    color: #8f98a8;
+    font-size: 10px;
+}
+
+.ai-dock-state-header strong {
+    color: #fbbf24;
+    font-size: 14px;
+}
+
+.ai-dock-state-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.ai-dock-state-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+.ai-dock-state-grid small,
+.ai-dock-state-grid b {
+    display: block;
+}
+
+.ai-dock-state-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.ai-dock-state-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.ai-dock-state-note {
+    background: #0f1724;
+    border-left: 3px solid #61dafb;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.ai-dock-state-note b,
+.ai-dock-state-note span {
+    display: block;
+}
+
+.ai-dock-state-note b {
+    color: #61dafb;
+}
+
+.ai-dock-state-note span {
+    color: #e6e6e6;
+    font-size: 11px;
+}

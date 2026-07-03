@@ -1,0 +1,12 @@
+/*
+Version 58.1 — AI Dock Stability CSS
+*/
+
+[data-dock-panel="ai"].ai-dock-updating {
+    opacity: 0.98;
+    transition: opacity 120ms ease;
+}
+
+[data-dock-panel="ai"] {
+    contain: layout paint;
+}

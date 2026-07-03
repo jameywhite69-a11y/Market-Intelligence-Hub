@@ -179,7 +179,7 @@ No broker orders. Analysis / paper-ready only.
     }
 
     function renderHeatmap(candidates) {
-        const panel = document.getElementById("institutionalHeatmapV56Panel") || document.getElementById("opportunityHeatmap");
+    const panel = document.getElementById("institutionalHeatmapV56Panel");
         if (!panel) return;
 
         const top = candidates.slice(0, 8);
