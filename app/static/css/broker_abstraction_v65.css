@@ -1,0 +1,148 @@
+/*
+Version 65.0 — Broker Abstraction Layer UI
+*/
+
+#executionServicePanelV65,
+#brokerAdapterRegistryPanelV65,
+#orderLifecyclePanelV65 {
+    grid-column: 1 / -1;
+}
+
+.v65-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v65-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v65-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v65-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v65-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v65-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v65-grid div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v65-grid small,
+.v65-grid b {
+    display: block;
+}
+
+.v65-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v65-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v65-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.v65-action-row button {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 7px 9px;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+.v65-action-row button:hover {
+    border-color: #61dafb;
+}
+
+.v65-adapter-list,
+.v65-order-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v65-adapter-list div,
+.v65-order-list div {
+    display: grid;
+    grid-template-columns: 1fr 120px 110px;
+    gap: 8px;
+    align-items: center;
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v65-adapter-list .enabled,
+.v65-order-list .filled {
+    border-color: rgba(34, 197, 94, 0.55);
+}
+
+.v65-adapter-list .not_configured,
+.v65-order-list .cancelled {
+    border-color: rgba(251, 191, 36, 0.55);
+}
+
+.v65-adapter-list b,
+.v65-order-list b {
+    color: #e6e6e6;
+}
+
+.v65-adapter-list span,
+.v65-order-list span {
+    color: #8f98a8;
+}
+
+.v65-adapter-list em,
+.v65-order-list em {
+    color: #61dafb;
+    font-style: normal;
+    font-weight: 900;
+    text-align: right;
+}
+
+.v65-empty {
+    color: #8f98a8;
+    padding: 8px;
+}
+
+@media (max-width: 1500px) {
+    .v65-grid,
+    .v65-adapter-list div,
+    .v65-order-list div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
