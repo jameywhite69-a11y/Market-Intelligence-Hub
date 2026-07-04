@@ -1,0 +1,9 @@
+#replayBacktestingEnginePanelV94,#replayTimelinePanelV94,#replayMetricsPanelV94,#replayHealthPanelV94{grid-column:1/-1}
+.v94-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:10px}
+.v94-header{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.v94-header h2{margin:0;color:#61dafb;font-size:14px}.v94-header span{color:#8f98a8;font-size:11px}.v94-header strong{color:#fbbf24;font-size:16px}
+.v94-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-bottom:8px}.v94-grid div,.v94-list div,.v94-check-list div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:8px}
+.v94-grid small,.v94-grid b{display:block}.v94-grid small{color:#8f98a8;text-transform:uppercase;font-size:9px}.v94-grid b{color:#61dafb;font-size:13px}
+.v94-actions{display:flex;flex-wrap:wrap;gap:7px}.v94-actions button{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px 9px;color:#e6e6e6;cursor:pointer}.v94-actions button.active,.v94-actions button:hover{border-color:#61dafb;color:#61dafb}
+.v94-list,.v94-check-list{display:grid;gap:7px}.v94-list div{display:grid;grid-template-columns:90px 1fr 90px;gap:8px;align-items:center}.v94-list b{color:#61dafb}.v94-list span,.v94-empty,.v94-check-list span{color:#e6e6e6}.v94-list em{color:#fbbf24;font-style:normal;text-align:right}
+.v94-check-list div{display:grid;grid-template-columns:40px 1fr;gap:8px;align-items:center}.v94-check-list .pass{border-color:rgba(34,197,94,.55)}.v94-check-list .fail{border-color:rgba(239,68,68,.7)}.v94-check-list b{color:#22c55e}.v94-check-list .fail b{color:#ef4444}
+@media(max-width:1500px){.v94-grid,.v94-list div{grid-template-columns:1fr}}
