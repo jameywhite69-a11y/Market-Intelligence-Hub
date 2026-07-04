@@ -1,0 +1,6 @@
+
+#aiStrategyGeneratorPanelV101{grid-column:1/-1}
+.v101-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;color:#e6e6e6}
+.v101-card h2{color:#61dafb}
+.v101-card textarea{width:100%;min-height:100px;margin:8px 0}
+.v101-card pre{background:#1b2028;padding:8px;overflow:auto}
