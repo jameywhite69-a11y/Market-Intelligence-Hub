@@ -1,0 +1,7 @@
+#multiAccountRegistryPanelV104,#accountAggregationPanelV104,#crossAccountPositionsPanelV104,#accountAllocationAIPanelV104{grid-column:1/-1}
+.v104-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:10px;color:#e6e6e6}
+.v104-header{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.v104-header h2{margin:0;color:#61dafb;font-size:14px}.v104-header span{color:#8f98a8;font-size:11px}.v104-header strong{color:#fbbf24;font-size:16px}
+.v104-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.v104-grid div,.v104-list div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:8px}
+.v104-grid small,.v104-grid b{display:block}.v104-grid small{color:#8f98a8;text-transform:uppercase;font-size:9px}.v104-grid b{color:#61dafb;font-size:13px}
+.v104-list{display:grid;gap:7px}.v104-list div{display:grid;grid-template-columns:180px 1fr 160px;gap:8px;align-items:center}.v104-list b{color:#61dafb}.v104-list span,.v104-empty{color:#e6e6e6}.v104-list em{color:#fbbf24;font-style:normal;text-align:right}
+@media(max-width:1500px){.v104-grid,.v104-list div{grid-template-columns:1fr}}

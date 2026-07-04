@@ -1,0 +1,8 @@
+(function(){
+const VERSION="104.0";
+function aggregate(){const accounts=window.MultiAccountRegistryV104?.snapshot?.()||[];const totals=accounts.reduce((a,x)=>{a.equity+=Number(x.equity||0);a.cash+=Number(x.cash||0);a.buyingPower+=Number(x.buyingPower||0);a.openPnl+=Number(x.openPnl||0);a.dailyPnl+=Number(x.dailyPnl||0);a.riskPct+=Number(x.riskPct||0);return a;},{equity:0,cash:0,buyingPower:0,openPnl:0,dailyPnl:0,riskPct:0});return{version:VERSION,accounts,totals,timestamp:new Date().toISOString()};}
+function render(){const el=document.getElementById("accountAggregationPanelV104");if(!el)return;const s=aggregate();el.innerHTML=`<section class="v104-card"><div class="v104-header"><div><h2>Account Aggregation</h2><span>consolidated capital, P/L, buying power, and risk</span></div><strong>$${s.totals.equity.toFixed(0)}</strong></div><div class="v104-grid"><div><small>Total Equity</small><b>$${s.totals.equity.toFixed(2)}</b></div><div><small>Cash</small><b>$${s.totals.cash.toFixed(2)}</b></div><div><small>Buying Power</small><b>$${s.totals.buyingPower.toFixed(2)}</b></div><div><small>Open P/L</small><b>$${s.totals.openPnl.toFixed(2)}</b></div><div><small>Daily P/L</small><b>$${s.totals.dailyPnl.toFixed(2)}</b></div><div><small>Total Risk</small><b>${s.totals.riskPct.toFixed(2)}%</b></div></div></section>`;window.EventBus?.publish?.("account-aggregation-v104.updated",s);}
+function wire(){window.EventBus?.subscribe?.("multi-account-registry-v104.updated",render);setTimeout(render,1500);}
+window.AccountAggregationEngineV104={aggregate,render,version:VERSION};
+document.addEventListener("DOMContentLoaded",()=>setTimeout(wire,1200));
+})();
