@@ -1,0 +1,11 @@
+#aiTradeCoachPanelV106,#tradingMistakeDetectorPanelV106,#coachActionPlanPanelV106{grid-column:1/-1}
+.v106-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:10px;color:#e6e6e6}
+.v106-header{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+.v106-header h2{margin:0;color:#61dafb;font-size:14px}
+.v106-header span{color:#8f98a8;font-size:11px}
+.v106-header strong{color:#fbbf24;font-size:16px}
+.v106-list{display:grid;gap:7px}
+.v106-list div{display:grid;grid-template-columns:120px 1fr;gap:8px;align-items:center;background:#20252d;border:1px solid #343944;border-radius:8px;padding:8px}
+.v106-list b{color:#61dafb}
+.v106-list span{color:#e6e6e6}
+@media(max-width:1500px){.v106-list div{grid-template-columns:1fr}}
