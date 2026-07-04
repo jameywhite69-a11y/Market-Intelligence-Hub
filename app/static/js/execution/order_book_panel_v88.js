@@ -1,0 +1,4 @@
+(function(){const VERSION="88.0";
+function render(payload){const panel=document.getElementById("orderBookPanelV88");if(!panel)return;const oms=payload?.oms||window.OrderManagementSystemV88?.snapshot?.()||{orders:[]};const rows=(oms.orders||[]).slice(0,12);panel.innerHTML=`<section class="v88-card"><div class="v88-header"><div><h2>OMS Order Book</h2><span>${rows.length} latest paper orders</span></div><strong>BOOK</strong></div><div class="v88-order-list">${rows.map(o=>`<div class="${String(o.status).toLowerCase()}"><b>${o.id}</b><span>${o.symbol} ${o.side} ${o.qty} @ ${Number(o.entry||0).toFixed(2)}</span><em>${o.status}</em></div>`).join("")||"<div class='v88-empty'>No OMS orders yet.</div>"}</div></section>`;}
+function wire(){window.EventBus?.subscribe?.("oms-v88.updated",render);setTimeout(()=>render(),1800);}
+window.OrderBookPanelV88={render,version:VERSION};document.addEventListener("DOMContentLoaded",()=>setTimeout(wire,1200));})();

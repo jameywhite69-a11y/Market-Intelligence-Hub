@@ -1,0 +1,4 @@
+(function(){const VERSION="88.0";
+function render(payload){const panel=document.getElementById("executionAuditPanelV88");if(!panel)return;const oms=payload?.oms||window.OrderManagementSystemV88?.snapshot?.()||{audit:[]};const rows=(oms.audit||[]).slice(0,12);panel.innerHTML=`<section class="v88-card"><div class="v88-header"><div><h2>Execution Audit</h2><span>OMS lifecycle event trail</span></div><strong>${rows.length}</strong></div><div class="v88-audit-list">${rows.map(e=>`<div><b>${e.time}</b><span>${e.message}</span></div>`).join("")||"<div class='v88-empty'>No OMS audit events yet.</div>"}</div></section>`;}
+function wire(){window.EventBus?.subscribe?.("oms-v88.updated",render);setTimeout(()=>render(),2000);}
+window.ExecutionAuditPanelV88={render,version:VERSION};document.addEventListener("DOMContentLoaded",()=>setTimeout(wire,1400));})();

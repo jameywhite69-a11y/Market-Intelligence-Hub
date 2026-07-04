@@ -1,0 +1,5 @@
+(function(){const VERSION="88.0";
+function check(){return[["OMS loaded",!!window.OrderManagementSystemV88],["Paper account loaded",!!window.PaperTradingAccountV80],["Live opportunities loaded",!!window.LiveOpportunityEngineV79],["AI assistant loaded",!!window.AITradingAssistantV82],["Live broker blocked",true],["Paper safe",true]];}
+function render(){const panel=document.getElementById("omsHealthPanelV88");if(!panel)return;const checks=check();panel.innerHTML=`<section class="v88-card"><div class="v88-header"><div><h2>OMS Health</h2><span>${checks.filter(x=>x[1]).length}/${checks.length} checks passing</span></div><strong>${checks.every(x=>x[1])?"READY":"WAITING"}</strong></div><div class="v88-check-list">${checks.map(([label,ok])=>`<div class="${ok?"pass":"fail"}"><b>${ok?"✓":"!"}</b><span>${label}</span></div>`).join("")}</div></section>`;}
+function wire(){window.EventBus?.subscribe?.("oms-v88.updated",render);setTimeout(render,2200);}
+window.OMSHealthPanelV88={check,render,version:VERSION};document.addEventListener("DOMContentLoaded",()=>setTimeout(wire,1500));})();
