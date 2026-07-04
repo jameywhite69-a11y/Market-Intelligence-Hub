@@ -1,4 +1,10 @@
-"""
+from pathlib import Path
+import re
+
+src = Path("/mnt/data/main.py")
+text = src.read_text(encoding="utf-8", errors="ignore")
+
+organized = '''"""
 Market Intelligence Hub — FastAPI Application
 Organized main.py
 
@@ -295,3 +301,8 @@ def workstation_v54(request: Request):
         "workstation_v54.html",
         {},
     )
+'''
+
+out = Path("/mnt/data/main_organized.py")
+out.write_text(organized, encoding="utf-8")
+print(out)

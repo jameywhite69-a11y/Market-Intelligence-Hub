@@ -1,12 +1,12 @@
 <!-- ========================================================= -->
 <!-- CENTER WORKSPACE                                          -->
-<!-- Version 80 corrected center workspace                     -->
+<!-- Version 87 corrected center workspace                     -->
 <!--                                                           -->
 <!-- Purpose:                                                  -->
-<!-- Main trader workflow: opportunity discovery, live data,    -->
-<!-- AI commander, institutional decisioning, paper execution,  -->
-<!-- portfolio intelligence, analytics, automation, settings,   -->
-<!-- diagnostics, and release-readiness panels.                 -->
+<!-- Main trader workflow: account summary, discovery, market   -->
+<!-- context, streaming data, charts, live opportunities, AI,   -->
+<!-- decisioning, paper execution, portfolio/risk, analytics,   -->
+<!-- automation, workspace settings, and platform health.       -->
 <!-- ========================================================= -->
 
 <main class="native-tios-center">
@@ -33,10 +33,10 @@
 
     <!-- ===================================================== -->
     <!-- 03 PRIMARY DECISION GRID                               -->
-    <!-- Order follows platform workflow:                       -->
-    <!-- Context -> Live Data -> Opportunities -> AI Decision -> -->
-    <!-- Portfolio -> Execution -> Paper Trading -> Analytics -> -->
-    <!-- Automation -> Platform Health.                         -->
+    <!-- Workflow order:                                        -->
+    <!-- AI Snapshot -> Market Context -> Live Data -> Charts -> -->
+    <!-- Live Opportunities -> Decision -> Execution -> Paper -> -->
+    <!-- Analytics -> Automation -> Workspace -> Health.         -->
     <!-- ===================================================== -->
     <section class="native-decision-grid">
 
@@ -62,8 +62,8 @@
         <section id="marketContextAIBridgePanel"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- C. REALTIME DATA / LIVE OPPORTUNITY ENGINE         -->
-        <!-- V74/V78 feed V79; V79 feeds V80 paper trading.     -->
+        <!-- C. REALTIME DATA FOUNDATION                        -->
+        <!-- V74/V78/V85 provide quote, adapter, and candle bus. -->
         <!-- ------------------------------------------------- -->
         <section id="realtimeDataBusPanelV74"></section>
         <section id="realtimeQuoteTapePanelV74"></section>
@@ -73,20 +73,28 @@
         <section id="realtimeAdapterBridgePanelV78"></section>
         <section id="dataProviderHealthPanelV78"></section>
 
-        <section id="liveOpportunityEnginePanelV79"></section>
-        <section id="liveOpportunityTapePanelV79"></section>
-        <section id="liveOpportunityHealthPanelV79"></section>
-
         <section id="streamingMarketDataBusPanelV85"></section>
         <section id="candleStreamPanelV85"></section>
         <section id="streamHealthPanelV85"></section>
 
-        <section id="platformModuleInventoryPanelV85_1"></section>
-        <section id="loaderPathValidatorPanelV85_1"></section>
-        <section id="panelIdValidatorPanelV85_1"></section>
+        <!-- ------------------------------------------------- -->
+        <!-- D. INSTITUTIONAL CHART WORKSPACE V87               -->
+        <!-- V87 consumes V85 candle stream and V79/V82 levels.  -->
+        <!-- ------------------------------------------------- -->
+        <section id="institutionalChartWorkspacePanelV87"></section>
+        <section id="chartOverlayEnginePanelV87"></section>
+        <section id="chartWorkspaceHealthPanelV87"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- D. INSTITUTIONAL DECISION PACKAGE                  -->
+        <!-- E. LIVE OPPORTUNITY ENGINE                         -->
+        <!-- V79 consumes V74/V78/V85 and feeds AI/paper engine. -->
+        <!-- ------------------------------------------------- -->
+        <section id="liveOpportunityEnginePanelV79"></section>
+        <section id="liveOpportunityTapePanelV79"></section>
+        <section id="liveOpportunityHealthPanelV79"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- F. INSTITUTIONAL DECISION PACKAGE                  -->
         <!-- ------------------------------------------------- -->
         <section id="institutionalDecisionPackagePanel" class="native-scroll-panel"></section>
         <section id="institutionalPackageReportPanel"></section>
@@ -95,7 +103,7 @@
         <section id="decisionStagePipelinePanel" class="native-scroll-panel"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- E. TRADE ENGINE / EXECUTION WORKFLOW               -->
+        <!-- G. TRADE ENGINE / EXECUTION WORKFLOW               -->
         <!-- ------------------------------------------------- -->
         <section id="institutionalTradeEnginePanel"></section>
         <section id="institutionalDecisionQueuePanel"></section>
@@ -109,7 +117,7 @@
         <section id="riskMatrixPanel"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- F. PORTFOLIO INTELLIGENCE / RISK                   -->
+        <!-- H. PORTFOLIO INTELLIGENCE / RISK                   -->
         <!-- ------------------------------------------------- -->
         <section id="portfolioHealthDashboardV64Panel"></section>
         <section id="portfolioExposureEngineV64Panel"></section>
@@ -117,7 +125,7 @@
         <section id="riskBudgetEngineV64Panel"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- G. BROKER ABSTRACTION / LIVE-READY ORDER MGMT      -->
+        <!-- I. BROKER ABSTRACTION / LIVE-READY ORDER MGMT      -->
         <!-- Still paper/live-ready only; no live routing here.  -->
         <!-- ------------------------------------------------- -->
         <section id="executionServicePanelV65"></section>
@@ -129,26 +137,30 @@
         <section id="orderMonitorPanelV66"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- H. INSTITUTIONAL PAPER TRADING ENGINE V80          -->
+        <!-- J. INSTITUTIONAL PAPER TRADING ENGINE V80-V84      -->
         <!-- ------------------------------------------------- -->
         <section id="paperTradingAccountPanelV80"></section>
         <section id="paperOrderTicketPanelV80"></section>
         <section id="paperPositionsPanelV80"></section>
+
         <section id="positionRiskManagerPanelV81"></section>
         <section id="positionLifecycleDashboardV81"></section>
         <section id="stopTargetManagerPanelV81"></section>
+
         <section id="aiTradingAssistantPanelV82"></section>
         <section id="aiTradeGuidancePanelV82"></section>
         <section id="aiAssistantHealthPanelV82"></section>
+
         <section id="paperTradingCommandCenterPanelV83"></section>
         <section id="paperTradeAuditPanelV83"></section>
         <section id="paperTradingSessionPanelV83"></section>
+
         <section id="sessionReviewDashboardPanelV84"></section>
         <section id="paperTradeJournalPanelV84"></section>
         <section id="ruleComplianceReviewPanelV84"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- I. PERFORMANCE ANALYTICS / AI REVIEW               -->
+        <!-- K. PERFORMANCE ANALYTICS / AI REVIEW               -->
         <!-- ------------------------------------------------- -->
         <section id="performanceDashboardV67Panel"></section>
         <section id="equityCurvePanelV67"></section>
@@ -156,14 +168,14 @@
         <section id="aiTradeReviewPanelV68"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- J. WORKFLOW AUTOMATION                             -->
+        <!-- L. WORKFLOW AUTOMATION                             -->
         <!-- ------------------------------------------------- -->
         <section id="workflowAutomationEnginePanelV69"></section>
         <section id="alertRuleBuilderPanelV69"></section>
         <section id="automationEventLogPanelV69"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- K. SETTINGS / WORKSPACE / DOCKING                  -->
+        <!-- M. SETTINGS / WORKSPACE / DOCKING                  -->
         <!-- ------------------------------------------------- -->
         <section id="workspacePersistencePanelV72"></section>
         <section id="layoutProfileManagerPanelV72"></section>
@@ -174,7 +186,7 @@
         <section id="dockStateInspectorPanelV77"></section>
 
         <!-- ------------------------------------------------- -->
-        <!-- L. PLATFORM HEALTH / RELEASE READINESS             -->
+        <!-- N. PLATFORM HEALTH / RELEASE READINESS             -->
         <!-- ------------------------------------------------- -->
         <section id="releaseCandidateDashboardV70Panel"></section>
         <section id="platformSettingsPanelV70"></section>
@@ -189,6 +201,17 @@
         <section id="moduleRegistryPanelV76"></section>
         <section id="moduleLifecyclePanelV76"></section>
         <section id="moduleDependencyHealthPanelV76"></section>
+
+        <!-- ------------------------------------------------- -->
+        <!-- O. PLATFORM VALIDATORS / MANIFEST                  -->
+        <!-- Kept with health instead of live-market workflow.   -->
+        <!-- ------------------------------------------------- -->
+        <section id="platformModuleInventoryPanelV85_1"></section>
+        <section id="loaderPathValidatorPanelV85_1"></section>
+        <section id="panelIdValidatorPanelV85_1"></section>
+
+        <section id="moduleManifestLoaderPanelV86"></section>
+        <section id="manifestHealthPanelV86"></section>
     </section>
 
     <!-- ===================================================== -->

@@ -3,91 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <title>Market Intelligence Hub</title>
-    <link rel="stylesheet" href="/static/css/workspace_persistence_polish.css">
+
+    <!-- ===================================================== -->
+    <!-- 01 CORE / BASE STYLES                                  -->
+    <!-- ===================================================== -->
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/professional_ui_polish.css">
+    <link rel="stylesheet" href="/static/css/trading_desk_ux.css">
+    <link rel="stylesheet" href="/static/css/terminal_layout.css">
+    <link rel="stylesheet" href="/static/css/workstation.css">
+    <link rel="stylesheet" href="/static/css/trading_terminal.css">
+    <link rel="stylesheet" href="/static/css/command_center.css">
+
+    <!-- ===================================================== -->
+    <!-- 02 WORKSPACE / SHELL / NATIVE TIOS                     -->
+    <!-- ===================================================== -->
+    <link rel="stylesheet" href="/static/css/workspace_persistence_polish.css">
+    <link rel="stylesheet" href="/static/css/workspace_context.css">
+    <link rel="stylesheet" href="/static/css/tios_professional_layout.css">
+    <link rel="stylesheet" href="/static/css/tios_layout_manager.css">
+    <link rel="stylesheet" href="/static/css/native_tios_workstation.css">
+    <link rel="stylesheet" href="/static/css/native_tios_v53.css">
+    <link rel="stylesheet" href="/static/css/native_tios_v54.css">
+    <link rel="stylesheet" href="/static/css/workspace_persistence_v72.css">
+    <link rel="stylesheet" href="/static/css/native_docking_v77.css">
+
+    <!-- ===================================================== -->
+    <!-- 03 DOCK / STARTUP / DIAGNOSTICS                        -->
+    <!-- Removed duplicate institutional_dock_system.css base    -->
+    <!-- and kept cache-busted version only.                     -->
+    <!-- ===================================================== -->
+    <link rel="stylesheet" href="/static/css/institutional_dock_system.css?v=4400">
+    <link rel="stylesheet" href="/static/css/startup_trace.css">
+    <link rel="stylesheet" href="/static/css/startup_ownership_analyzer.css">
+    <link rel="stylesheet" href="/static/css/core_diagnostics.css">
+    <link rel="stylesheet" href="/static/css/ai_dock_state_subscriber_v58_2.css">
+    <link rel="stylesheet" href="/static/css/ai_dock_stability_v58_1.css">
+    <link rel="stylesheet" href="/static/css/opportunity_panel_stability_v58_3.css">
+
+    <!-- ===================================================== -->
+    <!-- 04 SCANNER / WATCHLIST / OPPORTUNITY UI                -->
+    <!-- ===================================================== -->
     <link rel="stylesheet" href="/static/css/opportunity_explorer.css">
     <link rel="stylesheet" href="/static/css/live_scanner_hardening.css">
     <link rel="stylesheet" href="/static/css/professional_results_grid.css">
     <link rel="stylesheet" href="/static/css/watchlist_manager.css">
     <link rel="stylesheet" href="/static/css/live_auto_refresh.css">
     <link rel="stylesheet" href="/static/css/live_scanner.css">
+    <link rel="stylesheet" href="/static/css/opportunity_intelligence.css">
+    <link rel="stylesheet" href="/static/css/opportunity_ranking.css">
+    <link rel="stylesheet" href="/static/css/workspace_intelligence.css">
+    <link rel="stylesheet" href="/static/css/institutional_scanner_v56.css">
+    <link rel="stylesheet" href="/static/css/live_opportunity_engine_v79.css">
+
+    <!-- ===================================================== -->
+    <!-- 05 MARKET DATA / CONTEXT / CHARTS                      -->
+    <!-- ===================================================== -->
     <link rel="stylesheet" href="/static/css/chart_intelligence.css">
     <link rel="stylesheet" href="/static/css/technical_intelligence.css">
-    <link rel="stylesheet" href="/static/css/trade_planning.css">
+    <link rel="stylesheet" href="/static/css/live_market_data.css">
+    <link rel="stylesheet" href="/static/css/market_intelligence_core_v61.css">
+    <link rel="stylesheet" href="/static/css/institutional_market_context_v62.css">
+    <link rel="stylesheet" href="/static/css/realtime_data_sync_v74.css">
+    <link rel="stylesheet" href="/static/css/live_data_adapter_v78.css">
+    <link rel="stylesheet" href="/static/css/streaming_market_data_v85.css">
+    <link rel="stylesheet" href="/static/css/institutional_chart_workspace_v87.css">
+
+    <!-- ===================================================== -->
+    <!-- 06 DECISION / AI / INSTITUTIONAL INTELLIGENCE          -->
+    <!-- ===================================================== -->
     <link rel="stylesheet" href="/static/css/confidence_engine.css">
     <link rel="stylesheet" href="/static/css/decision_engine.css">
     <link rel="stylesheet" href="/static/css/decision_panel_compact.css">
-    <link rel="stylesheet" href="/static/css/opportunity_ranking.css">
-    <link rel="stylesheet" href="/static/css/workspace_intelligence.css">
-    <link rel="stylesheet" href="/static/css/professional_ui_polish.css">
-    <link rel="stylesheet" href="/static/css/trading_desk_ux.css">
-    <link rel="stylesheet" href="/static/css/terminal_layout.css">
-    <link rel="stylesheet" href="/static/css/opportunity_intelligence.css">
     <link rel="stylesheet" href="/static/css/confluence_engine.css">
     <link rel="stylesheet" href="/static/css/strategy_matrix.css">
-    <link rel="stylesheet" href="/static/css/portfolio_intelligence.css">
-    <link rel="stylesheet" href="/static/css/lifecycle_engine.css">
-    <link rel="stylesheet" href="/static/css/paper_trading.css">
-    <link rel="stylesheet" href="/static/css/workstation.css">
-    <link rel="stylesheet" href="/static/css/trading_terminal.css">
-    <link rel="stylesheet" href="/static/css/core_diagnostics.css">
-    <link rel="stylesheet" href="/static/css/position_management.css">
-    <link rel="stylesheet" href="/static/css/institutional_dock_system.css">    
-    <link rel="stylesheet" href="/static/css/live_market_data.css">
-    <link rel="stylesheet" href="/static/css/strategy_execution.css">
-    <link rel="stylesheet" href="/static/css/workspace_context.css">
     <link rel="stylesheet" href="/static/css/ai_decision_center.css">
-    <link rel="stylesheet" href="/static/css/portfolio_intelligence_v42.css">
-    <link rel="stylesheet" href="/static/css/trade_lifecycle.css">
-    <link rel="stylesheet" href="/static/css/institutional_risk.css">
-    <link rel="stylesheet" href="/static/css/institutional_risk.css">
-    <link rel="stylesheet" href="/static/css/activity_timeline.css">
-    <link rel="stylesheet" href="/static/css/command_center.css">
-    <link rel="stylesheet" href="/static/css/strategy_registry.css">
-    <link rel="stylesheet" href="/static/css/institutional_dock_system.css?v=4400">
-    <link rel="stylesheet" href="/static/css/tios_professional_layout.css">
-    <link rel="stylesheet" href="/static/css/tios_layout_manager.css">
-    <link rel="stylesheet" href="/static/css/startup_trace.css">
-    <link rel="stylesheet" href="/static/css/startup_ownership_analyzer.css">
-    <link rel="stylesheet" href="/static/css/native_tios_workstation.css">
-    <link rel="stylesheet" href="/static/css/native_tios_v53.css">
     <link rel="stylesheet" href="/static/css/ai_trading_commander_v54.css">
-    <link rel="stylesheet" href="/static/css/production_workspace_v55.css">
-    <link rel="stylesheet" href="/static/css/native_tios_v54.css">
     <link rel="stylesheet" href="/static/css/institutional_terminal_v55.css">
-    <link rel="stylesheet" href="/static/css/institutional_scanner_v56.css">
-     <link rel="stylesheet" href="/static/css/ai_dock_state_subscriber_v58_2.css">
     <link rel="stylesheet" href="/static/css/unified_decision_engine_v57.css">
-    <link rel="stylesheet" href="/static/css/ai_dock_stability_v58_1.css">
-    <link rel="stylesheet" href="/static/css/opportunity_panel_stability_v58_3.css">
+    <link rel="stylesheet" href="/static/css/context_store_architecture_v63.css">
+    <link rel="stylesheet" href="/static/css/ai_trade_review_v68.css">
+    <link rel="stylesheet" href="/static/css/ai_trading_assistant_v82.css">
+
+    <!-- ===================================================== -->
+    <!-- 07 TRADE PLANNING / EXECUTION / BROKER                 -->
+    <!-- ===================================================== -->
+    <link rel="stylesheet" href="/static/css/trade_planning.css">
+    <link rel="stylesheet" href="/static/css/strategy_execution.css">
+    <link rel="stylesheet" href="/static/css/trade_lifecycle.css">
     <link rel="stylesheet" href="/static/css/institutional_trade_engine_v59.css">
     <link rel="stylesheet" href="/static/css/execution_workflow_v60.css">
-    <link rel="stylesheet" href="/static/css/market_intelligence_core_v61.css">
-    <link rel="stylesheet" href="/static/css/institutional_market_context_v62.css">
-    <link rel="stylesheet" href="/static/css/context_store_architecture_v63.css">
-    <link rel="stylesheet" href="/static/css/institutional_portfolio_intelligence_v64.css">
     <link rel="stylesheet" href="/static/css/broker_abstraction_v65.css">
     <link rel="stylesheet" href="/static/css/live_order_management_v66.css">
+
+    <!-- ===================================================== -->
+    <!-- 08 PAPER TRADING / POSITION RISK                       -->
+    <!-- ===================================================== -->
+    <link rel="stylesheet" href="/static/css/paper_trading.css">
+    <link rel="stylesheet" href="/static/css/paper_trading_engine_v80.css">
+    <link rel="stylesheet" href="/static/css/position_management.css">
+    <link rel="stylesheet" href="/static/css/position_risk_manager_v81.css">
+    <link rel="stylesheet" href="/static/css/paper_command_center_v83.css">
+    <link rel="stylesheet" href="/static/css/paper_trade_journal_v84.css">
+
+    <!-- ===================================================== -->
+    <!-- 09 PORTFOLIO / RISK / ANALYTICS                        -->
+    <!-- Removed duplicate institutional_risk.css.               -->
+    <!-- ===================================================== -->
+    <link rel="stylesheet" href="/static/css/portfolio_intelligence.css">
+    <link rel="stylesheet" href="/static/css/portfolio_intelligence_v42.css">
+    <link rel="stylesheet" href="/static/css/institutional_risk.css">
+    <link rel="stylesheet" href="/static/css/institutional_portfolio_intelligence_v64.css">
     <link rel="stylesheet" href="/static/css/portfolio_performance_analytics_v67.css">
-    <link rel="stylesheet" href="/static/css/ai_trade_review_v68.css">
+
+    <!-- ===================================================== -->
+    <!-- 10 STRATEGY / RESEARCH / LIFECYCLE / ACTIVITY          -->
+    <!-- ===================================================== -->
+    <link rel="stylesheet" href="/static/css/lifecycle_engine.css">
+    <link rel="stylesheet" href="/static/css/activity_timeline.css">
+    <link rel="stylesheet" href="/static/css/strategy_registry.css">
+
+    <!-- ===================================================== -->
+    <!-- 11 PLATFORM / SYSTEM RELEASE LAYERS                    -->
+    <!-- ===================================================== -->
+    <link rel="stylesheet" href="/static/css/production_workspace_v55.css">
     <link rel="stylesheet" href="/static/css/workflow_automation_v69.css">
     <link rel="stylesheet" href="/static/css/release_candidate_v70.css">
     <link rel="stylesheet" href="/static/css/production_polish_v71.css">
-    <link rel="stylesheet" href="/static/css/workspace_persistence_v72.css">
     <link rel="stylesheet" href="/static/css/unified_settings_v73.css">
-    <link rel="stylesheet" href="/static/css/realtime_data_sync_v74.css">
     <link rel="stylesheet" href="/static/css/core_event_dispatcher_v75.css">
     <link rel="stylesheet" href="/static/css/module_registry_v76.css">
-    <link rel="stylesheet" href="/static/css/native_docking_v77.css">
-    <link rel="stylesheet" href="/static/css/live_data_adapter_v78.css">
-    <link rel="stylesheet" href="/static/css/live_opportunity_engine_v79.css">
-    <link rel="stylesheet" href="/static/css/paper_trading_engine_v80.css">
-    <link rel="stylesheet" href="/static/css/position_risk_manager_v81.css">
-    <link rel="stylesheet" href="/static/css/ai_trading_assistant_v82.css">
-    <link rel="stylesheet" href="/static/css/paper_command_center_v83.css">
-    <link rel="stylesheet" href="/static/css/paper_trade_journal_v84.css">
-    <link rel="stylesheet" href="/static/css/streaming_market_data_v85.css">
     <link rel="stylesheet" href="/static/css/platform_reorganization_v85_1.css">
+    <link rel="stylesheet" href="/static/css/module_manifest_loader_v86.css">
 </head>
 
 <body>
@@ -102,6 +149,10 @@
         {% include "components/statusbar.html" %}
     </div>
 
+    <!-- ===================================================== -->
+    <!-- BASE APP SCRIPT                                       -->
+    <!-- Page-specific scripts are injected by child templates. -->
+    <!-- ===================================================== -->
     <script src="/static/js/app.js"></script>
     {% block scripts %}{% endblock %}
 </body>

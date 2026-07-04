@@ -1,0 +1,127 @@
+#moduleManifestLoaderPanelV86,
+#manifestHealthPanelV86 {
+    grid-column: 1 / -1;
+}
+
+.v86-card {
+    background: #10151f;
+    border: 1px solid #343944;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.v86-card.ready,
+.v86-card.healthy {
+    border-color: rgba(34,197,94,.65);
+}
+
+.v86-card.review {
+    border-color: rgba(251,191,36,.75);
+}
+
+.v86-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.v86-header h2 {
+    margin: 0;
+    color: #61dafb;
+    font-size: 14px;
+}
+
+.v86-header span {
+    color: #8f98a8;
+    font-size: 11px;
+}
+
+.v86-header strong {
+    color: #fbbf24;
+    font-size: 16px;
+}
+
+.v86-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.v86-grid div,
+.v86-note,
+.v86-check-list div {
+    background: #20252d;
+    border: 1px solid #343944;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.v86-grid small,
+.v86-grid b {
+    display: block;
+}
+
+.v86-grid small {
+    color: #8f98a8;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+
+.v86-grid b {
+    color: #61dafb;
+    font-size: 13px;
+}
+
+.v86-note b,
+.v86-note span {
+    display: block;
+}
+
+.v86-note b {
+    color: #61dafb;
+}
+
+.v86-note span {
+    color: #e6e6e6;
+}
+
+.v86-check-list {
+    display: grid;
+    gap: 7px;
+}
+
+.v86-check-list div {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 8px;
+    align-items: center;
+}
+
+.v86-check-list .pass {
+    border-color: rgba(34,197,94,.55);
+}
+
+.v86-check-list .fail {
+    border-color: rgba(239,68,68,.7);
+}
+
+.v86-check-list b {
+    color: #22c55e;
+}
+
+.v86-check-list .fail b {
+    color: #ef4444;
+}
+
+.v86-check-list span {
+    color: #e6e6e6;
+}
+
+@media (max-width: 1500px) {
+    .v86-grid {
+        grid-template-columns: 1fr;
+    }
+}
