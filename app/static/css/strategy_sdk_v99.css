@@ -1,0 +1,4 @@
+#visualStrategyBuilderPanelV99,#strategyManagerPanelV99{grid-column:1/-1}
+.v99-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;color:#e6e6e6}
+.v99-card h2{margin:0 0 8px;color:#61dafb}
+.v99-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
