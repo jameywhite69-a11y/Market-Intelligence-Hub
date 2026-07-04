@@ -1,6 +1,6 @@
 <!-- ========================================================= -->
 <!-- JAVASCRIPT MODULE LOAD ORDER                              -->
-<!-- Version 89 organized loader                               -->
+<!-- Version 98 organized loader                               -->
 <!--                                                           -->
 <!-- Order is intentional:                                     -->
 <!-- 01 Core framework                                         -->
@@ -14,11 +14,12 @@
 <!-- 09 Decision / institutional intelligence                  -->
 <!-- 10 Portfolio / trading / execution / broker base          -->
 <!-- 11 Paper trading / AI assistant / journal                 -->
-<!-- 12 Professional OMS V88                                   -->
-<!-- 13 Chart workspace V87                                    -->
-<!-- 14 Strategy / analytics / automation                      -->
-<!-- 15 Workstation / timeline / research                      -->
-<!-- 16 Diagnostics / validators / V89 integration / finalizers -->
+<!-- 12 Professional OMS / broker guard / execution simulator  -->
+<!-- 13 Chart workspace                                        -->
+<!-- 14 Analytics / attribution / replay                       -->
+<!-- 15 Strategy / AI review / automation                      -->
+<!-- 16 Workstation / timeline / journal / research            -->
+<!-- 17 System validators / integration / readiness / plugins  -->
 <!-- ========================================================= -->
 
 <!-- ===================================================== -->
@@ -184,7 +185,7 @@
 
 <!-- ===================================================== -->
 <!-- 10 PORTFOLIO / TRADING / EXECUTION / BROKER BASE       -->
-<!-- V59 before V60. V88 OMS loads later after paper/AI.    -->
+<!-- V88 OMS loads later after paper/AI dependencies.       -->
 <!-- ===================================================== -->
 <script src="/static/js/portfolio/portfolio_intelligence_store_v64.js"></script>
 <script src="/static/js/portfolio/exposure_engine_v64.js"></script>
@@ -245,7 +246,7 @@
 <script src="/static/js/paper/rule_compliance_review_v84.js"></script>
 
 <!-- ===================================================== -->
-<!-- 12 PROFESSIONAL OMS V88                                -->
+<!-- 12 PROFESSIONAL OMS / BROKER GUARD / EXEC SIM          -->
 <!-- Loads after V80 paper account and V82 assistant.       -->
 <!-- ===================================================== -->
 <script src="/static/js/execution/order_management_system_v88.js"></script>
@@ -257,6 +258,11 @@
 <script src="/static/js/broker/broker_readiness_layer_v90.js"></script>
 <script src="/static/js/broker/broker_adapter_catalog_v90.js"></script>
 <script src="/static/js/broker/live_routing_guard_v90.js"></script>
+
+<script src="/static/js/execution/execution_simulator_v91.js"></script>
+<script src="/static/js/execution/simulated_fills_panel_v91.js"></script>
+<script src="/static/js/execution/execution_quality_panel_v91.js"></script>
+<script src="/static/js/execution/execution_sim_health_v91.js"></script>
 
 <script src="/static/js/broker/multi_broker_abstraction_v92.js"></script>
 <script src="/static/js/broker/broker_connection_center_v92.js"></script>
@@ -271,8 +277,26 @@
 <script src="/static/js/charts/chart_workspace_health_v87.js"></script>
 
 <!-- ===================================================== -->
-<!-- 14 STRATEGY / AI REVIEW / ANALYTICS / AUTOMATION       -->
-<!-- V67 before V68. V69 after context/portfolio/execution. -->
+<!-- 14 ANALYTICS / ATTRIBUTION / REPLAY                    -->
+<!-- V93 attribution depends on V91. V94 uses V85/V93.      -->
+<!-- ===================================================== -->
+<script src="/static/js/analytics/performance_analytics_engine_v67.js"></script>
+<script src="/static/js/analytics/performance_dashboard_v67.js"></script>
+<script src="/static/js/analytics/equity_curve_panel_v67.js"></script>
+<script src="/static/js/analytics/strategy_ranking_panel_v67.js"></script>
+
+<script src="/static/js/analytics/portfolio_attribution_engine_v93.js"></script>
+<script src="/static/js/analytics/exposure_attribution_panel_v93.js"></script>
+<script src="/static/js/analytics/performance_attribution_panel_v93.js"></script>
+<script src="/static/js/analytics/execution_attribution_panel_v93.js"></script>
+
+<script src="/static/js/analytics/replay_backtesting_engine_v94.js"></script>
+<script src="/static/js/analytics/replay_timeline_panel_v94.js"></script>
+<script src="/static/js/analytics/replay_metrics_panel_v94.js"></script>
+<script src="/static/js/analytics/replay_health_panel_v94.js"></script>
+
+<!-- ===================================================== -->
+<!-- 15 STRATEGY / AI REVIEW / AUTOMATION                   -->
 <!-- ===================================================== -->
 <script src="/static/js/strategy/strategy_execution_client.js"></script>
 <script src="/static/js/strategy/strategy_execution_panel.js"></script>
@@ -285,16 +309,6 @@
 <script src="/static/js/risk/institutional_risk_client.js"></script>
 <script src="/static/js/risk/institutional_risk_panel.js"></script>
 
-<script src="/static/js/execution/execution_simulator_v91.js"></script>
-<script src="/static/js/execution/simulated_fills_panel_v91.js"></script>
-<script src="/static/js/execution/execution_quality_panel_v91.js"></script>
-<script src="/static/js/execution/execution_sim_health_v91.js"></script>
-
-<script src="/static/js/analytics/performance_analytics_engine_v67.js"></script>
-<script src="/static/js/analytics/performance_dashboard_v67.js"></script>
-<script src="/static/js/analytics/equity_curve_panel_v67.js"></script>
-<script src="/static/js/analytics/strategy_ranking_panel_v67.js"></script>
-
 <script src="/static/js/ai/ai_trade_review_engine_v68.js"></script>
 
 <script src="/static/js/automation/workflow_automation_engine_v69.js"></script>
@@ -305,7 +319,7 @@
 <script src="/static/js/risk/risk_matrix_panel_v55.js"></script>
 
 <!-- ===================================================== -->
-<!-- 15 WORKSTATION / TIMELINE / JOURNAL / RESEARCH         -->
+<!-- 16 WORKSTATION / TIMELINE / JOURNAL / RESEARCH         -->
 <!-- ===================================================== -->
 <script src="/static/js/workstation/workspace_context_panel.js"></script>
 <script src="/static/js/workstation/context_overview_panel_v63.js"></script>
@@ -329,8 +343,8 @@
 <script src="/static/js/research/strategy_registry_panel.js"></script>
 
 <!-- ===================================================== -->
-<!-- 16 DIAGNOSTICS / VALIDATORS / V89 INTEGRATION          -->
-<!-- Keep these near the end.                               -->
+<!-- 17 SYSTEM VALIDATORS / INTEGRATION / READINESS / SDK   -->
+<!-- Keep near the end after all integrated modules exist.  -->
 <!-- ===================================================== -->
 <script src="/static/js/core/scanner_pipeline.js"></script>
 <script src="/static/js/core/pipeline_subscribers.js"></script>
@@ -351,27 +365,25 @@
 
 <script src="/static/js/system/module_manifest_loader_v86.js"></script>
 <script src="/static/js/system/manifest_health_panel_v86.js"></script>
-<script src="/static/js/system/workspace_consolidation_engine_v96.js"></script>
-<script src="/static/js/system/workspace_section_health_v96.js"></script>
-<script src="/static/js/system/workstation_release_summary_v96.js"></script>
-
-<script src="/static/js/analytics/portfolio_attribution_engine_v93.js"></script>
-<script src="/static/js/analytics/exposure_attribution_panel_v93.js"></script>
-<script src="/static/js/analytics/performance_attribution_panel_v93.js"></script>
-<script src="/static/js/analytics/execution_attribution_panel_v93.js"></script>
 
 <script src="/static/js/system/institutional_integration_bus_v89.js"></script>
 <script src="/static/js/system/workflow_synchronizer_v89.js"></script>
 <script src="/static/js/system/integration_health_panel_v89.js"></script>
 
-<script src="/static/js/analytics/replay_backtesting_engine_v94.js"></script>
-<script src="/static/js/analytics/replay_timeline_panel_v94.js"></script>
-<script src="/static/js/analytics/replay_metrics_panel_v94.js"></script>
-<script src="/static/js/analytics/replay_health_panel_v94.js"></script>
-
 <script src="/static/js/system/production_readiness_gate_v95.js"></script>
 <script src="/static/js/system/emergency_stop_panel_v95.js"></script>
 <script src="/static/js/system/deployment_readiness_panel_v95.js"></script>
+
+<script src="/static/js/system/workspace_consolidation_engine_v96.js"></script>
+<script src="/static/js/system/workspace_section_health_v96.js"></script>
+<script src="/static/js/system/workstation_release_summary_v96.js"></script>
+
+<script src="/static/js/system/module_manifest_runtime_v97.js"></script>
+<script src="/static/js/system/module_dependency_map_v97.js"></script>
+<script src="/static/js/system/manifest_migration_health_v97.js"></script>
+
+<script src="/static/js/system/plugin_sdk_v98.js"></script>
+<script src="/static/js/system/plugin_marketplace_v98.js"></script>
 
 <!-- Known issue: V58.3 can cause AI Opportunity panel flicker.
      Leave disabled unless testing that specific replacement card.
