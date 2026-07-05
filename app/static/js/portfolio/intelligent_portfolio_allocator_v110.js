@@ -1,0 +1,1 @@
+window.IntelligentPortfolioAllocatorV110={version:'110.0',allocate(){return[]}};
