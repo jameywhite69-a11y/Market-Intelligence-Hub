@@ -1,0 +1,83 @@
+#nativeWorkstationNavigationPanelV108_1{
+ grid-column:1/-1;
+ position:sticky;
+ top:6px;
+ z-index:9000;
+ background:#10151f;
+ border:1px solid #343944;
+ border-radius:12px;
+ padding:10px;
+ margin-bottom:10px;
+ box-shadow:0 10px 24px rgba(0,0,0,.28);
+}
+.v1081-native-nav-card{width:100%}
+.v1081-nav-header{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:8px;
+}
+.v1081-nav-header h2{
+ margin:0;
+ color:#61dafb;
+ font-size:14px;
+}
+.v1081-nav-header span{
+ color:#8f98a8;
+ font-size:11px;
+}
+.v1081-nav-header strong{
+ color:#fbbf24;
+ font-size:14px;
+}
+.v1081-native-nav-buttons{
+ display:flex;
+ flex-wrap:wrap;
+ gap:7px;
+}
+.v1081-native-nav-buttons button,
+#floatingHomeButtonV108_1{
+ background:#20252d;
+ border:1px solid #343944;
+ border-radius:8px;
+ color:#e6e6e6;
+ cursor:pointer;
+ font-size:12px;
+ font-weight:800;
+ padding:7px 10px;
+}
+.v1081-native-nav-buttons button:hover,
+.v1081-native-nav-buttons button.active,
+#floatingHomeButtonV108_1:hover{
+ background:#142536;
+ border-color:#61dafb;
+ color:#61dafb;
+}
+#floatingHomeButtonV108_1{
+ position:fixed;
+ right:22px;
+ bottom:22px;
+ z-index:10000;
+ opacity:0;
+ pointer-events:none;
+ transform:translateY(12px);
+ transition:opacity .18s ease, transform .18s ease;
+ box-shadow:0 8px 22px rgba(0,0,0,.35);
+}
+#floatingHomeButtonV108_1.visible{
+ opacity:1;
+ pointer-events:auto;
+ transform:translateY(0);
+}
+@media(max-width:900px){
+ #nativeWorkstationNavigationPanelV108_1{
+  overflow-x:auto;
+ }
+ .v1081-native-nav-buttons{
+  flex-wrap:nowrap;
+  min-width:max-content;
+ }
+ .v1081-native-nav-buttons button{
+  white-space:nowrap;
+ }
+}
