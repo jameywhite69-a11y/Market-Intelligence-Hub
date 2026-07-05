@@ -1,0 +1,9 @@
+#institutionalAlertCenterPanelV107,#alertRuleManagerPanelV107,#alertDeliveryLogPanelV107,#alertHealthPanelV107{grid-column:1/-1}
+.v107-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:10px;color:#e6e6e6}
+.v107-header{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.v107-header h2{margin:0;color:#61dafb;font-size:14px}.v107-header span{color:#8f98a8;font-size:11px}.v107-header strong{color:#fbbf24;font-size:16px}
+.v107-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:8px}.v107-grid div,.v107-list div,.v107-check-list div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:8px}
+.v107-grid small,.v107-grid b{display:block}.v107-grid small{color:#8f98a8;text-transform:uppercase;font-size:9px}.v107-grid b{color:#61dafb;font-size:13px}
+.v107-actions{display:flex;flex-wrap:wrap;gap:7px}.v107-actions button{background:#20252d;border:1px solid #343944;border-radius:8px;padding:7px 9px;color:#e6e6e6;cursor:pointer}.v107-actions button.on{border-color:rgba(34,197,94,.55);color:#22c55e}.v107-actions button.off{border-color:rgba(239,68,68,.55);color:#ef4444}
+.v107-list,.v107-check-list{display:grid;gap:7px}.v107-list div{display:grid;grid-template-columns:160px 1fr 100px;gap:8px;align-items:center}.v107-list b{color:#61dafb}.v107-list span,.v107-check-list span,.v107-empty{color:#e6e6e6}.v107-list em{color:#fbbf24;font-style:normal;text-align:right}.v107-list .ack{opacity:.65}
+.v107-check-list div{display:grid;grid-template-columns:40px 1fr;gap:8px;align-items:center}.v107-check-list .pass{border-color:rgba(34,197,94,.55)}.v107-check-list .fail{border-color:rgba(239,68,68,.7)}.v107-check-list b{color:#22c55e}.v107-check-list .fail b{color:#ef4444}
+@media(max-width:1500px){.v107-grid,.v107-list div{grid-template-columns:1fr}}

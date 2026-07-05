@@ -1,6 +1,6 @@
 <!-- ========================================================= -->
 <!-- JAVASCRIPT MODULE LOAD ORDER                              -->
-<!-- Version 98 organized loader                               -->
+<!-- Version 106 organized loader                              -->
 <!--                                                           -->
 <!-- Order is intentional:                                     -->
 <!-- 01 Core framework                                         -->
@@ -16,10 +16,11 @@
 <!-- 11 Paper trading / AI assistant / journal                 -->
 <!-- 12 Professional OMS / broker guard / execution simulator  -->
 <!-- 13 Chart workspace                                        -->
-<!-- 14 Analytics / attribution / replay                       -->
-<!-- 15 Strategy / AI review / automation                      -->
-<!-- 16 Workstation / timeline / journal / research            -->
-<!-- 17 System validators / integration / readiness / plugins  -->
+<!-- 14 Portfolio / account / optimization                     -->
+<!-- 15 Analytics / attribution / replay / coaching            -->
+<!-- 16 Strategy SDK / marketplace / generation / automation    -->
+<!-- 17 Workstation / timeline / journal / research            -->
+<!-- 18 System validators / integration / readiness / plugins  -->
 <!-- ========================================================= -->
 
 <!-- ===================================================== -->
@@ -221,15 +222,12 @@
 <script src="/static/js/positions/portfolio_risk_panel.js"></script>
 <script src="/static/js/positions/position_lifecycle_panel.js"></script>
 
-
-
 <!-- ===================================================== -->
 <!-- 11 PAPER TRADING / AI ASSISTANT / JOURNAL              -->
 <!-- V80 -> V81 -> V82 -> V83 -> V84.                       -->
 <!-- ===================================================== -->
 <script src="/static/js/paper/paper_trading_account_v80.js"></script>
 <script src="/static/js/paper/paper_order_ticket_v80.js"></script>
-
 <script src="/static/js/paper/paper_positions_panel_v80.js"></script>
 
 <script src="/static/js/paper/position_risk_manager_v81.js"></script>
@@ -247,9 +245,6 @@
 <script src="/static/js/paper/paper_trade_journal_v84.js"></script>
 <script src="/static/js/paper/session_review_dashboard_v84.js"></script>
 <script src="/static/js/paper/rule_compliance_review_v84.js"></script>
-
-<script src="/static/js/broker/live_broker_enablement_wizard_v103.js"></script>
-
 
 <!-- ===================================================== -->
 <!-- 12 PROFESSIONAL OMS / BROKER GUARD / EXEC SIM          -->
@@ -274,6 +269,8 @@
 <script src="/static/js/broker/broker_connection_center_v92.js"></script>
 <script src="/static/js/broker/broker_preflight_panel_v92.js"></script>
 
+<script src="/static/js/broker/live_broker_enablement_wizard_v103.js"></script>
+
 <!-- ===================================================== -->
 <!-- 13 CHART WORKSPACE                                     -->
 <!-- V87 consumes V85 candles and can read V79/V82/V88.     -->
@@ -283,16 +280,24 @@
 <script src="/static/js/charts/chart_workspace_health_v87.js"></script>
 
 <!-- ===================================================== -->
-<!-- 14 ANALYTICS / ATTRIBUTION / REPLAY                    -->
-<!-- V93 attribution depends on V91. V94 uses V85/V93.      -->
+<!-- 14 PORTFOLIO / ACCOUNT / OPTIMIZATION                  -->
+<!-- V104 aggregates accounts. V102 recommends allocation.  -->
+<!-- ===================================================== -->
+<script src="/static/js/portfolio/multi_account_registry_v104.js"></script>
+<script src="/static/js/portfolio/account_aggregation_engine_v104.js"></script>
+<script src="/static/js/portfolio/cross_account_positions_v104.js"></script>
+<script src="/static/js/portfolio/account_allocation_ai_v104.js"></script>
+
+<script src="/static/js/portfolio/portfolio_optimizer_ai_v102.js"></script>
+
+<!-- ===================================================== -->
+<!-- 15 ANALYTICS / ATTRIBUTION / REPLAY / COACHING         -->
+<!-- V93 depends on V91. V105 depends on V93. V106 on V105. -->
 <!-- ===================================================== -->
 <script src="/static/js/analytics/performance_analytics_engine_v67.js"></script>
 <script src="/static/js/analytics/performance_dashboard_v67.js"></script>
 <script src="/static/js/analytics/equity_curve_panel_v67.js"></script>
 <script src="/static/js/analytics/strategy_ranking_panel_v67.js"></script>
-<script src="/static/js/ai/ai_trade_coach_v106.js"></script>
-<script src="/static/js/ai/trading_mistake_detector_v106.js"></script>
-<script src="/static/js/ai/coach_action_plan_v106.js"></script>
 
 <script src="/static/js/analytics/portfolio_attribution_engine_v93.js"></script>
 <script src="/static/js/analytics/exposure_attribution_panel_v93.js"></script>
@@ -304,22 +309,38 @@
 <script src="/static/js/analytics/replay_metrics_panel_v94.js"></script>
 <script src="/static/js/analytics/replay_health_panel_v94.js"></script>
 
-<script src="/static/js/portfolio/multi_account_registry_v104.js"></script>
-<script src="/static/js/portfolio/account_aggregation_engine_v104.js"></script>
-<script src="/static/js/portfolio/cross_account_positions_v104.js"></script>
-<script src="/static/js/portfolio/account_allocation_ai_v104.js"></script>
 <script src="/static/js/analytics/institutional_analytics_engine_v105.js"></script>
 <script src="/static/js/analytics/risk_adjusted_performance_panel_v105.js"></script>
 <script src="/static/js/analytics/trade_expectancy_panel_v105.js"></script>
 <script src="/static/js/analytics/analytics_health_panel_v105.js"></script>
 
+<script src="/static/js/ai/ai_trade_coach_v106.js"></script>
+<script src="/static/js/ai/trading_mistake_detector_v106.js"></script>
+<script src="/static/js/ai/coach_action_plan_v106.js"></script>
+
 <!-- ===================================================== -->
-<!-- 15 STRATEGY / AI REVIEW / AUTOMATION                   -->
+<!-- 16 STRATEGY SDK / MARKETPLACE / AI GENERATION          -->
+<!-- V101 generator depends on V99 Strategy SDK.             -->
 <!-- ===================================================== -->
 <script src="/static/js/strategy/strategy_execution_client.js"></script>
 <script src="/static/js/strategy/strategy_execution_panel.js"></script>
+
+<script src="/static/js/strategy/strategy_sdk_v99.js"></script>
+<script src="/static/js/strategy/visual_strategy_builder_v99.js"></script>
+<script src="/static/js/strategy/strategy_manager_v99.js"></script>
+
+<script src="/static/js/strategy/strategy_marketplace_v100.js"></script>
+<script src="/static/js/strategy/package_manager_v100.js"></script>
+
+<script src="/static/js/ai/ai_strategy_generator_v101.js"></script>
+
+<!-- ===================================================== -->
+<!-- 17 AI REVIEW / AUTOMATION / RISK PANELS                -->
+<!-- ===================================================== -->
 <script src="/static/js/ai/ai_decision_client.js"></script>
 <script src="/static/js/ai/ai_decision_center_panel.js"></script>
+<script src="/static/js/ai/ai_trade_review_engine_v68.js"></script>
+
 <script src="/static/js/portfolio/portfolio_intelligence_client.js"></script>
 <script src="/static/js/portfolio/portfolio_intelligence_panel.js"></script>
 <script src="/static/js/lifecycle/trade_lifecycle_client.js"></script>
@@ -327,19 +348,20 @@
 <script src="/static/js/risk/institutional_risk_client.js"></script>
 <script src="/static/js/risk/institutional_risk_panel.js"></script>
 
-<script src="/static/js/ai/ai_trade_review_engine_v68.js"></script>
-
 <script src="/static/js/automation/workflow_automation_engine_v69.js"></script>
 <script src="/static/js/automation/alert_rule_builder_v69.js"></script>
 <script src="/static/js/automation/automation_event_log_v69.js"></script>
 
+<script src="/static/js/alerts/institutional_alert_center_v107.js"></script>
+<script src="/static/js/alerts/alert_rule_manager_v107.js"></script>
+<script src="/static/js/alerts/alert_delivery_log_v107.js"></script>
+<script src="/static/js/alerts/alert_health_panel_v107.js"></script>
+
 <script src="/static/js/ai/trade_execution_planner_v55.js"></script>
 <script src="/static/js/risk/risk_matrix_panel_v55.js"></script>
 
-<script src="/static/js/portfolio/portfolio_optimizer_ai_v102.js"></script>
-
 <!-- ===================================================== -->
-<!-- 16 WORKSTATION / TIMELINE / JOURNAL / RESEARCH         -->
+<!-- 18 WORKSTATION / TIMELINE / JOURNAL / RESEARCH         -->
 <!-- ===================================================== -->
 <script src="/static/js/workstation/workspace_context_panel.js"></script>
 <script src="/static/js/workstation/context_overview_panel_v63.js"></script>
@@ -361,15 +383,11 @@
 <script src="/static/js/market_intelligence/news_catalyst_center.js"></script>
 <script src="/static/js/research/strategy_registry_client.js"></script>
 <script src="/static/js/research/strategy_registry_panel.js"></script>
-<script src="/static/js/strategy/strategy_sdk_v99.js"></script>
-<script src="/static/js/strategy/visual_strategy_builder_v99.js"></script>
-<script src="/static/js/strategy/strategy_manager_v99.js"></script>
-<script src="/static/js/strategy/strategy_marketplace_v100.js"></script>
-<script src="/static/js/strategy/package_manager_v100.js"></script>
-<script src="/static/js/ai/ai_strategy_generator_v101.js"></script>
+
+<script src="/static/js/system/workstation_navigation_system_v107_1.js"></script>
 
 <!-- ===================================================== -->
-<!-- 17 SYSTEM VALIDATORS / INTEGRATION / READINESS / SDK   -->
+<!-- 19 SYSTEM VALIDATORS / INTEGRATION / READINESS / SDK   -->
 <!-- Keep near the end after all integrated modules exist.  -->
 <!-- ===================================================== -->
 <script src="/static/js/core/scanner_pipeline.js"></script>

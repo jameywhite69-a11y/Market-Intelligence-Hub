@@ -1,0 +1,69 @@
+#workstationNavigationBarV107_1{
+ position:sticky;
+ top:0;
+ z-index:9998;
+ background:rgba(11,17,28,.96);
+ border:1px solid #343944;
+ border-radius:10px;
+ margin:6px 8px 10px;
+ padding:6px;
+ backdrop-filter:blur(8px);
+ box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+.v1071-nav-inner{
+ display:flex;
+ flex-wrap:wrap;
+ gap:6px;
+ align-items:center;
+}
+#workstationNavigationBarV107_1 button,
+#floatingHomeButtonV107_1{
+ background:#20252d;
+ border:1px solid #343944;
+ border-radius:8px;
+ color:#e6e6e6;
+ cursor:pointer;
+ font-size:12px;
+ font-weight:700;
+ padding:7px 10px;
+}
+#workstationNavigationBarV107_1 button.home{
+ border-color:#61dafb;
+ color:#61dafb;
+}
+#workstationNavigationBarV107_1 button.active,
+#workstationNavigationBarV107_1 button:hover,
+#floatingHomeButtonV107_1:hover{
+ border-color:#61dafb;
+ color:#61dafb;
+ background:#142536;
+}
+#floatingHomeButtonV107_1{
+ position:fixed;
+ right:22px;
+ bottom:22px;
+ z-index:10000;
+ opacity:0;
+ pointer-events:none;
+ transform:translateY(12px);
+ transition:opacity .18s ease, transform .18s ease;
+ box-shadow:0 8px 22px rgba(0,0,0,.35);
+}
+#floatingHomeButtonV107_1.visible{
+ opacity:1;
+ pointer-events:auto;
+ transform:translateY(0);
+}
+@media(max-width:900px){
+ #workstationNavigationBarV107_1{
+   position:sticky;
+   overflow-x:auto;
+ }
+ .v1071-nav-inner{
+   flex-wrap:nowrap;
+   min-width:max-content;
+ }
+ #workstationNavigationBarV107_1 button{
+   white-space:nowrap;
+ }
+}
