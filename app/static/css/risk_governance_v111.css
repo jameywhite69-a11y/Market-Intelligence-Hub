@@ -1,0 +1,8 @@
+#riskGovernanceEnginePanelV111,#governanceViolationPanelV111,#governanceHealthPanelV111{grid-column:1/-1}
+.v111-card{background:#10151f;border:1px solid #343944;border-radius:12px;padding:10px;margin-bottom:10px;color:#e6e6e6}
+.v111-header{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.v111-header h2{margin:0;color:#61dafb;font-size:14px}.v111-header span{color:#8f98a8;font-size:11px}.v111-header strong{color:#fbbf24;font-size:16px}
+.v111-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:8px}.v111-grid div,.v111-list div,.v111-check-list div{background:#20252d;border:1px solid #343944;border-radius:8px;padding:8px}
+.v111-grid small,.v111-grid b{display:block}.v111-grid small{color:#8f98a8;text-transform:uppercase;font-size:9px}.v111-grid b{color:#61dafb;font-size:13px}
+.v111-list,.v111-check-list{display:grid;gap:7px}.v111-list div{display:grid;grid-template-columns:180px 1fr 100px;gap:8px;align-items:center}.v111-list b{color:#61dafb}.v111-list span,.v111-empty,.v111-check-list span{color:#e6e6e6}.v111-list em{color:#ef4444;font-style:normal;text-align:right}
+.v111-check-list div{display:grid;grid-template-columns:40px 1fr;gap:8px;align-items:center}.v111-check-list .pass{border-color:rgba(34,197,94,.55)}.v111-check-list .fail{border-color:rgba(239,68,68,.7)}.v111-check-list b{color:#22c55e}.v111-check-list .fail b{color:#ef4444}
+@media(max-width:1500px){.v111-grid,.v111-list div{grid-template-columns:1fr}}
